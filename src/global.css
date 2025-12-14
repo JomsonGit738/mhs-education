@@ -1,0 +1,57 @@
+:root {
+  font-family: 'Poppins', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+}
+
+a {
+  text-decoration: none;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.home-slider.owl-carousel {
+  position: relative;
+}
+
+.home-slider .slider-item,
+.hero-wrap {
+  background-size: cover;
+  background-position: center center;
+}
+
+.swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.7);
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background: #fff;
+}
+
+.carousel-testimony .swiper-pagination-bullet {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.carousel-testimony .swiper-pagination-bullet-active {
+  background: #0d6efd;
+}
+
+.bg-darken {
+  background: #1b1b1b;
+}
+
+/* Ensure hidden template animation elements are visible without original jQuery waypoint hooks */
+.ftco-animate {
+  opacity: 1;
+  visibility: visible;
+}
