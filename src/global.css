@@ -55,3 +55,27 @@ a {
   opacity: 1;
   visibility: visible;
 }
+
+/* Make hero slider visible with Swiper instead of Owl */
+.home-slider {
+  position: relative;
+  height: 600px;
+}
+
+.home-slider .swiper,
+.home-slider .swiper-wrapper,
+.home-slider .swiper-slide {
+  height: 100%;
+}
+
+.home-slider .slider-item {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* Owl CSS hides carousels until JS init; force visible for Swiper replacements */
+.owl-carousel {
+  display: block;
+}
