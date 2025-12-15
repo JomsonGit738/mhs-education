@@ -86,8 +86,8 @@ const TopBar = () => (
     <div className="container">
       <div className="row no-gutters d-flex align-items-center align-items-stretch">
         <div className="col-md-4 d-flex align-items-center py-4">
-          <Link className="navbar-brand" href="/">
-            {brand.name.split(' ')[0]}. <span>{brand.tagline}</span>
+          <Link className="navbar-brand d-flex align-items-center p-0" href="/">
+            <img src={brand.logo} alt={`${brand.name} logo`} style={{ height: 70, width: 'auto' }} />
           </Link>
         </div>
         <div className="col-lg-8 d-block">
