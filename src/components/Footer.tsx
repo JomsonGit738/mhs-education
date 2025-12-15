@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { blogs, brand, navLinks } from '../data/content';
 
 export const Footer = () => {
@@ -38,10 +38,10 @@ export const Footer = () => {
               <h2 className="ftco-heading-2">Recent Blog</h2>
               {recentBlogs.map((post) => (
                 <div key={post.id} className="block-21 mb-4 d-flex">
-                  <Link className="blog-img mr-4" style={{ backgroundImage: `url(${post.image})` }} to={`/blog/${post.id}`} />
+                  <Link className="blog-img mr-4" style={{ backgroundImage: `url(${post.image})` }} href={`/blog/${post.id}`} />
                   <div className="text">
                     <h3 className="heading">
-                      <Link to={`/blog/${post.id}`}>{post.title}</Link>
+                      <Link href={`/blog/${post.id}`}>{post.title}</Link>
                     </h3>
                     <div className="meta">
                       <div>
@@ -65,7 +65,7 @@ export const Footer = () => {
               <ul className="list-unstyled">
                 {navLinks.map((link) => (
                   <li key={link.path}>
-                    <Link to={link.path}>
+                    <Link href={link.path}>
                       <span className="ion-ios-arrow-round-forward mr-2" />
                       {link.label}
                     </Link>

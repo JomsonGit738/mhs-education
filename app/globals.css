@@ -1,0 +1,81 @@
+:root {
+  font-family: 'Poppins', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+}
+
+a {
+  text-decoration: none;
+}
+
+main {
+  min-height: 100vh;
+}
+
+.home-slider.owl-carousel {
+  position: relative;
+}
+
+.home-slider .slider-item,
+.hero-wrap {
+  background-size: cover;
+  background-position: center center;
+}
+
+.swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.7);
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background: #fff;
+}
+
+.carousel-testimony .swiper-pagination-bullet {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.carousel-testimony .swiper-pagination-bullet-active {
+  background: #0d6efd;
+}
+
+.bg-darken {
+  background: #1b1b1b;
+}
+
+/* Make hero slider visible with Swiper instead of Owl */
+.home-slider {
+  position: relative;
+  height: 600px;
+}
+
+.home-slider .swiper,
+.home-slider .swiper-wrapper,
+.home-slider .swiper-slide {
+  height: 100%;
+}
+
+.home-slider .slider-item {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* Owl CSS hides carousels until JS init; force visible for Swiper replacements */
+.owl-carousel {
+  display: block;
+}
+
+/* Ensure animation helpers never hide content when AOS is inactive */
+.ftco-animate {
+  opacity: 1 !important;
+  visibility: visible !important;
+}

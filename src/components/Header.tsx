@@ -1,11 +1,20 @@
-import { useEffect, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+'use client';
+
+import { useEffect, useMemo, useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { brand, navLinks } from '../data/content';
 
 const ScrollAwareNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isAwake, setIsAwake] = useState(false);
+  const pathname = usePathname() || '/';
+
+  const isActive = useMemo(
+    () => (path: string) => (path === '/' ? pathname === '/' : pathname.startsWith(path)),
+    [pathname],
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,14 +65,13 @@ const ScrollAwareNavbar = () => {
           <ul className="navbar-nav mr-auto">
             {navLinks.map((link) => (
               <li key={link.path} className="nav-item">
-                <NavLink
-                  to={link.path}
-                  end={link.path === '/'}
-                  className={({ isActive }) => `nav-link ${link.path === '/' ? 'pl-0' : ''} ${isActive ? 'active' : ''}`}
+                <Link
+                  href={link.path}
+                  className={`nav-link ${link.path === '/' ? 'pl-0' : ''} ${isActive(link.path) ? 'active' : ''}`}
                   onClick={() => setIsOpen(false)}
                 >
                   {link.label}
-                </NavLink>
+                </Link>
               </li>
             ))}
           </ul>
@@ -78,7 +86,7 @@ const TopBar = () => (
     <div className="container">
       <div className="row no-gutters d-flex align-items-center align-items-stretch">
         <div className="col-md-4 d-flex align-items-center py-4">
-          <Link className="navbar-brand" to="/">
+          <Link className="navbar-brand" href="/">
             {brand.name.split(' ')[0]}. <span>{brand.tagline}</span>
           </Link>
         </div>
@@ -104,7 +112,7 @@ const TopBar = () => (
             </div>
             <div className="col-md topper d-flex align-items-center justify-content-end">
               <p className="mb-0">
-                <Link to="/contact" className="btn py-2 px-3 btn-primary d-flex align-items-center justify-content-center">
+                <Link href="/contact" className="btn py-2 px-3 btn-primary d-flex align-items-center justify-content-center">
                   <span>Apply now</span>
                 </Link>
               </p>

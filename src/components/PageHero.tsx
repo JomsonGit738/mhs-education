@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 type PageHeroProps = {
   title: string;
@@ -15,7 +15,7 @@ export const PageHero = ({ title, breadcrumb, background }: PageHeroProps) => (
           <h1 className="mb-2 bread">{title}</h1>
           <p className="breadcrumbs">
             <span className="mr-2">
-              <Link to="/">
+              <Link href="/">
                 Home <i className="ion-ios-arrow-forward" />
               </Link>
             </span>{' '}

@@ -1,6 +1,8 @@
+'use client';
+
 import { Autoplay, EffectFade, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { heroSlides } from '../data/content';
 
 export const HeroSlider = () => (
@@ -23,7 +25,7 @@ export const HeroSlider = () => (
                   <h1 className="mb-4">{slide.title}</h1>
                   <p>{slide.description}</p>
                   <p>
-                    <Link to={slide.ctaHref} className="btn btn-primary px-4 py-3 mt-3">
+                    <Link href={slide.ctaHref} className="btn btn-primary px-4 py-3 mt-3">
                       {slide.ctaLabel}
                     </Link>
                   </p>

@@ -1,3 +1,4 @@
+import type { StaticImageData } from 'next/image';
 import about from '../assets/images/about.jpg';
 import about2 from '../assets/images/about-2.jpg';
 import bg1 from '../assets/images/bg_1.jpg';
@@ -22,7 +23,9 @@ import teacher2 from '../assets/images/teacher-2.jpg';
 import teacher3 from '../assets/images/teacher-3.jpg';
 import teacher4 from '../assets/images/teacher-4.jpg';
 
-export const images = {
+const toSrc = (img: StaticImageData | string) => (typeof img === 'string' ? img : img.src);
+
+const rawImages = {
   about,
   about2,
   bg1,
@@ -47,5 +50,9 @@ export const images = {
   teacher3,
   teacher4,
 } as const;
+
+export const images: Record<keyof typeof rawImages, string> = Object.fromEntries(
+  Object.entries(rawImages).map(([key, value]) => [key, toSrc(value)]),
+) as Record<keyof typeof rawImages, string>;
 
 export type ImageKey = keyof typeof images;

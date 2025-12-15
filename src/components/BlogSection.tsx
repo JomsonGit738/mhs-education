@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import type { BlogPost } from '../data/content';
 
 type BlogSectionProps = {
@@ -14,7 +14,7 @@ const BlogCard = ({ post }: { post: BlogPost }) => {
   return (
     <div className="col-md-6 col-lg-4 ftco-animate" data-aos="fade-up">
       <div className="blog-entry">
-        <Link to={`/blog/${post.id}`} className="block-20 d-flex align-items-end" style={{ backgroundImage: `url(${post.image})` }}>
+        <Link href={`/blog/${post.id}`} className="block-20 d-flex align-items-end" style={{ backgroundImage: `url(${post.image})` }}>
           <div className="meta-date text-center p-2">
             <span className="day">{day ?? post.date}</span>
             <span className="mos">{month ?? ''}</span>
@@ -23,12 +23,12 @@ const BlogCard = ({ post }: { post: BlogPost }) => {
         </Link>
         <div className="text bg-white p-4">
           <h3 className="heading">
-            <Link to={`/blog/${post.id}`}>{post.title}</Link>
+            <Link href={`/blog/${post.id}`}>{post.title}</Link>
           </h3>
           <p>{post.excerpt}</p>
           <div className="d-flex align-items-center mt-4">
             <p className="mb-0">
-              <Link to={`/blog/${post.id}`} className="btn btn-primary">
+              <Link href={`/blog/${post.id}`} className="btn btn-primary">
                 Read More <span className="ion-ios-arrow-round-forward" />
               </Link>
             </p>
