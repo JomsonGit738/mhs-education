@@ -12,8 +12,8 @@ const BlogCard = ({ post }: { post: BlogPost }) => {
   const [month, day, year] = post.date.replace(',', '').split(' ');
 
   return (
-    <div className="col-md-6 col-lg-4 ftco-animate" data-aos="fade-up">
-      <div className="blog-entry">
+    <div className="col-md-6 col-lg-4 ftco-animate d-flex" data-aos="fade-up">
+      <div className="blog-entry d-flex flex-column h-100 w-100">
         <Link href={`/blog/${post.id}`} className="block-20 d-flex align-items-end" style={{ backgroundImage: `url(${post.image})` }}>
           <div className="meta-date text-center p-2">
             <span className="day">{day ?? post.date}</span>
@@ -21,12 +21,12 @@ const BlogCard = ({ post }: { post: BlogPost }) => {
             <span className="yr">{year ?? ''}</span>
           </div>
         </Link>
-        <div className="text bg-white p-4">
+        <div className="text bg-white p-4 d-flex flex-column flex-grow-1">
           <h3 className="heading">
             <Link href={`/blog/${post.id}`}>{post.title}</Link>
           </h3>
-          <p>{post.excerpt}</p>
-          <div className="d-flex align-items-center mt-4">
+          <p className="mb-3">{post.excerpt}</p>
+          <div className="d-flex align-items-center mt-auto">
             <p className="mb-0">
               <Link href={`/blog/${post.id}`} className="btn btn-primary">
                 Read More <span className="ion-ios-arrow-round-forward" />
@@ -52,7 +52,7 @@ export const BlogSection = ({ title, description, posts }: BlogSectionProps) => 
         <div className="row justify-content-center mb-5 pb-2">
           <div className="col-md-8 text-center heading-section ftco-animate">
             {title && <h2 className="mb-4">{title}</h2>}
-            {description && <p>{description}</p>}
+            {description && <p className="lead text-secondary">{description}</p>}
           </div>
         </div>
       )}

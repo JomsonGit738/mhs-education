@@ -25,7 +25,7 @@ export const Testimonials = () => (
             breakpoints={{
               1000: { slidesPerView: 2 },
             }}
-            className="carousel-testimony owl-carousel"
+            className="testimony-swiper"
           >
             {testimonials.map((item) => (
               <SwiperSlide key={item.name}>

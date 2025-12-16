@@ -30,7 +30,7 @@ export const ContactForm = () => (
               style={{ border: 0, minHeight: '400px' }}
               loading="lazy"
               allowFullScreen
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509381!2d-122.0842494!3d37.4220656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb0a5d5df2ceb%3A0xa0f69b62c9e6c1e!2sGoogleplex!5e0!3m2!1sen!2sus!4v1600000000000"
+              src="https://www.google.com/maps?q=Suite+F5,+New+Road+Business+Centre,+109+New+Road,+Whitechapel,+E+1+1HJ.&output=embed"
             />
           </div>
         </div>

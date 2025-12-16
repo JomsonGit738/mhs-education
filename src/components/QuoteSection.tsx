@@ -15,8 +15,8 @@ export const QuoteSection = () => (
             <div className="heading-section heading-section-white ftco-animate mb-5">
               <h2 className="mb-4">Request A Quote</h2>
               <p>
-                Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Request a
-                visit and our team will get back to you.
+                Share what support you need for your UK study plans—course shortlisting, UCAS guidance, visa prep, or accommodation advice—and
+                our advisers will respond with tailored next steps.
               </p>
             </div>
             <form className="appointment-form ftco-animate">

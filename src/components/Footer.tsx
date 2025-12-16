@@ -109,11 +109,7 @@ export const Footer = () => {
         <div className="row">
           <div className="col-md-12 text-center">
             <p>
-              Copyright &copy; {new Date().getFullYear()} All rights reserved | This template is made with{' '}
-              <i className="icon-heart" aria-hidden="true" /> by{' '}
-              <a href="https://colorlib.com" target="_blank" rel="noreferrer">
-                Colorlib
-              </a>
+              Copyright &copy; {new Date().getFullYear()} MHS Education. All rights reserved.
             </p>
           </div>
         </div>

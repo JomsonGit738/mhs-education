@@ -9,6 +9,11 @@ import heroSlide1 from "../assets/images/new-images/hero-slider-image-1.jpg";
 import heroSlide2 from "../assets/images/new-images/hero-slider-image-2.jpg";
 import heroSlide3 from "../assets/images/new-images/hero-slider-image-3.jpg";
 import mhsEducation from "../assets/images/new-images/mhseducation.jpeg";
+import personAhmed from "../assets/images/new-images/person/ahmed.jpg";
+import personDaniel from "../assets/images/new-images/person/Daniel.jpg";
+import personLina from "../assets/images/new-images/person/Lina.jpg";
+import personPriya from "../assets/images/new-images/person/Priya.jpg";
+import personSaira from "../assets/images/new-images/person/Saira.jpg";
 import bgRemovedLogo from "../assets/images/new-images/bg-removed-logo.png";
 import uk from "../assets/images/new-images/uk.jpg";
 import manUsing from "../assets/images/new-images/man-using.jpg";
@@ -44,6 +49,11 @@ const rawImages = {
   heroSlide2,
   heroSlide3,
   mhsEducation,
+  personAhmed,
+  personDaniel,
+  personLina,
+  personPriya,
+  personSaira,
   bgRemovedLogo,
   uk,
   manUsing,

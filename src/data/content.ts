@@ -261,10 +261,10 @@ export const courses: Course[] = [
 
 export const teachers: Teacher[] = [
   {
-    name: "MHS Admissions Team",
-    role: "Senior Advisers",
+    name: "Admissions Guidance",
+    role: "UK Advisers",
     image: images.teacher1,
-    bio: "Personalised course mapping, documentation support, and application follow-up for every student.",
+    bio: "UCAS and direct-apply support with tailored shortlisting, personal statement feedback, and offer follow-up for UK universities.",
     socials: [
       { icon: "icon-twitter", href: "#" },
       { icon: "icon-facebook", href: "#" },
@@ -274,9 +274,9 @@ export const teachers: Teacher[] = [
   },
   {
     name: "Visa & Compliance",
-    role: "Student Services",
+    role: "UKVI Support",
     image: images.teacher2,
-    bio: "Visa preparation, timeline planning, and interview readiness to keep you compliant and confident.",
+    bio: "UKVI-focused checklists, CAS coordination, and interview readiness so your student visa stays on track.",
     socials: [
       { icon: "icon-twitter", href: "#" },
       { icon: "icon-facebook", href: "#" },
@@ -285,10 +285,10 @@ export const teachers: Teacher[] = [
     ],
   },
   {
-    name: "Scholarships & Finance",
-    role: "Advisory",
+    name: "Finance & Scholarships",
+    role: "Funding Advisory",
     image: images.teacher3,
-    bio: "Funding pathways, scholarship guidance, and budgeting advice tailored to your destination.",
+    bio: "Student finance, bursary, and scholarship guidance with budgeting advice for living and studying in the UK.",
     socials: [
       { icon: "icon-twitter", href: "#" },
       { icon: "icon-facebook", href: "#" },
@@ -300,7 +300,7 @@ export const teachers: Teacher[] = [
     name: "Student Support",
     role: "Experience Team",
     image: images.teacher4,
-    bio: "Accommodation, travel, and pre-departure support to make your arrival smooth and stress-free.",
+    bio: "Accommodation search, travel planning, NHS/GP and banking guidance, and pre-arrival briefings for a smooth UK landing.",
     socials: [
       { icon: "icon-twitter", href: "#" },
       { icon: "icon-facebook", href: "#" },
@@ -316,35 +316,35 @@ export const testimonials: Testimonial[] = [
     role: "Foundation Student",
     quote:
       "They helped me shortlist the right foundation programme and guided every document. I received my offer quickly and felt supported the whole time.",
-    image: images.teacher1,
+    image: images.personSaira,
   },
   {
     name: "Daniel",
     role: "Undergraduate Applicant",
     quote:
       "Clear timelines, strong personal statement feedback, and quick responses made my application stress-free. I secured multiple offers.",
-    image: images.teacher2,
+    image: images.personDaniel,
   },
   {
     name: "Priya",
     role: "Postgraduate Applicant",
     quote:
       "The team refined my SOP and coordinated references, which really elevated my masters application. Visa prep was straightforward too.",
-    image: images.teacher3,
+    image: images.personPriya,
   },
   {
     name: "Ahmed",
     role: "Visa Support",
     quote:
       "Their document checklist and interview tips were invaluable. I felt confident through the visa process and travelled on time.",
-    image: images.teacher4,
+    image: images.personAhmed,
   },
   {
     name: "Lina",
     role: "Student Support",
     quote:
       "Accommodation guidance and pre-departure briefings took away all the uncertainty. I knew exactly what to expect on arrival.",
-    image: images.teacher1,
+    image: images.personLina,
   },
 ];
 
@@ -362,7 +362,7 @@ export const blogs: BlogPost[] = [
   },
   {
     id: "strengthen-application",
-    title: "Strengthen Your University Application",
+    title: "Strengthen Your UK University Application",
     author: "MHS Education",
     date: "November 04, 2024",
     comments: 5,
@@ -373,13 +373,13 @@ export const blogs: BlogPost[] = [
   },
   {
     id: "visa-checklist",
-    title: "Visa Preparation Checklist for Students",
+    title: "UK Visa Preparation Checklist for Students",
     author: "MHS Education",
     date: "December 01, 2024",
     comments: 2,
     image: images.image3,
     excerpt:
-      "Stay compliant with a simple visa checklist that covers documents, timelines, and interview readiness.",
+      "Stay compliant with a UK student visa checklist that covers documents, CAS timelines, and interview readiness.",
     tags: ["Visa", "Compliance", "Student Support"],
   },
 ];
@@ -403,8 +403,8 @@ export const contactCards: ContactCard[] = [
   },
   {
     title: "Email Address",
-    content: "info@mhsglobalassociates.com",
-    href: "mailto:info@mhsglobalassociates.com",
+    content: "info@mhseducation.com",
+    href: "mailto:info@mhseducation.com",
   },
   { title: "Website", content: "mhsglobalassociates.com", href: "https://www.mhsglobalassociates.com" },
 ];
