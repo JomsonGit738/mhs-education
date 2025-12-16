@@ -88,44 +88,44 @@ export type Comment = {
 
 export const brand = {
   name: "MHS Education",
-  tagline: "University",
+  tagline: "Admissions Guidance",
   logo: images.bgRemovedLogo,
-  email: "youremail@email.com",
-  phone: "+ 1235 2355 98",
-  address: "203 Fake St. Mountain View, San Francisco, California, USA",
-  shortPhone: "+2 392 3929 210",
+  email: "info@mhseducation.com",
+  phone: "07521772131",
+  address: "MHS Education, Suite F5, New Road Business Centre, 109 New Road, Whitechapel, E1 1HJ",
+  shortPhone: "07521772131",
 };
 
 export const navLinks = [
   { label: "Home", path: "/" },
   { label: "About", path: "/about" },
-  { label: "Courses", path: "/courses" },
-  { label: "Staff", path: "/teacher" },
-  { label: "Blog", path: "/blog" },
+  { label: "Programmes", path: "/courses" },
+  { label: "Student Services", path: "/teacher" },
+  { label: "Insights", path: "/blog" },
   { label: "Contact", path: "/contact" },
 ];
 
 export const heroSlides: HeroSlide[] = [
   {
-    title: "University, College School Education",
+    title: "Personalised Admissions Guidance",
     description:
-      "A small river named Duden flows by their place and supplies it with the necessary regelialia.",
-    image: images.heroSlide3,
-    ctaLabel: "Contact Us",
-    ctaHref: "/contact",
-  },
-  {
-    title: "Education Needs Complete Solution",
-    description:
-      "A small river named Duden flows by their place and supplies it with the necessary regelialia.",
+      "We connect ambitious students with leading international universities through tailored course shortlisting and attentive advice.",
     image: images.heroSlide1,
     ctaLabel: "Contact Us",
     ctaHref: "/contact",
   },
   {
-    title: "University, College School Education",
+    title: "Your Pathway to Global Campuses",
     description:
-      "A small river named Duden flows by their place and supplies it with the necessary regelialia.",
+      "From foundation to postgraduate study, we manage applications, documentation, and deadlines with careful attention.",
+    image: images.heroSlide1,
+    ctaLabel: "Contact Us",
+    ctaHref: "/contact",
+  },
+  {
+    title: "Comprehensive Student Support",
+    description:
+      "Visa guidance, scholarship advice, accommodation support, and pre-departure briefings keep you confident at every step.",
     image: images.heroSlide2,
     ctaLabel: "Contact Us",
     ctaHref: "/contact",
@@ -134,170 +134,140 @@ export const heroSlides: HeroSlide[] = [
 
 export const services: Service[] = [
   {
-    title: "Certified Teachers",
-    description:
-      "Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.",
-    icon: "flaticon-teacher",
+    title: "University Applications",
+    description: "Course shortlisting, profile positioning, and offer follow-up with personalised guidance.",
+    icon: "flaticon-diploma",
     tone: "primary",
   },
   {
-    title: "Special Education",
-    description:
-      "Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.",
-    icon: "flaticon-reading",
+    title: "Visa & Compliance",
+    description: "Step-by-step support for visa preparation, documentation checks, and interview readiness.",
+    icon: "flaticon-security",
     tone: "dark",
   },
   {
-    title: "Book & Library",
-    description:
-      "Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.",
-    icon: "flaticon-books",
+    title: "Scholarships & Finance",
+    description: "Scholarship guidance plus student finance advice to help you plan with confidence.",
+    icon: "flaticon-reading",
     tone: "primary",
   },
   {
-    title: "Sport Clubs",
-    description:
-      "Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.",
-    icon: "flaticon-diploma",
+    title: "Student Support",
+    description: "Accommodation guidance, travel planning, and pre-departure briefings for a smooth arrival.",
+    icon: "flaticon-kids",
     tone: "dark",
   },
 ];
 
 export const offerings: Offering[] = [
   {
-    title: "Safety First",
-    description:
-      "Far far away, behind the word mountains, far from the countries Vokalia.",
-    icon: "flaticon-security",
-  },
-  {
-    title: "Regular Classes",
-    description:
-      "Far far away, behind the word mountains, far from the countries Vokalia.",
-    icon: "flaticon-reading",
-  },
-  {
-    title: "Certified Teachers",
-    description:
-      "Far far away, behind the word mountains, far from the countries Vokalia.",
-    icon: "flaticon-diploma",
-  },
-  {
-    title: "Sufficient Classrooms",
-    description:
-      "Far far away, behind the word mountains, far from the countries Vokalia.",
+    title: "Foundation Programmes",
+    description: "Start strong with tailored foundation options that bridge you to leading degrees.",
     icon: "flaticon-education",
   },
   {
-    title: "Creative Lessons",
-    description:
-      "Far far away, behind the word mountains, far from the countries Vokalia.",
+    title: "Undergraduate Degrees",
+    description: "Match your ambitions with courses across the UK, Europe, and beyond.",
+    icon: "flaticon-reading",
+  },
+  {
+    title: "Postgraduate Degrees",
+    description: "Shape your specialism with masters pathways designed for global careers.",
+    icon: "flaticon-diploma",
+  },
+  {
+    title: "Short Courses",
+    description: "Upskill quickly with career-focused short courses and professional certificates.",
     icon: "flaticon-jigsaw",
   },
   {
-    title: "Sports Facilities",
-    description:
-      "Far far away, behind the word mountains, far from the countries Vokalia.",
-    icon: "flaticon-kids",
+    title: "Visa Guidance",
+    description: "Stay compliant with documentation checks, timelines, and interview preparation.",
+    icon: "flaticon-security",
+  },
+  {
+    title: "Scholarship Support",
+    description: "Identify funding options and strengthen applications for financial aid.",
+    icon: "flaticon-teacher",
   },
 ];
 
 export const stats: Stat[] = [
-  { label: "Certified Teachers", value: 18, icon: "flaticon-doctor" },
-  { label: "Students", value: 401, icon: "flaticon-doctor" },
-  { label: "Courses", value: 30, icon: "flaticon-doctor" },
-  { label: "Awards Won", value: 50, icon: "flaticon-doctor" },
+  { label: "Qualification Pathways", value: 4, icon: "flaticon-doctor" },
+  { label: "Annual Intakes", value: 3, icon: "flaticon-doctor" },
+  { label: "Complimentary Support", value: 100, icon: "flaticon-doctor" },
+  { label: "Students Guided", value: 500, icon: "flaticon-doctor" },
 ];
 
 export const courses: Course[] = [
   {
-    id: "course-1",
-    title: "Electric Engineering",
-    teacher: "Mr. Khan",
-    seats: "10 seats",
-    duration: "4 Years",
+    id: "programme-foundation",
+    title: "Foundation Programmes",
+    teacher: "Admissions Team",
+    seats: "Multiple intakes",
+    duration: "1 Year",
     description:
-      "Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia.",
+      "Bridge to undergraduate study with guided course selection, documentation checks, and application submission.",
     image: images.course1,
   },
   {
-    id: "course-2",
-    title: "Electric Engineering",
-    teacher: "Mr. Khan",
-    seats: "10 seats",
-    duration: "4 Years",
+    id: "programme-undergraduate",
+    title: "Undergraduate Degrees",
+    teacher: "Admissions Team",
+    seats: "Rolling placements",
+    duration: "3-4 Years",
     description:
-      "Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia.",
+      "Personalised shortlisting and application guidance to secure competitive offers at leading universities.",
     image: images.course2,
   },
   {
-    id: "course-3",
-    title: "Electric Engineering",
-    teacher: "Mr. Khan",
-    seats: "10 seats",
-    duration: "4 Years",
+    id: "programme-postgraduate",
+    title: "Postgraduate Degrees",
+    teacher: "Admissions Team",
+    seats: "Limited cohorts",
+    duration: "1-2 Years",
     description:
-      "Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia.",
+      "Strengthen your profile with tailored statements, references, and timeline management for masters admissions.",
     image: images.course3,
   },
   {
-    id: "course-4",
-    title: "Electric Engineering",
-    teacher: "Mr. Khan",
-    seats: "10 seats",
-    duration: "4 Years",
+    id: "programme-short",
+    title: "Short Courses",
+    teacher: "Admissions Team",
+    seats: "Flexible starts",
+    duration: "Flexible",
     description:
-      "Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia.",
+      "Career-focused short programmes with guidance on the right fit, prerequisites, and application steps.",
     image: images.course4,
   },
   {
-    id: "course-5",
-    title: "Electric Engineering",
-    teacher: "Mr. Khan",
-    seats: "10 seats",
-    duration: "4 Years",
+    id: "programme-visa",
+    title: "Visa Guidance",
+    teacher: "Student Services",
+    seats: "By appointment",
+    duration: "Ongoing",
     description:
-      "Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia.",
+      "Document checklists, interview preparation, and compliance support so you travel with confidence.",
     image: images.course5,
   },
   {
-    id: "course-6",
-    title: "Electric Engineering",
-    teacher: "Mr. Khan",
-    seats: "10 seats",
-    duration: "4 Years",
+    id: "programme-support",
+    title: "Student Support",
+    teacher: "Student Services",
+    seats: "On demand",
+    duration: "Ongoing",
     description:
-      "Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia.",
+      "Accommodation guidance, travel planning, pre-departure briefings, and on-arrival advice.",
     image: images.course6,
-  },
-  {
-    id: "course-7",
-    title: "Electric Engineering",
-    teacher: "Mr. Khan",
-    seats: "10 seats",
-    duration: "4 Years",
-    description:
-      "Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia.",
-    image: images.course7,
-  },
-  {
-    id: "course-8",
-    title: "Electric Engineering",
-    teacher: "Mr. Khan",
-    seats: "10 seats",
-    duration: "4 Years",
-    description:
-      "Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia.",
-    image: images.course8,
   },
 ];
 
 export const teachers: Teacher[] = [
   {
-    name: "Bianca Wilson",
-    role: "Teacher",
+    name: "MHS Admissions Team",
+    role: "Senior Advisers",
     image: images.teacher1,
-    bio: "I am an ambitious workaholic, but apart from that, pretty simple person.",
+    bio: "Personalised course mapping, documentation support, and application follow-up for every student.",
     socials: [
       { icon: "icon-twitter", href: "#" },
       { icon: "icon-facebook", href: "#" },
@@ -306,10 +276,10 @@ export const teachers: Teacher[] = [
     ],
   },
   {
-    name: "Mitch Parker",
-    role: "English Teacher",
+    name: "Visa & Compliance",
+    role: "Student Services",
     image: images.teacher2,
-    bio: "I am an ambitious workaholic, but apart from that, pretty simple person.",
+    bio: "Visa preparation, timeline planning, and interview readiness to keep you compliant and confident.",
     socials: [
       { icon: "icon-twitter", href: "#" },
       { icon: "icon-facebook", href: "#" },
@@ -318,10 +288,10 @@ export const teachers: Teacher[] = [
     ],
   },
   {
-    name: "Stella Smith",
-    role: "Art Teacher",
+    name: "Scholarships & Finance",
+    role: "Advisory",
     image: images.teacher3,
-    bio: "I am an ambitious workaholic, but apart from that, pretty simple person.",
+    bio: "Funding pathways, scholarship guidance, and budgeting advice tailored to your destination.",
     socials: [
       { icon: "icon-twitter", href: "#" },
       { icon: "icon-facebook", href: "#" },
@@ -330,10 +300,10 @@ export const teachers: Teacher[] = [
     ],
   },
   {
-    name: "Monshe Henderson",
-    role: "Science Teacher",
+    name: "Student Support",
+    role: "Experience Team",
     image: images.teacher4,
-    bio: "I am an ambitious workaholic, but apart from that, pretty simple person.",
+    bio: "Accommodation, travel, and pre-departure support to make your arrival smooth and stress-free.",
     socials: [
       { icon: "icon-twitter", href: "#" },
       { icon: "icon-facebook", href: "#" },
@@ -345,75 +315,75 @@ export const teachers: Teacher[] = [
 
 export const testimonials: Testimonial[] = [
   {
-    name: "Racky Henderson",
-    role: "Father",
+    name: "Saira",
+    role: "Foundation Student",
     quote:
-      "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
+      "They helped me shortlist the right foundation programme and guided every document. I received my offer quickly and felt supported the whole time.",
     image: images.teacher1,
   },
   {
-    name: "Henry Dee",
-    role: "Mother",
+    name: "Daniel",
+    role: "Undergraduate Applicant",
     quote:
-      "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
+      "Clear timelines, strong personal statement feedback, and quick responses made my application stress-free. I secured multiple offers.",
     image: images.teacher2,
   },
   {
-    name: "Mark Huff",
-    role: "Mother",
+    name: "Priya",
+    role: "Postgraduate Applicant",
     quote:
-      "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
+      "The team refined my SOP and coordinated references, which really elevated my masters application. Visa prep was straightforward too.",
     image: images.teacher3,
   },
   {
-    name: "Rodel Golez",
-    role: "Mother",
+    name: "Ahmed",
+    role: "Visa Support",
     quote:
-      "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
+      "Their document checklist and interview tips were invaluable. I felt confident through the visa process and travelled on time.",
     image: images.teacher4,
   },
   {
-    name: "Ken Bosh",
-    role: "Mother",
+    name: "Lina",
+    role: "Student Support",
     quote:
-      "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
+      "Accommodation guidance and pre-departure briefings took away all the uncertainty. I knew exactly what to expect on arrival.",
     image: images.teacher1,
   },
 ];
 
 export const blogs: BlogPost[] = [
   {
-    id: "skills-develop-memory-1",
-    title: "Skills To Develop Your Child Memory",
-    author: "Admin",
-    date: "June 26, 2019",
+    id: "plan-your-study-path",
+    title: "Plan Your International Study Pathway",
+    author: "MHS Education",
+    date: "October 10, 2024",
     comments: 3,
     image: images.image1,
     excerpt:
-      "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
-    tags: ["Life", "Sport", "Tech", "Travel"],
+      "How to shortlist universities, align intakes, and prepare documents early so your application stays ahead of deadlines.",
+    tags: ["Admissions", "Planning", "Guidance"],
   },
   {
-    id: "skills-develop-memory-2",
-    title: "Skills To Develop Your Child Memory",
-    author: "Admin",
-    date: "June 26, 2019",
-    comments: 3,
+    id: "strengthen-application",
+    title: "Strengthen Your University Application",
+    author: "MHS Education",
+    date: "November 04, 2024",
+    comments: 5,
     image: images.image2,
     excerpt:
-      "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
-    tags: ["Life", "Sport", "Tech", "Travel"],
+      "Tips for crafting a compelling personal statement, coordinating references, and presenting your profile clearly to decision makers.",
+    tags: ["Admissions", "Personal Statement", "Offers"],
   },
   {
-    id: "skills-develop-memory-3",
-    title: "Skills To Develop Your Child Memory",
-    author: "Admin",
-    date: "June 26, 2019",
-    comments: 3,
+    id: "visa-checklist",
+    title: "Visa Preparation Checklist for Students",
+    author: "MHS Education",
+    date: "December 01, 2024",
+    comments: 2,
     image: images.image3,
     excerpt:
-      "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
-    tags: ["Life", "Sport", "Tech", "Travel"],
+      "Stay compliant with a simple visa checklist that covers documents, timelines, and interview readiness.",
+    tags: ["Visa", "Compliance", "Student Support"],
   },
 ];
 
@@ -427,54 +397,53 @@ export const gallery: GalleryItem[] = [
 export const contactCards: ContactCard[] = [
   {
     title: "Address",
-    content: "198 West 21th Street, Suite 721 New York NY 10016",
+    content: "Suite F5, New Road Business Centre, 109 New Road, Whitechapel, E1 1HJ",
   },
   {
     title: "Contact Number",
-    content: "+ 1235 2355 98",
-    href: "tel://1234567920",
+    content: "07521772131",
+    href: "tel://07521772131",
   },
   {
     title: "Email Address",
-    content: "info@yoursite.com",
-    href: "mailto:info@yoursite.com",
+    content: "info@mhsglobalassociates.com",
+    href: "mailto:info@mhsglobalassociates.com",
   },
-  { title: "Website", content: "yoursite.com", href: "#" },
+  { title: "Website", content: "mhsglobalassociates.com", href: "https://www.mhsglobalassociates.com" },
 ];
 
 export const quoteCourseOptions = [
-  "Select Your Course",
-  "Art Lesson",
-  "Language Lesson",
-  "Music Lesson",
-  "Sports",
-  "Other Services",
+  "Select Your Support Need",
+  "Foundation Programmes",
+  "Undergraduate Applications",
+  "Postgraduate Applications",
+  "Visa Guidance",
+  "Scholarship Support",
+  "Student Support",
 ];
 
 export const pageHero = {
-  about: { title: "About Us", breadcrumb: "About us" },
-  courses: { title: "Courses", breadcrumb: "Courses" },
-  teacher: { title: "Staff", breadcrumb: "Staff" },
-  blog: { title: "Blog", breadcrumb: "Blog" },
-  blogSingle: { title: "Blog Single", breadcrumb: "Blog Single" },
+  about: { title: "About MHS Education", breadcrumb: "About" },
+  courses: { title: "Programmes", breadcrumb: "Programmes" },
+  teacher: { title: "Student Services", breadcrumb: "Student Services" },
+  blog: { title: "Insights", breadcrumb: "Insights" },
+  blogSingle: { title: "Insight Detail", breadcrumb: "Insight" },
   contact: { title: "Contact Us", breadcrumb: "Contact" },
 };
 
 export const blogDetail = {
-  slug: "creative-wordpress-themes",
-  title: "#2. Creative WordPress Themes",
-  heroImage: images.image2,
+  slug: "personalised-admissions-roadmap",
+  title: "Your Personalised Admissions Roadmap",
+  heroImage: images.heroSlide2,
   body: [
-    "Temporibus ad error suscipit exercitationem hic molestiae totam obcaecati rerum, eius aut, in. Exercitationem atque quidem tempora maiores ex architecto voluptatum aut officia doloremque. Error dolore voluptas, omnis molestias odio dignissimos culpa ex earum nisi consequatur quos odit quasi repellat qui officiis reiciendis incidunt hic non? Debitis commodi aut, adipisci.",
-    "Quisquam esse aliquam fuga distinctio, quidem delectus veritatis reiciendis. Nihil explicabo quod, est eos ipsum. Unde aut non tenetur tempore, nisi culpa voluptate maiores officiis quis vel ab consectetur suscipit veritatis nulla quos quia aspernatur perferendis, libero sint. Error, velit, porro. Deserunt minus, quibusdam iste enim veniam, modi rem maiores.",
-    "Odit voluptatibus, eveniet vel nihil cum ullam dolores laborum, quo velit commodi rerum eum quidem pariatur! Quia fuga iste tenetur, ipsa vel nisi in dolorum consequatur, veritatis porro explicabo soluta commodi libero voluptatem similique id quidem? Blanditiis voluptates aperiam non magni.",
-    "Adipisci vero culpa, eius nobis soluta. Dolore, maxime ullam ipsam quidem, dolor distinctio similique asperiores voluptas enim, exercitationem ratione aut adipisci modi quod quibusdam iusto, voluptates beatae iure nemo itaque laborum.",
-    "Voluptas dolores dignissimos dolorum temporibus, autem aliquam ducimus at officia adipisci quasi nemo a perspiciatis provident magni laboriosam repudiandae iure iusto commodi debitis est blanditiis alias laborum sint dolore.",
+    "Personalised admissions planning starts with listening to your goals, budget, and timelines. We shortlist programmes that align with your strengths and preferences, then guide you through documentation and deadlines.",
+    "Clear, concise personal statements, verified references, and organised paperwork help decision makers understand your profile. We iterate quickly so you submit with confidence.",
+    "Beyond the offer, our team supports visa preparation, scholarship guidance, accommodation advice, and pre-departure briefings so you arrive ready for success.",
   ],
-  tags: ["Life", "Sport", "Tech", "Travel"],
+  tags: ["Admissions", "Planning", "Visa"],
   author: {
-    name: "George Washington",
-    bio: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique.",
+    name: "MHS Education",
+    bio: "Our advisers connect students with leading international universities through attentive, personalised guidance.",
     avatar: images.teacher1,
   },
   comments: [
@@ -482,25 +451,25 @@ export const blogDetail = {
       id: "c1",
       author: "John Doe",
       date: "June 27, 2019 at 2:21pm",
-      text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus.",
+      text: "How early should I start preparing for a January intake?",
       replies: [
         {
           id: "c1-1",
           author: "John Doe",
           date: "June 27, 2019 at 2:21pm",
-          text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus.",
+          text: "We recommend beginning at least 4-6 months ahead to secure documents and manage deadlines.",
           replies: [
             {
               id: "c1-1-1",
               author: "John Doe",
               date: "June 27, 2019 at 2:21pm",
-              text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus.",
+              text: "Thanks! Do you also review personal statements?",
               replies: [
                 {
                   id: "c1-1-1-1",
                   author: "John Doe",
                   date: "June 27, 2019 at 2:21pm",
-                  text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus.",
+                  text: "Yes, we iterate on statements and references to strengthen applications.",
                 },
               ],
             },
@@ -512,28 +481,27 @@ export const blogDetail = {
       id: "c2",
       author: "John Doe",
       date: "June 27, 2019 at 2:21pm",
-      text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus.",
+      text: "Do you help with scholarship applications as well?",
     },
     {
       id: "c3",
       author: "John Doe",
       date: "June 27, 2019 at 2:21pm",
-      text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus.",
+      text: "Is visa guidance included in your complimentary support?",
     },
   ] as Comment[],
   categories: [
-    { label: "Art", total: 6 },
-    { label: "Sports", total: 8 },
-    { label: "Language", total: 2 },
-    { label: "Food", total: 2 },
-    { label: "Music", total: 2 },
+    { label: "Admissions", total: 6 },
+    { label: "Visa", total: 5 },
+    { label: "Scholarships", total: 4 },
+    { label: "Student Support", total: 3 },
+    { label: "Planning", total: 2 },
   ],
   popular: [
     {
       id: "popular-1",
-      title:
-        "Even the all-powerful Pointing has no control about the blind texts",
-      author: "Dave Lewis",
+      title: "5 ways to strengthen your personal statement",
+      author: "MHS Education",
       date: "June 27, 2019",
       comments: 19,
       image: images.image1,
@@ -541,9 +509,8 @@ export const blogDetail = {
     },
     {
       id: "popular-2",
-      title:
-        "Even the all-powerful Pointing has no control about the blind texts",
-      author: "Dave Lewis",
+      title: "Visa interview tips for first-time applicants",
+      author: "MHS Education",
       date: "June 27, 2019",
       comments: 19,
       image: images.image2,
@@ -552,8 +519,8 @@ export const blogDetail = {
     {
       id: "popular-3",
       title:
-        "Even the all-powerful Pointing has no control about the blind texts",
-      author: "Dave Lewis",
+        "How to choose the right intake for your study plan",
+      author: "MHS Education",
       date: "June 27, 2019",
       comments: 19,
       image: images.image3,
@@ -567,14 +534,14 @@ export const blogDetail = {
     { label: "August 2018", total: 8 },
   ],
   tagCloud: [
-    "School",
-    "Kids",
-    "Nursery",
-    "Daycare",
-    "Care",
-    "Kindergarten",
-    "Teacher",
+    "Admissions",
+    "Visa",
+    "Scholarship",
+    "Student Support",
+    "Planning",
+    "Applications",
+    "Offers",
   ],
   sidebarText:
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!",
+    "MHS Education provides personalised admissions guidance, visa support, and student services that carry you from enquiry to enrolment with confidence.",
 };

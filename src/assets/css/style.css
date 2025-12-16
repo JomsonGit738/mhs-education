@@ -8415,7 +8415,7 @@ h1, h2, h3, h4, h5,
     bottom: 0;
     content: '';
     opacity: .3;
-    background: #f1453d; }
+    background: var(--brand-gradient); }
   .hero-wrap.hero-wrap-2 {
     height: 300px; }
     .hero-wrap.hero-wrap-2 .slider-text {

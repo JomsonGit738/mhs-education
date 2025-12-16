@@ -6,7 +6,7 @@ import { images } from '../data/images';
 
 export const ContactPage = () => (
   <>
-    <PageHero title={pageHero.contact.title} breadcrumb={pageHero.contact.breadcrumb} background={images.bg1} />
+    <PageHero title={pageHero.contact.title} breadcrumb={pageHero.contact.breadcrumb} background={images.uk} />
     <ContactInfo />
     <ContactForm />
   </>

@@ -31,14 +31,14 @@ export const StatsSection = () => {
             </div>
           </div>
           <div className="col-md-6 heading-section heading-section-white ftco-animate pl-lg-5 pt-md-0 pt-5">
-            <h2 className="mb-4">Fox University</h2>
+            <h2 className="mb-4">Supporting Global Student Success</h2>
             <p>
-              Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a
-              paradisematic country. A small river named Duden flows by their place and supplies it with the necessary regelialia.
+              MHS Education guides ambitious students with personalised admissions planning, careful documentation checks, and attentive follow-up so every
+              application stays on track.
             </p>
             <p>
-              A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in
-              which roasted parts of sentences fly into your mouth.
+              Beyond offers, we provide visa preparation, scholarship guidance, accommodation advice, and pre-departure briefings to help you arrive with
+              confidence and thrive abroad.
             </p>
           </div>
         </div>

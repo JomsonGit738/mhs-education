@@ -5,7 +5,7 @@ import { images } from '../data/images';
 
 export const CoursesPage = () => (
   <>
-    <PageHero title={pageHero.courses.title} breadcrumb={pageHero.courses.breadcrumb} background={images.bg1} />
+    <PageHero title={pageHero.courses.title} breadcrumb={pageHero.courses.breadcrumb} background={images.uk} />
     <CoursesSection items={courses} />
   </>
 );

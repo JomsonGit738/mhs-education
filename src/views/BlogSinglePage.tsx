@@ -12,7 +12,7 @@ export const BlogSinglePage = ({ post }: BlogSinglePageProps) => {
   const detail = blogDetail;
   return (
     <>
-      <PageHero title={pageHero.blogSingle.title} breadcrumb={pageHero.blogSingle.breadcrumb} background={images.bg1} />
+      <PageHero title={pageHero.blogSingle.title} breadcrumb={pageHero.blogSingle.breadcrumb} background={images.uk} />
       <section className="ftco-section">
         <div className="container">
           <div className="row">

@@ -5,7 +5,7 @@ import { images } from '../data/images';
 
 export const TeachersPage = () => (
   <>
-    <PageHero title={pageHero.teacher.title} breadcrumb={pageHero.teacher.breadcrumb} background={images.bg1} />
+    <PageHero title={pageHero.teacher.title} breadcrumb={pageHero.teacher.breadcrumb} background={images.uk} />
     <TeachersSection items={teachers} />
   </>
 );

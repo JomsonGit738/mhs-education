@@ -23,12 +23,12 @@ export const HomePage = () => (
           Our <span>Courses</span>
         </span>
       }
-      description="Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country"
+      description="Explore programmes from foundation to postgraduate with tailored guidance on the right fit, timelines, and documentation."
       items={courses.slice(0, 4)}
     />
     <TeachersSection
-      title="Certified Teachers"
-      description="Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country"
+      title="Student Services"
+      description="Our advisory and student support teams coordinate applications, visas, scholarships, accommodation, and pre-departure prep."
       items={teachers}
     />
     <QuoteSection />
@@ -38,7 +38,7 @@ export const HomePage = () => (
           Recent <span>Blog</span>
         </span>
       }
-      description="Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country"
+      description="Get admissions tips, visa checklists, and planning advice from the MHS Education team."
       posts={blogs}
     />
     <Testimonials />

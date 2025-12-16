@@ -10,7 +10,7 @@ export const Testimonials = () => (
       <div className="row justify-content-center mb-5 pb-2">
         <div className="col-md-8 text-center heading-section ftco-animate">
           <h2 className="mb-4">Student Says About Us</h2>
-          <p>Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+          <p>Hear from students who secured offers, visas, and smooth arrivals with personalised support from MHS Education.</p>
         </div>
       </div>
       <div className="row ftco-animate justify-content-center">
