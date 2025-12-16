@@ -19,7 +19,7 @@ import { ClientLayout } from "../src/components/ClientLayout";
 
 export const metadata: Metadata = {
   title: "MHS Education",
-  description: "Education landing experience rebuilt with Next.js",
+  description: "Education landing experience with MHS education guidence",
   icons: { icon: "/mhseducation.jpeg" },
 };
 
