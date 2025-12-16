@@ -4,6 +4,7 @@ import { Autoplay, EffectFade, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Link from 'next/link';
 import { heroSlides } from '../data/content';
+import { images } from '../data/images';
 
 export const HeroSlider = () => (
   <section className="home-slider owl-carousel">
@@ -17,7 +18,7 @@ export const HeroSlider = () => (
     >
       {heroSlides.map((slide) => (
         <SwiperSlide key={slide.title}>
-          <div className="slider-item" style={{ backgroundImage: `url(${slide.image})` }}>
+          <div className="slider-item" style={{ backgroundImage: `url(${images.manUsing})` }}>
             <div className="overlay" />
             <div className="container">
               <div className="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">

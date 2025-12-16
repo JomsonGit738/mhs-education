@@ -107,25 +107,22 @@ export const navLinks = [
 
 export const heroSlides: HeroSlide[] = [
   {
-    title: "Personalised Admissions Guidance",
-    description:
-      "We connect ambitious students with leading international universities through tailored course shortlisting and attentive advice.",
+    title: "Personalised UK Admissions Guidance",
+    description: "We connect ambitious students with leading UK universities through tailored shortlisting and attentive advice.",
     image: images.heroSlide1,
     ctaLabel: "Contact Us",
     ctaHref: "/contact",
   },
   {
-    title: "Your Pathway to Global Campuses",
-    description:
-      "From foundation to postgraduate study, we manage applications, documentation, and deadlines with careful attention.",
+    title: "Your Pathway to UK Campuses",
+    description: "From foundation to postgraduate study, we manage UCAS and direct applications, documentation, and deadlines with care.",
     image: images.heroSlide1,
     ctaLabel: "Contact Us",
     ctaHref: "/contact",
   },
   {
-    title: "Comprehensive Student Support",
-    description:
-      "Visa guidance, scholarship advice, accommodation support, and pre-departure briefings keep you confident at every step.",
+    title: "Comprehensive UK Student Support",
+    description: "Visa guidance, scholarship advice, accommodation support, and pre-departure briefings keep you confident for the UK.",
     image: images.heroSlide2,
     ctaLabel: "Contact Us",
     ctaHref: "/contact",
@@ -162,17 +159,17 @@ export const services: Service[] = [
 export const offerings: Offering[] = [
   {
     title: "Foundation Programmes",
-    description: "Start strong with tailored foundation options that bridge you to leading degrees.",
+    description: "Start strong with tailored foundation options that bridge you into UK undergraduate degrees.",
     icon: "flaticon-education",
   },
   {
     title: "Undergraduate Degrees",
-    description: "Match your ambitions with courses across the UK, Europe, and beyond.",
+    description: "Match your ambitions with courses at leading UK universities.",
     icon: "flaticon-reading",
   },
   {
     title: "Postgraduate Degrees",
-    description: "Shape your specialism with masters pathways designed for global careers.",
+    description: "Shape your specialism with masters pathways that strengthen your UK career prospects.",
     icon: "flaticon-diploma",
   },
   {
@@ -354,13 +351,13 @@ export const testimonials: Testimonial[] = [
 export const blogs: BlogPost[] = [
   {
     id: "plan-your-study-path",
-    title: "Plan Your International Study Pathway",
+    title: "Plan Your UK Study Pathway",
     author: "MHS Education",
     date: "October 10, 2024",
     comments: 3,
     image: images.image1,
     excerpt:
-      "How to shortlist universities, align intakes, and prepare documents early so your application stays ahead of deadlines.",
+      "How to shortlist UK universities, align intakes, and prepare documents early so your application stays ahead of deadlines.",
     tags: ["Admissions", "Planning", "Guidance"],
   },
   {
@@ -443,7 +440,7 @@ export const blogDetail = {
   tags: ["Admissions", "Planning", "Visa"],
   author: {
     name: "MHS Education",
-    bio: "Our advisers connect students with leading international universities through attentive, personalised guidance.",
+    bio: "Our advisers connect students with leading UK universities through attentive, personalised guidance.",
     avatar: images.teacher1,
   },
   comments: [

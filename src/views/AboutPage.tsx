@@ -15,40 +15,40 @@ export const AboutPage = () => (
             <div className="img" style={{ backgroundImage: `url(${images.about})`, border: 'none' }} />
           </div>
           <div className="col-md-7 wrap-about py-5 pr-md-4 ftco-animate" data-aos="fade-right">
-            <h2 className="mb-4">Supporting Global Student Success</h2>
+            <h2 className="mb-4">Supporting UK Student Success</h2>
             <div className="d-flex flex-column gap-4">
               <article>
                 <h3 className="h5 mb-2">Who We Are</h3>
                 <p className="mb-0">
-                  MHS Education supports ambitious learners with practical guidance that turns international study plans into achievable outcomes.
+                  MHS Education supports ambitious UK-bound students with practical guidance that turns study plans into achievable offers.
                 </p>
               </article>
               <article>
                 <h3 className="h5 mb-2">Our Vision</h3>
                 <p className="mb-0">
-                  Established in 2020, our mission is to make world-class campuses accessible to students everywhere. We match aspirations with suitable
-                  destinations, programmes, and timelines for lasting success.
+                  Established in 2020, our mission is to make leading UK campuses accessible to students who want tailored support. We match aspirations with
+                  the right programmes, routes, and timelines for lasting success.
                 </p>
               </article>
               <article>
                 <h3 className="h5 mb-2">Student-Centred Approach</h3>
                 <p className="mb-0">
                   Every conversation begins with attentive listening. We design personalised pathways that balance academic strengths, financial planning, and
-                  wellbeing so each milestone feels clear and supported.
+                  wellbeing so each UK milestone feels clear and supported.
                 </p>
               </article>
               <article>
                 <h3 className="h5 mb-2">Proven Success Stories</h3>
                 <p className="mb-0">
-                  Hundreds of students have secured offers from renowned universities worldwide through careful preparation, deadline management, and
+                  Hundreds of students have secured offers from renowned universities across the UK through careful preparation, deadline management, and
                   post-offer mentoring.
                 </p>
               </article>
               <article>
                 <h3 className="h5 mb-2">Our Commitment</h3>
                 <p className="mb-0">
-                  We continue to develop our service with integrity, responsiveness, and a commitment to education, enabling the next generation of global
-                  graduates to thrive abroad.
+                  We continue to develop our service with integrity, responsiveness, and a commitment to education, enabling the next generation of UK
+                  students to thrive from application to arrival.
                 </p>
               </article>
             </div>

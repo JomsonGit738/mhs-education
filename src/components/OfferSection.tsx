@@ -11,8 +11,8 @@ export const OfferSection = () => (
         <div className="col-md-7 wrap-about py-5 pr-md-4 ftco-animate" data-aos="fade-right">
           <h2 className="mb-4">What We Offer</h2>
           <p>
-            On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand
-            times and everything that was left from its origin would be the word.
+            We guide UK-bound students through every application milestone: choosing the right pathway, preparing documents, and submitting strong
+            applications on time. Our advisers also cover visa, accommodation, and arrival support so you feel confident from first enquiry to enrolment.
           </p>
           <div className="row mt-5">
             {offerings.map((item) => (

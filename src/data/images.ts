@@ -11,6 +11,7 @@ import heroSlide3 from "../assets/images/new-images/hero-slider-image-3.jpg";
 import mhsEducation from "../assets/images/new-images/mhseducation.jpeg";
 import bgRemovedLogo from "../assets/images/new-images/bg-removed-logo.png";
 import uk from "../assets/images/new-images/uk.jpg";
+import manUsing from "../assets/images/new-images/man-using.jpg";
 import course1 from "../assets/images/course-1.jpg";
 import course2 from "../assets/images/course-2.jpg";
 import course3 from "../assets/images/course-3.jpg";
@@ -45,6 +46,7 @@ const rawImages = {
   mhsEducation,
   bgRemovedLogo,
   uk,
+  manUsing,
   course1,
   course2,
   course3,

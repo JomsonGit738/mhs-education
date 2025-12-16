@@ -18,27 +18,31 @@ export const StatsSection = () => {
       <div className="container">
         <div className="row justify-content-center mb-5 pb-2 d-flex">
           <div className="col-md-6 align-items-stretch d-flex">
-            <div className="img img-video d-flex align-items-center" style={{ backgroundImage: `url(${images.about2})` }}>
-              <div className="video justify-content-center">
-                <a
-                  href="https://vimeo.com/45830194"
-                  className="icon-video popup-vimeo d-flex justify-content-center align-items-center"
-                  aria-label="Play campus video"
-                >
-                  <span className="ion-ios-play" />
-                </a>
-              </div>
+            <div className="img img-video d-flex align-items-center p-2" style={{ backgroundImage: 'none' }}>
+              <video
+                className="w-100 h-100 rounded"
+                poster={images.about2}
+                controls
+                preload="none"
+                aria-label="Play campus video"
+              >
+                <source
+                  src="https://videos.pexels.com/video-files/6209376/6209376-uhd_4096_2160_25fps.mp4"
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag.
+              </video>
             </div>
           </div>
           <div className="col-md-6 heading-section heading-section-white ftco-animate pl-lg-5 pt-md-0 pt-5">
-            <h2 className="mb-4">Supporting Global Student Success</h2>
+            <h2 className="mb-4">Supporting UK Student Success</h2>
             <p>
               MHS Education guides ambitious students with personalised admissions planning, careful documentation checks, and attentive follow-up so every
-              application stays on track.
+              UK application stays on track.
             </p>
             <p>
-              Beyond offers, we provide visa preparation, scholarship guidance, accommodation advice, and pre-departure briefings to help you arrive with
-              confidence and thrive abroad.
+              Beyond offers, we provide visa preparation, scholarship guidance, accommodation advice, and pre-departure briefings to help you arrive in the UK
+              with confidence.
             </p>
           </div>
         </div>
