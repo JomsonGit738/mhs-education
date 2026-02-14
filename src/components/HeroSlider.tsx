@@ -21,12 +21,13 @@ export const HeroSlider = () => (
           <div className="slider-item" style={{ backgroundImage: `url(${images.manUsing})` }}>
             <div className="overlay" />
             <div className="container">
-              <div className="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
-                <div className="col-md-6 ftco-animate">
+              <div className="row no-gutters slider-text align-items-center justify-content-end" data-scrollax-parent="true">
+                <div className="col-md-6 ftco-animate text-md-right text-left">
                   <h1 className="mb-4">{slide.title}</h1>
-                  <p>{slide.description}</p>
-                  <p>
-                    <Link href={slide.ctaHref} className="btn btn-primary px-4 py-3 mt-3">
+                  <p className="w-75 ml-md-auto mr-md-0">{slide.description}</p>
+                  {/* Primary CTA only; consultation handled in header */}
+                  <p className="d-flex flex-wrap justify-content-md-end justify-content-start">
+                    <Link href={slide.ctaHref} className="btn btn-apply-invert px-4 py-3 mt-3 mr-2">
                       {slide.ctaLabel}
                     </Link>
                   </p>

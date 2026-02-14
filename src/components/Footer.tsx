@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { blogs, brand, navLinks } from '../data/content';
+import { blogs, brand, navLinks, socialLinks } from '../data/content';
 
 export const Footer = () => {
   const recentBlogs = blogs.slice(0, 2);
@@ -86,22 +86,15 @@ export const Footer = () => {
             </div>
             <div className="ftco-footer-widget mb-5">
               <h2 className="ftco-heading-2 mb-0">Connect With Us</h2>
+              {/* Social list expanded to include LinkedIn and X */}
               <ul className="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
-                <li className="ftco-animate">
-                  <a href="#">
-                    <span className="icon-twitter" />
-                  </a>
-                </li>
-                <li className="ftco-animate">
-                  <a href="#">
-                    <span className="icon-facebook" />
-                  </a>
-                </li>
-                <li className="ftco-animate">
-                  <a href="#">
-                    <span className="icon-instagram" />
-                  </a>
-                </li>
+                {socialLinks.map((link) => (
+                  <li key={link.icon} className="ftco-animate">
+                    <a href={link.href}>
+                      <span className={link.icon} />
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

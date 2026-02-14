@@ -38,6 +38,13 @@ export const AboutPage = () => (
                 </p>
               </article>
               <article>
+                <h3 className="h5 mb-2">Company History</h3>
+                <p className="mb-0">
+                  Founded in 2020, MHS Education grew from a small advisory team into a multi-intake specialist guiding foundation, undergraduate,
+                  postgraduate, diploma, and top-up applicants across the UK. Our partners and student outcomes continue to expand each intake.
+                </p>
+              </article>
+              <article>
                 <h3 className="h5 mb-2">Proven Success Stories</h3>
                 <p className="mb-0">
                   Hundreds of students have secured offers from renowned universities across the UK through careful preparation, deadline management, and

@@ -6,6 +6,9 @@ export type HeroSlide = {
   image: string;
   ctaLabel: string;
   ctaHref: string;
+  // Optional secondary CTA lets us surface “Book a Free Consultation”
+  secondaryCtaLabel?: string;
+  secondaryCtaHref?: string;
 };
 
 export type Service = {
@@ -25,6 +28,7 @@ export type Stat = {
   label: string;
   value: number;
   icon: string;
+  suffix?: string;
 };
 
 export type Course = {
@@ -41,6 +45,13 @@ export type SocialLink = {
   icon: string;
   href: string;
 };
+// Social link metadata supports footer/contact reuse
+export const socialLinks: SocialLink[] = [
+  { icon: "icon-facebook", href: "#" },
+  { icon: "icon-instagram", href: "#" },
+  { icon: "icon-linkedin", href: "#" },
+  { icon: "icon-twitter", href: "#" }, // Using twitter icon to represent X until an X glyph is provided
+];
 
 export type Teacher = {
   name: string;
@@ -86,6 +97,11 @@ export type Comment = {
   replies?: Comment[];
 };
 
+export type Partner = {
+  name: string;
+  logo: string;
+};
+
 export const brand = {
   name: "MHS Education",
   tagline: "Admissions Guidance",
@@ -98,60 +114,73 @@ export const brand = {
 
 export const navLinks = [
   { label: "Home", path: "/" },
-  { label: "About", path: "/about" },
-  { label: "Programmes", path: "/courses" },
-  { label: "Student Services", path: "/teacher" },
-  { label: "Insights", path: "/blog" },
-  { label: "Contact", path: "/contact" },
+  { label: "Courses", path: "/courses" },
+  { label: "Services", path: "/services" },
+  { label: "Career", path: "/career" },
+  { label: "About us", path: "/about" },
+  { label: "Contact Us", path: "/contact" },
 ];
 
 export const heroSlides: HeroSlide[] = [
   {
-    title: "Personalised UK Admissions Guidance",
-    description: "We connect ambitious students with leading UK universities through tailored shortlisting and attentive advice.",
+    title: "Admission for May/June Intake",
+    description: "Mapping Higher Success with tailored UK admission pathways and documentation support.",
     image: images.heroSlide1,
-    ctaLabel: "Contact Us",
+    ctaLabel: "Apply Now",
     ctaHref: "/contact",
+    secondaryCtaLabel: "Book a Free Consultation",
+    secondaryCtaHref: "/contact",
   },
   {
     title: "Your Pathway to UK Campuses",
-    description: "From foundation to postgraduate study, we manage UCAS and direct applications, documentation, and deadlines with care.",
-    image: images.heroSlide1,
-    ctaLabel: "Contact Us",
+    description: "Foundation, undergraduate, postgraduate, diploma, and top-up guidance with clear timelines.",
+    image: images.heroSlide2,
+    ctaLabel: "Apply Now",
     ctaHref: "/contact",
+    secondaryCtaLabel: "Book a Free Consultation",
+    secondaryCtaHref: "/contact",
   },
   {
     title: "Comprehensive UK Student Support",
-    description: "Visa guidance, scholarship advice, accommodation support, and pre-departure briefings keep you confident for the UK.",
-    image: images.heroSlide2,
-    ctaLabel: "Contact Us",
+    description: "Visa, finance, interview prep, and arrival support so every milestone stays on track.",
+    image: images.heroSlide3,
+    ctaLabel: "Apply Now",
     ctaHref: "/contact",
+    secondaryCtaLabel: "Book a Free Consultation",
+    secondaryCtaHref: "/contact",
   },
 ];
 
+// Services ordered to mirror the client’s list
 export const services: Service[] = [
   {
-    title: "University Applications",
-    description: "Course shortlisting, profile positioning, and offer follow-up with personalised guidance.",
-    icon: "flaticon-diploma",
-    tone: "primary",
-  },
-  {
-    title: "Visa & Compliance",
-    description: "Step-by-step support for visa preparation, documentation checks, and interview readiness.",
-    icon: "flaticon-security",
-    tone: "dark",
-  },
-  {
-    title: "Scholarships & Finance",
-    description: "Scholarship guidance plus student finance advice to help you plan with confidence.",
+    title: "Academic Guidance",
+    description: "Course advice and pathway mapping so your UK plan fits your goals.",
     icon: "flaticon-reading",
     tone: "primary",
   },
   {
-    title: "Student Support",
-    description: "Accommodation guidance, travel planning, and pre-departure briefings for a smooth arrival.",
+    title: "Application Support",
+    description: "Hands-on help with documents, timelines, and submissions for every intake.",
+    icon: "flaticon-diploma",
+    tone: "dark",
+  },
+  {
+    title: "Interview & Test Preparation",
+    description: "Mock interviews and test readiness to present your best profile.",
     icon: "flaticon-kids",
+    tone: "primary",
+  },
+  {
+    title: "Student Finance Information",
+    description: "Guidance on fees, funding options, and budgeting for UK study.",
+    icon: "flaticon-security",
+    tone: "dark",
+  },
+  {
+    title: "CV/PS Guidance",
+    description: "Targeted feedback on CVs and personal statements to strengthen offers.",
+    icon: "flaticon-teacher",
     tone: "dark",
   },
 ];
@@ -190,10 +219,9 @@ export const offerings: Offering[] = [
 ];
 
 export const stats: Stat[] = [
-  { label: "Qualification Pathways", value: 4, icon: "flaticon-doctor" },
-  { label: "Annual Intakes", value: 3, icon: "flaticon-doctor" },
-  { label: "Complimentary Support", value: 100, icon: "flaticon-doctor" },
-  { label: "Students Guided", value: 500, icon: "flaticon-doctor" },
+  { label: "Students", value: 1000, suffix: "+", icon: "flaticon-doctor" },
+  { label: "Courses", value: 50, suffix: "+", icon: "flaticon-doctor" },
+  { label: "Partners", value: 10, suffix: "+", icon: "flaticon-doctor" },
 ];
 
 export const courses: Course[] = [
@@ -228,34 +256,22 @@ export const courses: Course[] = [
     image: images.course3,
   },
   {
-    id: "programme-short",
-    title: "Short Courses",
+    id: "programme-diploma",
+    title: "Diploma Programmes",
     teacher: "Admissions Team",
-    seats: "Flexible starts",
-    duration: "Flexible",
-    description:
-      "Career-focused short programmes with guidance on the right fit, prerequisites, and application steps.",
+    seats: "Multiple intakes",
+    duration: "1-2 Years",
+    description: "Career-focused diplomas with support on entry criteria, statements, and timely submissions.",
     image: images.course4,
   },
   {
-    id: "programme-visa",
-    title: "Visa Guidance",
-    teacher: "Student Services",
-    seats: "By appointment",
-    duration: "Ongoing",
-    description:
-      "Document checklists, interview preparation, and compliance support so you travel with confidence.",
+    id: "programme-topup",
+    title: "Top-up Degrees",
+    teacher: "Admissions Team",
+    seats: "Limited cohorts",
+    duration: "1 Year",
+    description: "Top-up guidance to complete your honours degree with the right UK university fit.",
     image: images.course5,
-  },
-  {
-    id: "programme-support",
-    title: "Student Support",
-    teacher: "Student Services",
-    seats: "On demand",
-    duration: "Ongoing",
-    description:
-      "Accommodation guidance, travel planning, pre-departure briefings, and on-arrival advice.",
-    image: images.course6,
   },
 ];
 
@@ -348,6 +364,20 @@ export const testimonials: Testimonial[] = [
   },
 ];
 
+export const partners: Partner[] = [
+  // Placeholder logos reused from existing assets until brand logos are supplied.
+  { name: "Partner 1", logo: images.image1 },
+  { name: "Partner 2", logo: images.image2 },
+  { name: "Partner 3", logo: images.image3 },
+  { name: "Partner 4", logo: images.image4 },
+  { name: "Partner 5", logo: images.image5 },
+  { name: "Partner 6", logo: images.heroSlide1 },
+  { name: "Partner 7", logo: images.heroSlide2 },
+  { name: "Partner 8", logo: images.heroSlide3 },
+  { name: "Partner 9", logo: images.uk },
+  { name: "Partner 10", logo: images.mhsEducation },
+];
+
 export const blogs: BlogPost[] = [
   {
     id: "plan-your-study-path",
@@ -423,6 +453,7 @@ export const pageHero = {
   about: { title: "About MHS Education", breadcrumb: "About" },
   courses: { title: "Programmes", breadcrumb: "Programmes" },
   teacher: { title: "Student Services", breadcrumb: "Student Services" },
+  services: { title: "Services", breadcrumb: "Services" },
   blog: { title: "Insights", breadcrumb: "Insights" },
   blogSingle: { title: "Insight Detail", breadcrumb: "Insight" },
   contact: { title: "Contact Us", breadcrumb: "Contact" },

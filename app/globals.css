@@ -79,3 +79,230 @@ main {
   opacity: 1 !important;
   visibility: visible !important;
 }
+
+/* Interactive inverted CTA styling shared by hero + header */
+.btn-apply-invert {
+  /* Darker mixed gradient for richer contrast */
+  background: linear-gradient(135deg, #0b3b82, #0f4c75 45%, #0d6efd);
+  color: #fff;
+  border: 0;
+  transition: all 0.2s ease;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(13, 70, 125, 0.25);
+}
+
+.btn-apply-invert:hover,
+.btn-apply-invert:focus {
+  background: linear-gradient(135deg, #0a356f, #0d4b73 45%, #0b5ed7);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(13, 70, 125, 0.38);
+  transform: translateY(-1px);
+}
+
+.btn-apply-invert:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(13, 70, 125, 0.28);
+}
+
+/* Modern services row */
+.services-modern {
+  background: linear-gradient(180deg, #f8fbff 0%, #eef4ff 45%, #ffffff 100%);
+}
+
+.services-modern .services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.services-modern .service-card {
+  position: relative;
+  border-radius: 14px;
+  background: #ffffff;
+  color: #0f172a;
+  padding: 22px 20px 20px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.services-modern .service-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(59, 130, 246, 0));
+  pointer-events: none;
+}
+
+.services-modern .service-card-gradient {
+  background: linear-gradient(145deg, #e8f1ff, #f4f8ff 50%, #ffffff 100%);
+}
+
+.services-modern .service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 48px rgba(15, 23, 42, 0.12);
+}
+
+.services-modern .service-accent {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+  color: #0f172a;
+  margin-bottom: 14px;
+  font-size: 20px;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.services-modern .service-title {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.services-modern .service-copy {
+  margin: 0;
+  color: #475569;
+  line-height: 1.55;
+  font-size: 15px;
+}
+
+@media (max-width: 767px) {
+  .services-modern .services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .services-modern .services-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* Modern courses grid */
+.course-card-modern {
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: 100%;
+}
+
+.course-card-modern:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 48px rgba(15, 23, 42, 0.12);
+}
+
+.course-card-modern .course-img {
+  height: 170px;
+  background-size: cover;
+  background-position: center;
+}
+
+.course-card-modern .course-body {
+  padding: 16px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.course-card-modern .course-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.course-card-modern .course-copy {
+  margin: 0;
+  color: #475569;
+  line-height: 1.55;
+  font-size: 14px;
+}
+
+.course-card-modern .meta {
+  gap: 8px;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.course-card-modern .btn {
+  align-self: flex-start;
+}
+
+/* Modern stats cards */
+.stats-grid-modern {
+  row-gap: 18px;
+}
+
+.stat-card-modern {
+  background: linear-gradient(145deg, #e8f1ff, #f6f9ff);
+  border-radius: 14px;
+  padding: 18px 16px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(15, 23, 42, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card-modern:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 42px rgba(15, 23, 42, 0.12);
+}
+
+.stat-card-modern .icon {
+  color: #0d6efd;
+  margin-bottom: 8px;
+  font-size: 24px;
+}
+
+.stat-card-modern .number,
+.stat-card-modern .number span {
+  color: #0f172a !important;
+}
+
+.stat-card-modern span {
+  color: #1f2937 !important;
+}
+
+/* Underline for active nav without changing color */
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-item.active .nav-link {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+/* Keep active color identical to default navbar link color */
+.navbar-dark .navbar-nav .nav-link.active,
+.navbar-dark .navbar-nav .nav-link.show,
+.navbar-dark .navbar-nav .nav-item.active .nav-link {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* When navbar turns light on scroll, keep links visible */
+.navbar.scrolled .navbar-nav .nav-link,
+.navbar.awake .navbar-nav .nav-link {
+  color: #1b1b1b !important;
+}
+
+.navbar.scrolled .navbar-nav .nav-link.active,
+.navbar.awake .navbar-nav .nav-link.active,
+.navbar.scrolled .navbar-nav .nav-link.show,
+.navbar.awake .navbar-nav .nav-link.show,
+.navbar.scrolled .navbar-nav .nav-item.active .nav-link,
+.navbar.awake .navbar-nav .nav-item.active .nav-link {
+  color: #1b1b1b !important;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}

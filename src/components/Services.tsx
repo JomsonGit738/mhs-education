@@ -1,27 +1,25 @@
 import { services } from '../data/content';
 
 export const Services = () => (
-  <section className="ftco-services ftco-no-pb">
-    <div className="container-wrap">
-      <div className="row no-gutters">
+  <section className="ftco-section services-modern">
+    <div className="container">
+      <div className="row justify-content-center mb-4">
+        <div className="col-md-10 text-center">
+          <h2 className="mb-3">Our Services</h2>
+          <p className="text-muted mb-0">Guidance across every admissions milestone, delivered as one seamless experience.</p>
+        </div>
+      </div>
+      <div className="services-grid">
         {services.map((service) => (
-          <div
-            key={service.title}
-            className={`col-md-3 d-flex services align-self-stretch py-5 px-4 ftco-animate ${
-              service.tone === 'primary' ? 'bg-primary' : 'bg-darken'
-            }`}
-            data-aos="fade-up"
-          >
-            <div className="media block-6 d-block text-center">
-              <div className="icon d-flex justify-content-center align-items-center">
-                <span className={service.icon} />
-              </div>
-              <div className="media-body p-2 mt-3">
-                <h3 className="heading">{service.title}</h3>
-                <p>{service.description}</p>
-              </div>
+          <article key={service.title} className="service-card service-card-gradient ftco-animate" data-aos="fade-up">
+            <div className="service-accent">
+              <span className={service.icon} />
             </div>
-          </div>
+            <div className="service-body">
+              <h3 className="service-title">{service.title}</h3>
+              <p className="service-copy">{service.description}</p>
+            </div>
+          </article>
         ))}
       </div>
     </div>

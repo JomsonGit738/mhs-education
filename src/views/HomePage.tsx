@@ -9,6 +9,7 @@ import { Services } from '../components/Services';
 import { StatsSection } from '../components/StatsSection';
 import { TeachersSection } from '../components/TeachersSection';
 import { Testimonials } from '../components/Testimonials';
+import { PartnersSection } from '../components/PartnersSection';
 import { blogs, courses, teachers } from '../data/content';
 
 export const HomePage = () => (
@@ -17,6 +18,7 @@ export const HomePage = () => (
     <Services />
     <OfferSection />
     <StatsSection />
+    <PartnersSection />
     <CoursesSection
       title={
         <span>

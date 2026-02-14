@@ -48,16 +48,16 @@ export const StatsSection = () => {
         </div>
         <div className="row d-md-flex align-items-center justify-content-center" ref={ref}>
           <div className="col-lg-12">
-            <div className="row d-md-flex align-items-center">
+            <div className="row d-md-flex align-items-stretch stats-grid-modern">
               {stats.map((stat) => (
-                <div key={stat.label} className="col-md d-flex justify-content-center counter-wrap ftco-animate">
-                  <div className="block-18">
+                <div key={stat.label} className="col-sm-6 col-lg-4 d-flex justify-content-center ftco-animate">
+                  <div className="stat-card-modern">
                     <div className="icon">
                       <span className={stat.icon} />
                     </div>
                     <div className="text">
                       <strong className="number">
-                        {inView ? <CountUp end={stat.value} duration={3} separator="," /> : 0}
+                        {inView ? <CountUp end={stat.value} duration={3} separator="," suffix={stat.suffix ?? ''} /> : 0}
                       </strong>
                       <span>{stat.label}</span>
                     </div>
