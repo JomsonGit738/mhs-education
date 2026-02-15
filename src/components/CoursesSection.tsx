@@ -9,32 +9,30 @@ type CoursesSectionProps = {
 };
 
 const CourseCard = ({ course }: { course: Course }) => (
-  <div className="col-md-6 col-lg-4 col-xl-3 ftco-animate" data-aos="fade-up">
-    <div className="course-card-modern">
-      <div className="course-img" style={{ backgroundImage: `url(${course.image})` }} />
-      <div className="course-body">
-        <p className="meta d-flex flex-wrap">
-          <span>
-            <i className="icon-user mr-2" />
-            {course.teacher}
-          </span>
-          <span>
-            <i className="icon-table mr-2" />
-            {course.seats}
-          </span>
-          <span>
-            <i className="icon-calendar mr-2" />
-            {course.duration}
-          </span>
-        </p>
-        <h3 className="course-title">{course.title}</h3>
-        <p className="course-copy">{course.description}</p>
-        <Link href="/contact" className="btn btn-apply-invert mt-2">
-          Apply Now
-        </Link>
-      </div>
+  <article className="course-card-modern ftco-animate" data-aos="fade-up">
+    <div className="course-img" style={{ backgroundImage: `url(${course.image})` }} />
+    <div className="course-body">
+      <p className="meta d-flex flex-wrap">
+        <span>
+          <i className="icon-user mr-2" />
+          {course.teacher}
+        </span>
+        <span>
+          <i className="icon-table mr-2" />
+          {course.seats}
+        </span>
+        <span>
+          <i className="icon-calendar mr-2" />
+          {course.duration}
+        </span>
+      </p>
+      <h3 className="course-title">{course.title}</h3>
+      <p className="course-copy">{course.description}</p>
+      <Link href="/contact" className="btn btn-apply-invert mt-2">
+        Apply Now
+      </Link>
     </div>
-  </div>
+  </article>
 );
 
 export const CoursesSection = ({ title, description, items }: CoursesSectionProps) => (
@@ -48,7 +46,7 @@ export const CoursesSection = ({ title, description, items }: CoursesSectionProp
           </div>
         </div>
       )}
-      <div className="row">
+      <div className="courses-grid">
         {items.map((course) => (
           <CourseCard key={course.id} course={course} />
         ))}

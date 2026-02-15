@@ -1,112 +1,65 @@
 import Link from 'next/link';
-import { blogs, brand, navLinks, socialLinks } from '../data/content';
+import { brand, navLinks, socialLinks } from '../data/content';
 
-export const Footer = () => {
-  const recentBlogs = blogs.slice(0, 2);
-
-  return (
-    <footer className="ftco-footer ftco-bg-dark ftco-section">
-      <div className="container">
-        <div className="row mb-5">
-          <div className="col-md-6 col-lg-3">
-            <div className="ftco-footer-widget mb-5">
-              <h2 className="ftco-heading-2">Have a Questions?</h2>
-              <div className="block-23 mb-3">
-                <ul>
-                  <li>
-                    <span className="icon icon-map-marker" />
-                    <span className="text">{brand.address}</span>
-                  </li>
-                  <li>
-                    <a href={`tel:${brand.shortPhone.replace(/\D/g, '')}`}>
-                      <span className="icon icon-phone" />
-                      <span className="text">{brand.shortPhone}</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href={`mailto:${brand.email}`}>
-                      <span className="icon icon-envelope" />
-                      <span className="text">{brand.email}</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
+export const Footer = () => (
+  <footer className="footer-modern">
+    <div className="container">
+      <div className="footer-grid">
+        <div className="footer-card">
+          <div className="footer-logo d-flex align-items-center mb-3">
+            <img src={brand.logo} alt={`${brand.name} logo`} style={{ height: 56, width: 'auto' }} />
+            <div className="ml-3">
+              <h4 className="mb-1">{brand.name}</h4>
+              <p className="mb-0 text-muted small">{brand.tagline}</p>
             </div>
           </div>
-          <div className="col-md-6 col-lg-3">
-            <div className="ftco-footer-widget mb-5">
-              <h2 className="ftco-heading-2">Recent Blog</h2>
-              {recentBlogs.map((post) => (
-                <div key={post.id} className="block-21 mb-4 d-flex">
-                  <Link className="blog-img mr-4" style={{ backgroundImage: `url(${post.image})` }} href={`/blog/${post.id}`} />
-                  <div className="text">
-                    <h3 className="heading">
-                      <Link href={`/blog/${post.id}`}>{post.title}</Link>
-                    </h3>
-                    <div className="meta">
-                      <div>
-                        <span className="icon-calendar" /> {post.date}
-                      </div>
-                      <div>
-                        <span className="icon-person" /> {post.author}
-                      </div>
-                      <div>
-                        <span className="icon-chat" /> {post.comments}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="col-md-6 col-lg-3">
-            <div className="ftco-footer-widget mb-5 ml-md-4">
-              <h2 className="ftco-heading-2">Links</h2>
-              <ul className="list-unstyled">
-                {navLinks.map((link) => (
-                  <li key={link.path}>
-                    <Link href={link.path}>
-                      <span className="ion-ios-arrow-round-forward mr-2" />
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          <div className="col-md-6 col-lg-3">
-            <div className="ftco-footer-widget mb-5">
-              <h2 className="ftco-heading-2">Subscribe Us!</h2>
-              <form className="subscribe-form">
-                <div className="form-group">
-                  <input type="text" className="form-control mb-2 text-center" placeholder="Enter email address" />
-                  <input type="submit" value="Subscribe" className="form-control submit px-3" />
-                </div>
-              </form>
-            </div>
-            <div className="ftco-footer-widget mb-5">
-              <h2 className="ftco-heading-2 mb-0">Connect With Us</h2>
-              {/* Social list expanded to include LinkedIn and X */}
-              <ul className="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
-                {socialLinks.map((link) => (
-                  <li key={link.icon} className="ftco-animate">
-                    <a href={link.href}>
-                      <span className={link.icon} />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+          <ul className="footer-list">
+            <li>
+              <span className="icon icon-map-marker mr-2" />
+              {brand.address}
+            </li>
+            <li>
+              <a href={`mailto:${brand.email}`}>
+                <span className="icon icon-envelope mr-2" />
+                {brand.email}
+              </a>
+            </li>
+            <li>
+              <a href={`tel:${brand.shortPhone.replace(/\D/g, '')}`}>
+                <span className="icon icon-phone mr-2" />
+                {brand.shortPhone}
+              </a>
+            </li>
+          </ul>
         </div>
-        <div className="row">
-          <div className="col-md-12 text-center">
-            <p>
-              Copyright &copy; {new Date().getFullYear()} MHS Education. All rights reserved.
-            </p>
+
+        <div className="footer-card">
+          <h5 className="mb-3">Quick Links</h5>
+          <ul className="footer-links">
+            {navLinks.map((link) => (
+              <li key={link.path}>
+                <Link href={link.path}>{link.label}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="footer-card">
+          <h5 className="mb-3">Connect</h5>
+          <p className="text-muted small mb-3">Follow us for intakes, scholarships, and student updates.</p>
+          <div className="social-grid">
+            {socialLinks.map((link) => (
+              <a key={link.icon} href={link.href} className="social-tile" aria-label={link.icon}>
+                <span className={link.icon} />
+              </a>
+            ))}
           </div>
         </div>
       </div>
-    </footer>
-  );
-};
+      <div className="footer-bottom">
+        <span>© {new Date().getFullYear()} MHS Education. All rights reserved.</span>
+        <span>Admissions guidance • Visa support • Student success</span>
+      </div>
+    </div>
+  </footer>
+);

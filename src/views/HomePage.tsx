@@ -1,5 +1,4 @@
 import { BlogSection } from '../components/BlogSection';
-import { ContactInfo } from '../components/ContactInfo';
 import { CoursesSection } from '../components/CoursesSection';
 import { Gallery } from '../components/Gallery';
 import { HeroSlider } from '../components/HeroSlider';
@@ -26,7 +25,7 @@ export const HomePage = () => (
         </span>
       }
       description="Explore programmes from foundation to postgraduate with tailored guidance on the right fit, timelines, and documentation."
-      items={courses.slice(0, 4)}
+      items={courses}
     />
     <TeachersSection
       title="Student Services"
@@ -45,6 +44,5 @@ export const HomePage = () => (
     />
     <Testimonials />
     <Gallery />
-    <ContactInfo />
   </>
 );
