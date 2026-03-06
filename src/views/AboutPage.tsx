@@ -15,7 +15,7 @@ export const AboutPage = () => (
             <div className="img" style={{ backgroundImage: `url(${images.about})`, border: 'none' }} />
           </div>
           <div className="col-md-7 wrap-about py-5 pr-md-4 ftco-animate" data-aos="fade-right">
-            <h2 className="mb-4">Supporting UK Student Success</h2>
+            <h2 className="mb-4">UK Student Support</h2>
             <div className="d-flex flex-column gap-4">
               <article>
                 <h3 className="h5 mb-2">Who We Are</h3>
@@ -55,7 +55,7 @@ export const AboutPage = () => (
                 <h3 className="h5 mb-2">Our Commitment</h3>
                 <p className="mb-0">
                   We continue to develop our service with integrity, responsiveness, and a commitment to education, enabling the next generation of UK
-                  students to thrive from application to arrival.
+                  students to thrive from application to enrolment.
                 </p>
               </article>
             </div>

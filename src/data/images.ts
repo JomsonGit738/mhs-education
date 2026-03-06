@@ -16,7 +16,6 @@ import personPriya from "../assets/images/new-images/person/Priya.jpg";
 import personSaira from "../assets/images/new-images/person/Saira.jpg";
 import bgRemovedLogo from "../assets/images/new-images/bg-removed-logo.png";
 import uk from "../assets/images/new-images/uk.jpg";
-import manUsing from "../assets/images/new-images/man-using.jpg";
 import course1 from "../assets/images/course-1.jpg";
 import course2 from "../assets/images/course-2.jpg";
 import course3 from "../assets/images/course-3.jpg";
@@ -34,6 +33,11 @@ import teacher1 from "../assets/images/teacher-1.jpg";
 import teacher2 from "../assets/images/teacher-2.jpg";
 import teacher3 from "../assets/images/teacher-3.jpg";
 import teacher4 from "../assets/images/teacher-4.jpg";
+import slider1 from "../assets/images/hero-slider/slide1.jpg";
+import slider2 from "../assets/images/hero-slider/slide2.jpg";
+import slider3 from "../assets/images/hero-slider/slide3.jpg";
+import slider4 from "../assets/images/hero-slider/slide4.jpg";
+import slider5 from "../assets/images/hero-slider/slide5.jpg";
 
 const toSrc = (img: StaticImageData | string) =>
   typeof img === "string" ? img : img.src;
@@ -56,7 +60,11 @@ const rawImages = {
   personSaira,
   bgRemovedLogo,
   uk,
-  manUsing,
+  slider1,
+  slider2,
+  slider3,
+  slider4,
+  slider5,
   course1,
   course2,
   course3,
@@ -78,7 +86,7 @@ const rawImages = {
 
 export const images: Record<keyof typeof rawImages, string> =
   Object.fromEntries(
-    Object.entries(rawImages).map(([key, value]) => [key, toSrc(value)])
+    Object.entries(rawImages).map(([key, value]) => [key, toSrc(value)]),
   ) as Record<keyof typeof rawImages, string>;
 
 export type ImageKey = keyof typeof images;

@@ -10,7 +10,7 @@ type TeachersSectionProps = {
 const renderBadgeIcon = (teacher: Teacher) => {
   const role = teacher.role.toLowerCase();
 
-  if (role.includes('visa') || role.includes('compliance')) {
+  if (role.includes('admissions') || role.includes('application')) {
     return (
       <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <path

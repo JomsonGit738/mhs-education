@@ -5,14 +5,15 @@ export const Footer = () => (
   <footer className="footer-modern">
     <div className="container">
       <div className="footer-grid">
-        <div className="footer-card">
+        <div className="footer-card footer-card--brand">
           <div className="footer-logo d-flex align-items-center mb-3">
-            <img src={brand.logo} alt={`${brand.name} logo`} style={{ height: 56, width: 'auto' }} />
-            <div className="ml-3">
+            <img src={brand.logo} alt={`${brand.name} logo`} className="footer-brand-logo" />
+            <div className="ml-3 footer-brand-copy">
               <h4 className="mb-1">{brand.name}</h4>
-              <p className="mb-0 text-muted small">{brand.tagline}</p>
+              <p className="mb-0 footer-tagline">{brand.tagline}</p>
             </div>
           </div>
+          <p className="footer-intro mb-3">Trusted admissions support with a student-first approach from enquiry to enrolment.</p>
           <ul className="footer-list">
             <li>
               <span className="icon icon-map-marker mr-2" />
@@ -46,7 +47,7 @@ export const Footer = () => (
 
         <div className="footer-card">
           <h5 className="mb-3">Connect</h5>
-          <p className="text-muted small mb-3">Follow us for intakes, scholarships, and student updates.</p>
+          <p className="footer-connect-copy mb-3">Follow us for intakes, scholarships, and student updates.</p>
           <div className="social-grid">
             {socialLinks.map((link) => (
               <a key={link.icon} href={link.href} className="social-tile" aria-label={link.icon}>
@@ -57,8 +58,8 @@ export const Footer = () => (
         </div>
       </div>
       <div className="footer-bottom">
-        <span>© {new Date().getFullYear()} MHS Education. All rights reserved.</span>
-        <span>Admissions guidance • Visa support • Student success</span>
+        <span>&copy; {new Date().getFullYear()} MHS Education. All rights reserved.</span>
+        <span>Admissions guidance • Student support • Student success</span>
       </div>
     </div>
   </footer>

@@ -13,10 +13,10 @@ export const QuoteSection = () => (
         <div className="col-md-6 py-5 px-md-5">
           <div className="py-md-5">
             <div className="heading-section heading-section-white ftco-animate mb-5">
-              <h2 className="mb-4">Request A Quote</h2>
+              <h2 className="mb-4">Get Personalised Guidance</h2>
               <p>
-                Share what support you need for your UK study plans—course shortlisting, UCAS guidance, visa prep, or accommodation advice—and
-                our advisers will respond with tailored next steps.
+                Share what support you need for your UK study plans, course shortlisting, UCAS guidance, or application planning, and our advisers will
+                respond with tailored next steps.
               </p>
             </div>
             <form className="appointment-form ftco-animate">

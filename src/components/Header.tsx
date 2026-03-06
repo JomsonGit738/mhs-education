@@ -1,20 +1,46 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { FormEvent, useDeferredValue, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { brand, navLinks } from '../data/content';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { brand, courses, navLinks, socialLinks } from '../data/content';
 
 const ScrollAwareNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isAwake, setIsAwake] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
   const pathname = usePathname() || '/';
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const deferredSearchQuery = useDeferredValue(searchQuery);
 
   const isActive = useMemo(
     () => (path: string) => (path === '/' ? pathname === '/' : pathname.startsWith(path)),
     [pathname],
   );
+
+  const matchingCourses = useMemo(() => {
+    const query = deferredSearchQuery.trim().toLowerCase();
+
+    if (!query) {
+      return [];
+    }
+
+    return courses
+      .filter((course) =>
+        [course.title, course.teacher, course.seats, course.duration, course.description]
+          .join(' ')
+          .toLowerCase()
+          .includes(query),
+      )
+      .slice(0, 5);
+  }, [deferredSearchQuery]);
+
+  useEffect(() => {
+    setSearchQuery(searchParams.get('query') ?? '');
+  }, [searchParams]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,6 +66,15 @@ const ScrollAwareNavbar = () => {
     .filter(Boolean)
     .join(' ');
 
+  const handleSearch = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const query = searchQuery.trim();
+
+    router.push(query ? `/courses?query=${encodeURIComponent(query)}` : '/courses');
+    setIsOpen(false);
+    setIsSearchFocused(false);
+  };
+
   return (
     <nav className={navState} id="ftco-navbar">
       <div className="container d-flex align-items-center px-4">
@@ -54,13 +89,40 @@ const ScrollAwareNavbar = () => {
           <span className="oi oi-menu" /> Menu
         </button>
         {/* Quick course search entry point required by client */}
-        <form className="searchform order-lg-last">
+        <form className="searchform order-lg-last course-search" onSubmit={handleSearch}>
           <div className="form-group d-flex">
-            <input type="text" className="form-control pl-3" placeholder="Search courses" />
+            <input
+              type="text"
+              className="form-control pl-3"
+              placeholder="Search courses"
+              value={searchQuery}
+              onChange={(event) => setSearchQuery(event.target.value)}
+              onFocus={() => setIsSearchFocused(true)}
+              onBlur={() => window.setTimeout(() => setIsSearchFocused(false), 150)}
+              aria-label="Search courses"
+              autoComplete="off"
+            />
             <button type="submit" className="form-control search">
               <span className="ion-ios-search" />
             </button>
           </div>
+          {isSearchFocused && matchingCourses.length ? (
+            <div className="course-search-popover">
+              {matchingCourses.map((course) => (
+                <Link
+                  key={course.id}
+                  href={`/courses#${course.id}`}
+                  className="course-search-result"
+                  onClick={() => setIsSearchFocused(false)}
+                >
+                  <span className="course-search-result__title">{course.title}</span>
+                  <span className="course-search-result__meta">
+                    {course.duration} • {course.seats}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          ) : null}
         </form>
         <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`} id="ftco-nav">
           <ul className="navbar-nav mr-auto">
@@ -92,7 +154,7 @@ const TopBar = () => (
       <div className="row no-gutters d-flex align-items-center align-items-stretch">
         <div className="col-md-3 d-flex align-items-center py-2">
           <Link className="navbar-brand d-flex align-items-center p-0" href="/">
-            <img src={brand.logo} alt={`${brand.name} logo`} style={{ height: 60, width: 'auto' }} />
+            <img src={brand.logo} alt={`${brand.name} logo`} className="topbar-logo" />
           </Link>
         </div>
         <div className="col-lg-9 d-block">
@@ -101,7 +163,7 @@ const TopBar = () => (
             <div className="col-md-7 d-flex align-items-center p-0 flex-nowrap h-100">
               <div className="d-flex topper align-items-center h-100 py-1 pr-4 flex-nowrap">
                 <div className="icon d-flex justify-content-center align-items-center">
-                  <span className="icon-paper-plane" />
+                  <span className="icon-envelope" />
                 </div>
                 <div className="text d-flex align-items-center flex-nowrap">
                   <span className="mr-2">Email:</span>
@@ -119,21 +181,20 @@ const TopBar = () => (
               </div>
             </div>
             <div className="col-md-5 d-flex align-items-center justify-content-end p-0 h-100">
-              <div className="d-flex align-items-center h-100">
-                {/* Primary CTA keeps apply prominent */}
-                <Link
-                  href="/contact"
-                  className="btn py-2 px-3 btn-primary d-flex align-items-center justify-content-center topbar-apply"
-                >
-                  <span>Apply now</span>
-                </Link>
-                {/* Consultation CTA kept visible with contrast against top bar */}
-                <Link
-                  href="/contact"
-                  className="btn py-2 px-3 btn-apply-invert d-flex align-items-center justify-content-center ml-2"
-                >
-                  <span>Book a Free Consultation</span>
-                </Link>
+              <div className="d-flex align-items-center h-100 topbar-actions">
+                <div className="topbar-socials d-flex align-items-center mr-3" aria-label="Social media links">
+                  {socialLinks.map((link, index) => (
+                    <a
+                      key={link.icon}
+                      href={link.href}
+                      className="topbar-social-link"
+                      aria-label={link.icon}
+                      style={{ animationDelay: `${index * 90}ms` }}
+                    >
+                      <span className={link.icon} />
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

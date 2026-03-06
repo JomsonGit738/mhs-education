@@ -3,46 +3,38 @@
 import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
 import { stats } from '../data/content';
-import { images } from '../data/images';
 
 export const StatsSection = () => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.35 });
 
   return (
-    <section
-      className="ftco-section ftco-counter img"
-      id="section-counter"
-      style={{ backgroundImage: `url(${images.bg3})` }}
-      data-stellar-background-ratio="0.5"
-    >
-      <div className="container">
-        <div className="row justify-content-center mb-5 pb-2 d-flex">
-          <div className="col-md-6 align-items-stretch d-flex">
-            <div className="img img-video d-flex align-items-center p-2" style={{ backgroundImage: 'none' }}>
-              <video
-                className="w-100 h-100 rounded"
-                poster={images.about2}
-                controls
-                preload="none"
-                aria-label="Play campus video"
-              >
-                <source
-                  src="https://videos.pexels.com/video-files/6209376/6209376-uhd_4096_2160_25fps.mp4"
-                  type="video/mp4"
-                />
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          </div>
-          <div className="col-md-6 heading-section heading-section-white ftco-animate pl-lg-5 pt-md-0 pt-5">
-            <h2 className="mb-4">Supporting UK Student Success</h2>
+    <section className="ftco-section ftco-counter img stats-section-video" id="section-counter">
+      <video
+        className="stats-section-video__media"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
+      >
+        <source
+          src="https://videos.pexels.com/video-files/6209376/6209376-uhd_4096_2160_25fps.mp4"
+          type="video/mp4"
+        />
+      </video>
+      <div className="stats-section-video__overlay" aria-hidden="true" />
+      <div className="container stats-section-video__content">
+        <div className="row justify-content-center mb-5 pb-2">
+          <div className="col-lg-8 heading-section heading-section-white ftco-animate text-center">
+            <h2 className="mb-4">UK Student Support</h2>
             <p>
               MHS Education guides ambitious students with personalised admissions planning, careful documentation checks, and attentive follow-up so every
               UK application stays on track.
             </p>
             <p>
-              Beyond offers, we provide visa preparation, scholarship guidance, accommodation advice, and pre-departure briefings to help you arrive in the UK
-              with confidence.
+              Beyond receiving offers, we provide scholarship guidance and responsive student support to help you move from application to enrolment with
+              confidence.
             </p>
           </div>
         </div>

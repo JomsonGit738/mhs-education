@@ -24,6 +24,11 @@ export type Offering = {
   icon: string;
 };
 
+export type AboutHighlight = {
+  title: string;
+  description: string;
+};
+
 export type Stat = {
   label: string;
   value: number;
@@ -125,7 +130,7 @@ export const heroSlides: HeroSlide[] = [
   {
     title: "Admission for May/June Intake",
     description: "Mapping Higher Success with tailored UK admission pathways and documentation support.",
-    image: images.heroSlide1,
+    image: images.slider1,
     ctaLabel: "Apply Now",
     ctaHref: "/contact",
     secondaryCtaLabel: "Book a Free Consultation",
@@ -134,7 +139,7 @@ export const heroSlides: HeroSlide[] = [
   {
     title: "Your Pathway to UK Campuses",
     description: "Foundation, undergraduate, postgraduate, diploma, and top-up guidance with clear timelines.",
-    image: images.heroSlide2,
+    image: images.slider2,
     ctaLabel: "Apply Now",
     ctaHref: "/contact",
     secondaryCtaLabel: "Book a Free Consultation",
@@ -142,8 +147,8 @@ export const heroSlides: HeroSlide[] = [
   },
   {
     title: "Comprehensive UK Student Support",
-    description: "Visa, finance, interview prep, and arrival support so every milestone stays on track.",
-    image: images.heroSlide3,
+    description: "Finance, interview prep, and personalised guidance so every milestone stays on track.",
+    image: images.slider3,
     ctaLabel: "Apply Now",
     ctaHref: "/contact",
     secondaryCtaLabel: "Book a Free Consultation",
@@ -207,8 +212,8 @@ export const offerings: Offering[] = [
     icon: "flaticon-jigsaw",
   },
   {
-    title: "Visa Guidance",
-    description: "Stay compliant with documentation checks, timelines, and interview preparation.",
+    title: "Admissions Planning",
+    description: "Stay organised with document checks, timeline planning, and interview preparation.",
     icon: "flaticon-security",
   },
   {
@@ -217,6 +222,31 @@ export const offerings: Offering[] = [
     icon: "flaticon-teacher",
   },
 ];
+
+export const homeAbout = {
+  title: "About MHS Education",
+  intro:
+    "MHS Education supports ambitious students with clear admissions planning, practical advice, and consistent guidance tailored to UK study goals.",
+  detail:
+    "From first conversations through final decisions, we help students compare routes, prepare stronger applications, and stay organised across each intake with a student-first approach.",
+  image: images.about2,
+  ctaLabel: "Learn More About Us",
+  ctaHref: "/about",
+  highlights: [
+    {
+      title: "Established Expertise",
+      description: "Founded in 2020 and built around personalised support for UK-bound applicants.",
+    },
+    {
+      title: "Multiple Study Routes",
+      description: "Guidance across foundation, undergraduate, postgraduate, diploma, and top-up options.",
+    },
+    {
+      title: "Student-First Support",
+      description: "Clear timelines, careful document checks, and responsive follow-up throughout the process.",
+    },
+  ] satisfies AboutHighlight[],
+} as const;
 
 export const stats: Stat[] = [
   { label: "Students", value: 1000, suffix: "+", icon: "flaticon-doctor" },
@@ -289,10 +319,10 @@ export const teachers: Teacher[] = [
     ],
   },
   {
-    name: "Visa & Compliance",
-    role: "UKVI Support",
+    name: "Application Strategy",
+    role: "Admissions Support",
     image: images.teacher2,
-    bio: "UKVI-focused checklists, CAS coordination, and interview readiness so your student visa stays on track.",
+    bio: "Application checklists, deadline coordination, and interview readiness so each submission stays organised and on track.",
     socials: [
       { icon: "icon-twitter", href: "#" },
       { icon: "icon-facebook", href: "#" },
@@ -316,7 +346,7 @@ export const teachers: Teacher[] = [
     name: "Student Support",
     role: "Experience Team",
     image: images.teacher4,
-    bio: "Accommodation search, travel planning, NHS/GP and banking guidance, and pre-arrival briefings for a smooth UK landing.",
+    bio: "Personalised student support, progress check-ins, and practical study guidance that keep each step clear and well managed.",
     socials: [
       { icon: "icon-twitter", href: "#" },
       { icon: "icon-facebook", href: "#" },
@@ -345,22 +375,48 @@ export const testimonials: Testimonial[] = [
     name: "Priya",
     role: "Postgraduate Applicant",
     quote:
-      "The team refined my SOP and coordinated references, which really elevated my masters application. Visa prep was straightforward too.",
+      "The team refined my SOP and coordinated references, which really elevated my masters application. Their guidance kept the whole process straightforward.",
     image: images.personPriya,
-  },
-  {
-    name: "Ahmed",
-    role: "Visa Support",
-    quote:
-      "Their document checklist and interview tips were invaluable. I felt confident through the visa process and travelled on time.",
-    image: images.personAhmed,
   },
   {
     name: "Lina",
     role: "Student Support",
     quote:
-      "Accommodation guidance and pre-departure briefings took away all the uncertainty. I knew exactly what to expect on arrival.",
+      "Their steady guidance took away the uncertainty. I always knew what to do next and felt supported throughout the process.",
     image: images.personLina,
+  },
+];
+
+export const featuredCourses: Course[] = [
+  {
+    id: "featured-foundation",
+    title: "Foundation Pathways",
+    teacher: "Academic Planning Team",
+    seats: "Multiple intakes",
+    duration: "1 Year",
+    description:
+      "A focused introduction for students who want to strengthen academic readiness before progressing to a UK degree.",
+    image: images.course6,
+  },
+  {
+    id: "featured-undergraduate",
+    title: "Undergraduate Degrees",
+    teacher: "Course Matching Team",
+    seats: "Wide subject choice",
+    duration: "3-4 Years",
+    description:
+      "Explore undergraduate options with support on course fit, university selection, and a strong application strategy.",
+    image: images.course7,
+  },
+  {
+    id: "featured-postgraduate",
+    title: "Postgraduate Study",
+    teacher: "Admissions Advisory",
+    seats: "Selected intakes",
+    duration: "1-2 Years",
+    description:
+      "Advance your academic and career goals with tailored guidance on masters-level pathways and application preparation.",
+    image: images.course8,
   },
 ];
 
@@ -402,15 +458,15 @@ export const blogs: BlogPost[] = [
     tags: ["Admissions", "Personal Statement", "Offers"],
   },
   {
-    id: "visa-checklist",
-    title: "UK Visa Preparation Checklist for Students",
+    id: "application-checklist",
+    title: "UK Application Preparation Checklist for Students",
     author: "MHS Education",
     date: "December 01, 2024",
     comments: 2,
     image: images.image3,
     excerpt:
-      "Stay compliant with a UK student visa checklist that covers documents, CAS timelines, and interview readiness.",
-    tags: ["Visa", "Compliance", "Student Support"],
+      "Use a clear UK application checklist that covers documents, timelines, and interview readiness.",
+    tags: ["Admissions", "Planning", "Student Support"],
   },
 ];
 
@@ -444,7 +500,7 @@ export const quoteCourseOptions = [
   "Foundation Programmes",
   "Undergraduate Applications",
   "Postgraduate Applications",
-  "Visa Guidance",
+  "Application Support",
   "Scholarship Support",
   "Student Support",
 ];
@@ -466,9 +522,9 @@ export const blogDetail = {
   body: [
     "Personalised admissions planning starts with listening to your goals, budget, and timelines. We shortlist programmes that align with your strengths and preferences, then guide you through documentation and deadlines.",
     "Clear, concise personal statements, verified references, and organised paperwork help decision makers understand your profile. We iterate quickly so you submit with confidence.",
-    "Beyond the offer, our team supports visa preparation, scholarship guidance, accommodation advice, and pre-departure briefings so you arrive ready for success.",
+    "Beyond the offer, our team continues with scholarship guidance and responsive student support so you stay prepared and confident through enrolment.",
   ],
-  tags: ["Admissions", "Planning", "Visa"],
+  tags: ["Admissions", "Planning", "Student Support"],
   author: {
     name: "MHS Education",
     bio: "Our advisers connect students with leading UK universities through attentive, personalised guidance.",
@@ -515,12 +571,12 @@ export const blogDetail = {
       id: "c3",
       author: "John Doe",
       date: "June 27, 2019 at 2:21pm",
-      text: "Is visa guidance included in your complimentary support?",
+      text: "Is interview preparation included in your complimentary support?",
     },
   ] as Comment[],
   categories: [
     { label: "Admissions", total: 6 },
-    { label: "Visa", total: 5 },
+    { label: "Applications", total: 5 },
     { label: "Scholarships", total: 4 },
     { label: "Student Support", total: 3 },
     { label: "Planning", total: 2 },
@@ -537,7 +593,7 @@ export const blogDetail = {
     },
     {
       id: "popular-2",
-      title: "Visa interview tips for first-time applicants",
+      title: "Interview tips for first-time applicants",
       author: "MHS Education",
       date: "June 27, 2019",
       comments: 19,
@@ -563,7 +619,7 @@ export const blogDetail = {
   ],
   tagCloud: [
     "Admissions",
-    "Visa",
+    "Applications",
     "Scholarship",
     "Student Support",
     "Planning",
@@ -571,5 +627,5 @@ export const blogDetail = {
     "Offers",
   ],
   sidebarText:
-    "MHS Education provides personalised admissions guidance, visa support, and student services that carry you from enquiry to enrolment with confidence.",
+    "MHS Education provides personalised admissions guidance and student services that carry you from enquiry to enrolment with confidence.",
 };
