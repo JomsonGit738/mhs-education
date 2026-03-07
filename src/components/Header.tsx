@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useDeferredValue, useEffect, useMemo, useState } from 'react';
+import { FormEvent, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { brand, courses, navLinks, socialLinks } from '../data/content';
@@ -11,14 +11,21 @@ const ScrollAwareNavbar = () => {
   const [isAwake, setIsAwake] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0, opacity: 0 });
   const pathname = usePathname() || '/';
   const router = useRouter();
   const searchParams = useSearchParams();
   const deferredSearchQuery = useDeferredValue(searchQuery);
+  const navListRef = useRef<HTMLUListElement>(null);
+  const navLinkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
 
   const isActive = useMemo(
     () => (path: string) => (path === '/' ? pathname === '/' : pathname.startsWith(path)),
     [pathname],
+  );
+  const activePath = useMemo(
+    () => navLinks.find((link) => isActive(link.path))?.path ?? '/',
+    [isActive],
   );
 
   const matchingCourses = useMemo(() => {
@@ -53,6 +60,33 @@ const ScrollAwareNavbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    const positionIndicator = (path: string) => {
+      const navList = navListRef.current;
+      const navLink = navLinkRefs.current[path];
+
+      if (!navList || !navLink) {
+        setIndicatorStyle((current) => ({ ...current, opacity: 0 }));
+        return;
+      }
+
+      const listRect = navList.getBoundingClientRect();
+      const linkRect = navLink.getBoundingClientRect();
+
+      setIndicatorStyle({
+        left: linkRect.left - listRect.left,
+        width: linkRect.width,
+        opacity: 1,
+      });
+    };
+
+    positionIndicator(activePath);
+
+    const handleResize = () => positionIndicator(activePath);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [activePath, isOpen]);
 
   const navState = [
     'navbar',
@@ -125,16 +159,65 @@ const ScrollAwareNavbar = () => {
           ) : null}
         </form>
         <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`} id="ftco-nav">
-          <ul className="navbar-nav mr-auto">
+          <ul
+            ref={navListRef}
+            className="navbar-nav mr-auto segmented-nav"
+            onMouseLeave={() => {
+              const navList = navListRef.current;
+              const navLink = navLinkRefs.current[activePath];
+
+              if (!navList || !navLink) {
+                return;
+              }
+
+              const listRect = navList.getBoundingClientRect();
+              const linkRect = navLink.getBoundingClientRect();
+
+              setIndicatorStyle({
+                left: linkRect.left - listRect.left,
+                width: linkRect.width,
+                opacity: 1,
+              });
+            }}
+          >
+            <li
+              className="segmented-nav__indicator"
+              aria-hidden="true"
+              style={{
+                transform: `translateX(${indicatorStyle.left}px)`,
+                width: indicatorStyle.width,
+                opacity: indicatorStyle.opacity,
+              }}
+            />
             {navLinks.map((link) => {
               const active = isActive(link.path);
               return (
                 <li key={link.path} className={`nav-item ${active ? 'active' : ''}`}>
                   <Link
                     href={link.path}
+                    ref={(element) => {
+                      navLinkRefs.current[link.path] = element;
+                    }}
                     className={`nav-link ${link.path === '/' ? 'pl-0' : ''} ${active ? 'active' : ''}`}
                     aria-current={active ? 'page' : undefined}
                     onClick={() => setIsOpen(false)}
+                    onMouseEnter={() => {
+                      const navList = navListRef.current;
+                      const navLink = navLinkRefs.current[link.path];
+
+                      if (!navList || !navLink) {
+                        return;
+                      }
+
+                      const listRect = navList.getBoundingClientRect();
+                      const linkRect = navLink.getBoundingClientRect();
+
+                      setIndicatorStyle({
+                        left: linkRect.left - listRect.left,
+                        width: linkRect.width,
+                        opacity: 1,
+                      });
+                    }}
                   >
                     {link.label}
                   </Link>

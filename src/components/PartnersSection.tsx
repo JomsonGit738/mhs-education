@@ -1,27 +1,39 @@
-import { partners } from "../data/content";
+import Image from "next/image";
+import { InfiniteSlider } from "./InfiniteSlider";
+import { universityLogos } from "../data/universities";
 
-// Simple logo strip to showcase partner universities (logos only per client request)
 export const PartnersSection = () => (
-  <section className="ftco-section bg-light">
-    <div className="container">
-      <div className="row justify-content-center mb-4">
-        <div className="col-md-8 text-center heading-section ftco-animate">
-          <h2 className="mb-3">Partner Universities</h2>
-          <p className="mb-0">Trusted institutions we collaborate with for UK-bound students.</p>
-        </div>
+  <section className="universities-section">
+    <div className="universities-shell">
+      <div className="universities-heading text-center">
+        <span className="universities-eyebrow">Our Universities</span>
+        <h2>Explore the institutions our students target across the UK</h2>
+        <p>
+          We work with a growing network of respected partner universities, helping students identify the right
+          study options and progress confidently through the UK admissions journey.
+        </p>
       </div>
-      <div className="row justify-content-center align-items-center">
-        {partners.map((partner) => (
-          <div key={partner.name} className="col-6 col-sm-4 col-md-3 col-lg-2 mb-4 text-center">
-            <div
-              className="partner-logo d-flex align-items-center justify-content-center p-3 bg-white shadow-sm"
-              aria-label={partner.name}
-            >
-              <img src={partner.logo} alt={`${partner.name} logo`} className="img-fluid" />
+
+      <div className="universities-divider" aria-hidden="true">
+        <span />
+        <p>Trusted partner university network</p>
+        <span />
+      </div>
+
+      <InfiniteSlider className="universities-slider" speed={92} speedOnHover={24} gap={12}>
+        {universityLogos.map((university) => (
+          <article key={university.name} className="university-card">
+            <div className="university-card__logo">
+              <Image
+                src={university.logo}
+                alt={`${university.name} logo`}
+                className="university-card__image"
+                style={{ transform: `scale(${university.scale})` }}
+              />
             </div>
-          </div>
+          </article>
         ))}
-      </div>
+      </InfiniteSlider>
     </div>
   </section>
 );

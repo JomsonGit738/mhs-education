@@ -4,6 +4,7 @@ import type { ReactNode } from 'react';
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import AOS from 'aos';
+import { FloatingSocialDock } from './FloatingSocialDock';
 import { Header } from './Header';
 import { Footer } from './Footer';
 
@@ -22,6 +23,7 @@ export const ClientLayout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <Header />
+      <FloatingSocialDock />
       <main>{children}</main>
       <Footer />
     </>

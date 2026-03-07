@@ -54,30 +54,38 @@ const renderBadgeIcon = (teacher: Teacher) => {
 };
 
 const TeacherCard = ({ teacher }: { teacher: Teacher }) => (
-  <div className="col-md-6 col-lg-3 ftco-animate" data-aos="fade-up">
-    <div className="staff alt-card d-flex flex-column h-100 p-4">
-      <div className="avatar-badge mb-3">
+  <article className="student-service-card" data-aos="fade-up">
+    <div className="student-service-card__media">
+      <div
+        className="student-service-card__photo"
+        style={{ backgroundImage: `url(${teacher.image})` }}
+        aria-hidden="true"
+      />
+      <div className="student-service-card__icon" aria-hidden="true">
         {renderBadgeIcon(teacher)}
       </div>
-      <h3 className="mb-1">{teacher.name}</h3>
-      <span className="position mb-3">{teacher.role}</span>
-      <p className="flex-grow-1 mb-3">{teacher.bio}</p>
     </div>
-  </div>
+    <div className="student-service-card__body">
+      <span className="student-service-card__role">{teacher.role}</span>
+      <h3>{teacher.name}</h3>
+      <p>{teacher.bio}</p>
+    </div>
+  </article>
 );
 
 export const TeachersSection = ({ items, title, description }: TeachersSectionProps) => (
-  <section className="ftco-section bg-light">
-    <div className="container-fluid px-4">
+  <section className="student-services-section">
+    <div className="container">
       {(title || description) && (
-        <div className="row justify-content-center mb-5 pb-2">
-          <div className="col-md-8 text-center heading-section ftco-animate">
-            {title && <h2 className="mb-4">{title}</h2>}
+        <div className="student-services-section__header">
+          <div className="student-services-section__eyebrow">Support That Stays With You</div>
+          <div className="heading-section text-center">
+            {title && <h2>{title}</h2>}
             {description && <p>{description}</p>}
           </div>
         </div>
       )}
-      <div className="row">
+      <div className="student-services-grid">
         {items.map((teacher) => (
           <TeacherCard key={teacher.name} teacher={teacher} />
         ))}

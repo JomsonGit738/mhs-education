@@ -55,6 +55,7 @@ export const socialLinks: SocialLink[] = [
   { icon: "icon-facebook", href: "#" },
   { icon: "icon-instagram", href: "#" },
   { icon: "icon-linkedin", href: "#" },
+  { icon: "icon-whatsapp", href: "#" },
   { icon: "icon-twitter", href: "#" }, // Using twitter icon to represent X until an X glyph is provided
 ];
 
