@@ -2,7 +2,7 @@
 
 import { FormEvent, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { brand, courses, navLinks, socialLinks } from '../data/content';
 
 const ScrollAwareNavbar = () => {
@@ -14,7 +14,6 @@ const ScrollAwareNavbar = () => {
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0, opacity: 0 });
   const pathname = usePathname() || '/';
   const router = useRouter();
-  const searchParams = useSearchParams();
   const deferredSearchQuery = useDeferredValue(searchQuery);
   const navListRef = useRef<HTMLUListElement>(null);
   const navLinkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
@@ -46,8 +45,13 @@ const ScrollAwareNavbar = () => {
   }, [deferredSearchQuery]);
 
   useEffect(() => {
-    setSearchQuery(searchParams.get('query') ?? '');
-  }, [searchParams]);
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const currentQuery = new URLSearchParams(window.location.search).get('query') ?? '';
+    setSearchQuery(pathname === '/courses' ? currentQuery : '');
+  }, [pathname]);
 
   useEffect(() => {
     const handleScroll = () => {

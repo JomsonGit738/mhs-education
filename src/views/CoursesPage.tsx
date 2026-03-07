@@ -1,38 +1,31 @@
-'use client';
-
-import { useMemo } from 'react';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
 import { CoursesSection } from '../components/CoursesSection';
 import { PageHero } from '../components/PageHero';
 import { courses, pageHero } from '../data/content';
 import { images } from '../data/images';
 
-export const CoursesPage = () => {
-  const searchParams = useSearchParams();
-  const query = (searchParams.get('query') ?? '').trim();
+type CoursesPageProps = {
+  query?: string;
+};
 
-  const filteredCourses = useMemo(() => {
-    if (!query) {
-      return courses;
-    }
+export const CoursesPage = ({ query = '' }: CoursesPageProps) => {
+  const normalizedQuery = query.trim().toLowerCase();
 
-    const normalizedQuery = query.toLowerCase();
-
-    return courses.filter((course) =>
-      [course.title, course.teacher, course.seats, course.duration, course.description]
-        .join(' ')
-        .toLowerCase()
-        .includes(normalizedQuery),
-    );
-  }, [query]);
+  const filteredCourses = normalizedQuery
+    ? courses.filter((course) =>
+        [course.title, course.teacher, course.seats, course.duration, course.description]
+          .join(' ')
+          .toLowerCase()
+          .includes(normalizedQuery),
+      )
+    : courses;
 
   return (
     <>
       <PageHero title={pageHero.courses.title} breadcrumb={pageHero.courses.breadcrumb} background={images.uk} />
       <CoursesSection
         title={
-          query ? (
+          normalizedQuery ? (
             <span>
               Search Results for <span>&quot;{query}&quot;</span>
             </span>
@@ -43,7 +36,7 @@ export const CoursesPage = () => {
           )
         }
         description={
-          query
+          normalizedQuery
             ? `Browse matching programmes and refine your search by trying course names, durations, or study routes.`
             : 'Review a broader set of study options across foundation, undergraduate, postgraduate, diploma, and top-up routes, each supported with admissions guidance tailored to your goals.'
         }
