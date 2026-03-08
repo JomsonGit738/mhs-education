@@ -41,6 +41,8 @@ export const CoursesPage = ({ query = '' }: CoursesPageProps) => {
             : 'Review a broader set of study options across foundation, undergraduate, postgraduate, diploma, and top-up routes, each supported with admissions guidance tailored to your goals.'
         }
         items={filteredCourses}
+        sectionClassName="courses-catalog-section"
+        cardClassName="courses-catalog-card"
         emptyState={
           <div>
             <p className="mb-3 text-secondary">No programmes matched &quot;{query}&quot;.</p>

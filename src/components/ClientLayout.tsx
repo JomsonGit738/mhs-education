@@ -7,6 +7,7 @@ import AOS from 'aos';
 import { FloatingSocialDock } from './FloatingSocialDock';
 import { Header } from './Header';
 import { Footer } from './Footer';
+import { HomeLoadingOverlay } from './HomeLoadingOverlay';
 
 export const ClientLayout = ({ children }: { children: ReactNode }) => {
   const pathname = usePathname();
@@ -22,6 +23,7 @@ export const ClientLayout = ({ children }: { children: ReactNode }) => {
 
   return (
     <>
+      <HomeLoadingOverlay />
       <Header />
       <FloatingSocialDock />
       <main>{children}</main>

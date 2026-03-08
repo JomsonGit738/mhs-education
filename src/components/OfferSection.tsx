@@ -1,35 +1,30 @@
 import { offerings } from '../data/content';
-import { images } from '../data/images';
 
 export const OfferSection = () => (
-  <section className="ftco-section ftco-no-pt ftc-no-pb">
+  <section className="ftco-section offer-modern-section">
     <div className="container">
-      <div className="row d-flex">
-        <div className="col-md-5 order-md-last wrap-about wrap-about d-flex align-items-stretch" data-aos="fade-left">
-          <div className="img" style={{ backgroundImage: `url(${images.uk})`, border: 'none' }} />
-        </div>
-        <div className="col-md-7 wrap-about py-5 pr-md-4 ftco-animate" data-aos="fade-right">
-          <h2 className="mb-4">What We Offer</h2>
-          <p>
-            We guide UK-bound students through every application milestone: choosing the right pathway, preparing documents, and submitting strong
-            applications on time. From your first enquiry to enrolment, our advisers offer expert support with the application to help you move forward with confidence.
-          </p>
-          <div className="row mt-5">
-            {offerings.map((item) => (
-              <div key={item.title} className="col-lg-6 mb-3">
-                <div className="services-2 d-flex">
-                  <div className="icon mt-2 d-flex justify-content-center align-items-center">
-                    <span className={item.icon} />
-                  </div>
-                  <div className="text pl-3">
-                    <h3>{item.title}</h3>
-                    <p>{item.description}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+      <div className="offer-modern-intro" data-aos="fade-up">
+        <span className="offer-modern-eyebrow">What We Offer</span>
+        <h2 className="offer-modern-title">
+          Practical support across
+          {' '}
+          <span>every stage of the UK admissions process</span>
+        </h2>
+        <p className="offer-modern-copy">
+          Our service model is built to help students make clearer decisions, prepare stronger applications, and stay organised from initial enquiry through to
+          enrolment planning.
+        </p>
+      </div>
+      <div className="offer-modern-grid">
+        {offerings.map((item, index) => (
+          <article className="offer-modern-card" data-aos="fade-up" data-aos-delay={index * 40} key={item.title}>
+            <div className="offer-modern-card__icon" aria-hidden="true">
+              <span className={item.icon} />
+            </div>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </article>
+        ))}
       </div>
     </div>
   </section>

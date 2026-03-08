@@ -235,57 +235,55 @@ const ScrollAwareNavbar = () => {
   );
 };
 
+const SocialLinksList = ({ className = 'topbar-socials d-flex align-items-center mr-3' }: { className?: string }) => (
+  <div className={className} aria-label="Social media links">
+    {socialLinks.map((link, index) => (
+      <a
+        key={link.icon}
+        href={link.href}
+        className="topbar-social-link"
+        aria-label={link.icon}
+        style={{ animationDelay: `${index * 90}ms` }}
+      >
+        <span className={link.icon} />
+      </a>
+    ))}
+  </div>
+);
+
 const TopBar = () => (
   <div className="bg-top navbar-light">
-    <div className="container">
+    <div className="container topbar-container">
       <div className="row no-gutters d-flex align-items-center align-items-stretch">
-        <div className="col-md-3 d-flex align-items-center py-2">
+        <div className="col-md-3 d-flex align-items-center py-2 topbar-brand-col">
           <Link className="navbar-brand d-flex align-items-center p-0" href="/">
             <img src={brand.logo} alt={`${brand.name} logo`} className="topbar-logo" />
           </Link>
         </div>
-        <div className="col-lg-9 d-block">
-          <div className="row d-flex align-items-center h-100">
-            {/* Email and call in a single horizontal row for space efficiency */}
-            <div className="col-md-7 d-flex align-items-center p-0 flex-nowrap h-100">
-              <div className="d-flex topper align-items-center h-100 py-1 pr-4 flex-nowrap">
-                <div className="icon d-flex justify-content-center align-items-center">
-                  <span className="icon-envelope" />
-                </div>
-                <div className="text d-flex align-items-center flex-nowrap">
-                  <span className="mr-2">Email:</span>
-                  <span>{brand.email}</span>
-                </div>
-              </div>
-              <div className="d-flex topper align-items-center h-100 py-1 flex-nowrap">
-                <div className="icon d-flex justify-content-center align-items-center">
-                  <span className="icon-phone2" />
-                </div>
-                <div className="text d-flex align-items-center flex-nowrap">
-                  <span className="mr-2">Call:</span>
-                  <span>{brand.phone}</span>
-                </div>
-              </div>
+        <div className="col-lg-9 d-block topbar-content-col">
+          <div className="topbar-meta">
+            <div className="topbar-contact-list" aria-label="Contact information">
+              <a className="topbar-contact-item" href={`mailto:${brand.email}`}>
+                <span className="topbar-contact-icon icon-envelope" aria-hidden="true" />
+                <span className="topbar-contact-copy">
+                  <span className="topbar-contact-value">{brand.email}</span>
+                </span>
+              </a>
+              <a className="topbar-contact-item" href={`tel:${brand.phone}`}>
+                <span className="topbar-contact-icon icon-phone2" aria-hidden="true" />
+                <span className="topbar-contact-copy">
+                  <span className="topbar-contact-value">{brand.phone}</span>
+                </span>
+              </a>
             </div>
-            <div className="col-md-5 d-flex align-items-center justify-content-end p-0 h-100">
-              <div className="d-flex align-items-center h-100 topbar-actions">
-                <div className="topbar-socials d-flex align-items-center mr-3" aria-label="Social media links">
-                  {socialLinks.map((link, index) => (
-                    <a
-                      key={link.icon}
-                      href={link.href}
-                      className="topbar-social-link"
-                      aria-label={link.icon}
-                      style={{ animationDelay: `${index * 90}ms` }}
-                    >
-                      <span className={link.icon} />
-                    </a>
-                  ))}
-                </div>
-              </div>
+            <div className="topbar-actions topbar-actions--desktop">
+              <SocialLinksList />
             </div>
           </div>
         </div>
+      </div>
+      <div className="topbar-actions-mobile">
+        <SocialLinksList className="topbar-socials topbar-socials--mobile d-flex align-items-center justify-content-center" />
       </div>
     </div>
   </div>

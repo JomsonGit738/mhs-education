@@ -5,61 +5,68 @@ import { Gallery } from '../components/Gallery';
 import { images } from '../data/images';
 import { pageHero } from '../data/content';
 
+const aboutHighlights = [
+  {
+    title: 'Who We Are',
+    description: 'MHS Education supports ambitious UK-bound students with practical guidance that turns study plans into achievable offers.',
+  },
+  {
+    title: 'Our Vision',
+    description:
+      'Established in 2020, our mission is to make leading UK campuses accessible through tailored support, well-matched programmes, and realistic timelines.',
+  },
+  {
+    title: 'Student-Centred Approach',
+    description:
+      'Every conversation starts with attentive listening so we can shape personalised routes around academic strengths, finances, and student wellbeing.',
+  },
+  {
+    title: 'Company History',
+    description:
+      'From a focused advisory team, we have grown into a multi-intake specialist supporting foundation, undergraduate, postgraduate, diploma, and top-up applicants.',
+  },
+  {
+    title: 'Proven Success Stories',
+    description:
+      'Students have secured offers from respected universities across the UK through careful preparation, deadline management, and post-offer mentoring.',
+  },
+  {
+    title: 'Our Commitment',
+    description:
+      'We continue to develop our service with integrity, responsiveness, and a long-term commitment to helping students thrive from application to enrolment.',
+  },
+];
+
 export const AboutPage = () => (
   <>
     <PageHero title={pageHero.about.title} breadcrumb={pageHero.about.breadcrumb} background={images.uk} />
-    <section className="ftco-section ftco-no-pt ftc-no-pb">
+    <section className="ftco-section ftco-no-pt ftc-no-pb about-story-section">
       <div className="container">
-        <div className="row d-flex">
-          <div className="col-md-5 order-md-last wrap-about d-flex align-items-stretch" data-aos="fade-left">
-            <div className="img" style={{ backgroundImage: `url(${images.about})`, border: 'none' }} />
+        <div className="about-story-intro" data-aos="fade-up">
+          <span className="about-story-eyebrow">About MHS Education</span>
+          <h2 className="about-story-title">
+            Strategic guidance for students planning a
+            {' '}
+            <span>stronger UK university journey</span>
+          </h2>
+          <p className="about-story-lead">
+            We help students move forward with clarity, from course selection and application planning to offer management and enrolment preparation. Our focus
+            is straightforward advice, responsive communication, and outcomes that align with each student&apos;s goals.
+          </p>
+          <div className="about-story-notes" aria-label="About section highlights">
+            <span>Tailored application support</span>
+            <span>Clear academic pathways</span>
+            <span>Professional UK admissions guidance</span>
           </div>
-          <div className="col-md-7 wrap-about py-5 pr-md-4 ftco-animate" data-aos="fade-right">
-            <h2 className="mb-4">UK Student Support</h2>
-            <div className="d-flex flex-column gap-4">
-              <article>
-                <h3 className="h5 mb-2">Who We Are</h3>
-                <p className="mb-0">
-                  MHS Education supports ambitious UK-bound students with practical guidance that turns study plans into achievable offers.
-                </p>
-              </article>
-              <article>
-                <h3 className="h5 mb-2">Our Vision</h3>
-                <p className="mb-0">
-                  Established in 2020, our mission is to make leading UK campuses accessible to students who want tailored support. We match aspirations with
-                  the right programmes, routes, and timelines for lasting success.
-                </p>
-              </article>
-              <article>
-                <h3 className="h5 mb-2">Student-Centred Approach</h3>
-                <p className="mb-0">
-                  Every conversation begins with attentive listening. We design personalised pathways that balance academic strengths, financial planning, and
-                  wellbeing so each UK milestone feels clear and supported.
-                </p>
-              </article>
-              <article>
-                <h3 className="h5 mb-2">Company History</h3>
-                <p className="mb-0">
-                  Founded in 2020, MHS Education grew from a small advisory team into a multi-intake specialist guiding foundation, undergraduate,
-                  postgraduate, diploma, and top-up applicants across the UK. Our partners and student outcomes continue to expand each intake.
-                </p>
-              </article>
-              <article>
-                <h3 className="h5 mb-2">Proven Success Stories</h3>
-                <p className="mb-0">
-                  Hundreds of students have secured offers from renowned universities across the UK through careful preparation, deadline management, and
-                  post-offer mentoring.
-                </p>
-              </article>
-              <article>
-                <h3 className="h5 mb-2">Our Commitment</h3>
-                <p className="mb-0">
-                  We continue to develop our service with integrity, responsiveness, and a commitment to education, enabling the next generation of UK
-                  students to thrive from application to enrolment.
-                </p>
-              </article>
-            </div>
-          </div>
+        </div>
+        <div className="about-story-grid">
+          {aboutHighlights.map((item, index) => (
+            <article className="about-story-card" data-aos="fade-up" data-aos-delay={index * 40} key={item.title}>
+              <span className="about-story-card__index">{String(index + 1).padStart(2, '0')}</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))}
         </div>
       </div>
     </section>
