@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 
 export const HomeLoadingOverlay = () => {
   const [isVisible, setIsVisible] = useState(true);
-  const loadingText = 'Loading...';
 
   useEffect(() => {
     if (window.matchMedia('(max-width: 991px)').matches) {
@@ -32,14 +31,14 @@ export const HomeLoadingOverlay = () => {
 
   return (
     <div className="home-loading-overlay" aria-live="polite" aria-label="Loading homepage content">
-      <div className="home-loading-overlay__text" aria-hidden="true">
-        {loadingText.split('').map((character, index) => (
+      <div className="loader" aria-hidden="true">
+        {['M', 'H', 'S'].map((letter, index) => (
           <span
-            className="home-loading-overlay__char"
-            key={`${character}-${index}`}
-            style={{ ['--char-index' as string]: index }}
+            key={letter}
+            className="loader__letter"
+            style={{ ['--loader-delay' as string]: `${index * 0.18}s` }}
           >
-            {character === ' ' ? '\u00A0' : character}
+            {letter}
           </span>
         ))}
       </div>
