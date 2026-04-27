@@ -49,14 +49,40 @@ export type Course = {
 export type SocialLink = {
   icon: string;
   href: string;
+  label?: string;
 };
 // Social link metadata supports footer/contact reuse
 export const socialLinks: SocialLink[] = [
-  { icon: "icon-facebook", href: "#" },
-  { icon: "icon-instagram", href: "#" },
-  { icon: "icon-linkedin", href: "#" },
-  { icon: "icon-whatsapp", href: "#" },
-  { icon: "icon-twitter", href: "#" }, // Using twitter icon to represent X until an X glyph is provided
+  {
+    icon: "icon-facebook",
+    href: "https://www.facebook.com/profile.php?id=61584763750775&locale=en_GB",
+    label: "Facebook",
+  },
+  {
+    icon: "icon-instagram",
+    href: "https://www.instagram.com/mhs_education/",
+    label: "Instagram",
+  },
+  {
+    icon: "icon-linkedin",
+    href: "https://www.linkedin.com/in/mhs-education-a19775405/",
+    label: "LinkedIn",
+  },
+  {
+    icon: "icon-music",
+    href: "https://www.tiktok.com/@mhs_education",
+    label: "TikTok",
+  },
+  {
+    icon: "icon-youtube",
+    href: "https://www.youtube.com/@MHS_Education",
+    label: "YouTube",
+  },
+  {
+    icon: "icon-pinterest",
+    href: "https://uk.pinterest.com/mhseducation9/_profile/",
+    label: "Pinterest",
+  },
 ];
 
 export type Teacher = {
@@ -225,7 +251,7 @@ export const offerings: Offering[] = [
 ];
 
 export const homeAbout = {
-  title: "About MHS Education",
+  title: "Strategic guidance for your UK university journey",
   intro:
     "MHS Education supports ambitious students with clear admissions planning, practical advice, and consistent guidance tailored to UK study goals.",
   detail:

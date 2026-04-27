@@ -50,7 +50,14 @@ export const Footer = () => (
           <p className="footer-connect-copy mb-3">Follow us for intakes, scholarships, and student updates.</p>
           <div className="social-grid">
             {socialLinks.map((link) => (
-              <a key={link.icon} href={link.href} className="social-tile" aria-label={link.icon}>
+              <a
+                key={link.icon}
+                href={link.href}
+                className="social-tile"
+                aria-label={link.label ?? link.icon}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <span className={link.icon} />
               </a>
             ))}

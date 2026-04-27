@@ -6,7 +6,11 @@ export const Services = () => (
       <div className="row justify-content-center mb-4">
         <div className="col-md-10 text-center">
           <h2 className="mb-3">Our Services</h2>
-          <p className="text-muted mb-0">Guidance across every admissions milestone, delivered as one seamless experience.</p>
+          <p className="text-muted mb-0">
+            From course selection and application support to interview preparation, student finance guidance,
+            and CV or personal statement feedback, we help students stay clear, confident, and organised at
+            every stage of the UK university process.
+          </p>
         </div>
       </div>
       <div className="services-grid">

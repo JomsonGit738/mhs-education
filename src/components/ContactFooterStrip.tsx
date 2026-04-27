@@ -19,7 +19,13 @@ export const ContactFooterStrip = () => (
           <ul className="ftco-footer-social list-unstyled d-flex mb-0">
             {socialLinks.map((link) => (
               <li key={link.icon} className="ftco-animate mr-3">
-                <a href={link.href} className="text-white">
+                <a
+                  href={link.href}
+                  className="text-white"
+                  aria-label={link.label ?? link.icon}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <span className={link.icon} />
                 </a>
               </li>

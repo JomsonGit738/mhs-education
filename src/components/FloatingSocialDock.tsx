@@ -27,7 +27,9 @@ export const FloatingSocialDock = () => {
           key={link.icon}
           href={link.href}
           className="floating-social-dock__item"
-          aria-label={link.icon}
+          aria-label={link.label ?? link.icon}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <span className={link.icon} aria-hidden="true" />
         </a>

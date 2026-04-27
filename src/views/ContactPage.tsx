@@ -13,14 +13,15 @@ const contactCardMeta: Record<string, { icon: string; eyebrow: string }> = {
 export const ContactPage = () => (
   <>
     <PageHero title={pageHero.contact.title} breadcrumb={pageHero.contact.breadcrumb} background={images.uk} />
+    <ContactForm />
     <section className="contact-cards">
       <div className="container">
         <div className="contact-cards__header text-center">
-          <span className="contact-cards__eyebrow">Get In Touch</span>
+          <span className="contact-cards__eyebrow">Other Contact Options</span>
           <h2>Reach the MHS Education team through the channel that suits you best</h2>
           <p>
-            Whether you want to ask a quick question, discuss your study plans, or book personalised
-            admissions guidance, our team is ready to help.
+            If you would rather call, email, visit, or explore our wider website, you can use the options
+            below and our team will point you in the right direction.
           </p>
         </div>
         <div className="contact-cards__grid">
@@ -49,6 +50,5 @@ export const ContactPage = () => (
         </div>
       </div>
     </section>
-    <ContactForm />
   </>
 );

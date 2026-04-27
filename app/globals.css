@@ -1799,6 +1799,12 @@ main {
   gap: 24px;
 }
 
+.contact-modern__grid--single {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 920px;
+  margin: 0 auto;
+}
+
 .contact-modern .contact-card {
   background: rgba(255, 255, 255, 0.94);
   border-radius: 24px;

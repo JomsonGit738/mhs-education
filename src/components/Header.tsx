@@ -242,7 +242,9 @@ const SocialLinksList = ({ className = 'topbar-socials d-flex align-items-center
         key={link.icon}
         href={link.href}
         className="topbar-social-link"
-        aria-label={link.icon}
+        aria-label={link.label ?? link.icon}
+        target="_blank"
+        rel="noopener noreferrer"
         style={{ animationDelay: `${index * 90}ms` }}
       >
         <span className={link.icon} />
