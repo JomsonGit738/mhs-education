@@ -1818,6 +1818,54 @@ main {
   margin-bottom: 22px;
 }
 
+.contact-form-switch {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+  padding: 8px;
+  border-radius: 18px;
+  background: #eef4ff;
+}
+
+.contact-form-tab {
+  min-height: 48px;
+  padding: 11px 18px;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  background: transparent;
+  color: #334155;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.2;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.contact-form-tab:hover {
+  color: #0f172a;
+  transform: translateY(-1px);
+}
+
+.contact-form-tab:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.16);
+}
+
+.contact-form-tab.is-active {
+  border-color: rgba(37, 99, 235, 0.3);
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: #ffffff;
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.24);
+  transform: translateY(-1px);
+}
+
+.contact-form-tab[aria-selected="true"] {
+  border-color: rgba(37, 99, 235, 0.3);
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: #ffffff;
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.24);
+}
+
 .contact-card__eyebrow {
   display: inline-flex;
   align-items: center;
@@ -1954,6 +2002,10 @@ main {
   .contact-modern .contact-card {
     border-radius: 20px;
     padding: 18px;
+  }
+
+  .contact-form-switch {
+    display: grid;
   }
 
   .contact-card__intro h3 {
