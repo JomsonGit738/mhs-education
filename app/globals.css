@@ -1273,10 +1273,18 @@ main {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 18px;
-  min-width: 18px;
+  width: 30px;
+  min-width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  background: linear-gradient(
+    135deg,
+    rgba(11, 59, 130, 0.14),
+    rgba(13, 110, 253, 0.2)
+  );
+  box-shadow: 0 10px 20px rgba(11, 59, 130, 0.14);
   color: #0b3b82;
-  font-size: 18px;
+  font-size: 13px;
 }
 
 .topbar-contact-copy {
@@ -3440,7 +3448,19 @@ main {
   max-width: var(--app-shell-max-width);
   padding-left: var(--app-shell-gutter);
   padding-right: var(--app-shell-gutter);
-  background: transparent;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.ftco-navbar-light.scrolled .navbar-shell,
+.ftco-navbar-light.awake .navbar-shell,
+.ftco-navbar-light.scrolled.sleep .navbar-shell {
+  background: rgba(255, 255, 255, 0.94) !important;
+}
+
+.ftco-navbar-light.scrolled,
+.ftco-navbar-light.awake,
+.ftco-navbar-light.scrolled.sleep {
+  background: rgba(255, 255, 255, 0.94) !important;
 }
 
 #ftco-navbar,
@@ -3448,7 +3468,7 @@ main {
 .ftco-navbar-light.scrolled,
 .ftco-navbar-light.awake,
 .ftco-navbar-light.scrolled.sleep {
-  background: transparent !important;
+  background: rgba(255, 255, 255, 0.94) !important;
 }
 
 @media (min-width: 992px) {
@@ -3469,19 +3489,19 @@ main {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     max-width: var(--app-shell-max-width);
     padding-left: var(--app-shell-gutter);
     padding-right: var(--app-shell-gutter);
-    min-height: 56px;
+    min-height: 44px;
   }
 
   .ftco-navbar-light .navbar-shell__meta {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     gap: 18px;
-    width: 100%;
+    width: auto;
     min-width: 0;
   }
 
@@ -3491,7 +3511,7 @@ main {
   }
 
   .ftco-navbar-light .navbar-shell .topbar-contact-list {
-    justify-content: flex-end;
+    justify-content: center;
     flex: 0 1 auto;
   }
 
