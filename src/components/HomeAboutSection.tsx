@@ -5,10 +5,10 @@ export const HomeAboutSection = () => (
   <section className="ftco-section home-about-section">
     <div className="container">
       <div className="row align-items-center">
-        <div className="col-lg-5 mb-4 mb-lg-0" data-aos="fade-right">
+        <div className="col-lg-5 mb-4 mb-lg-0">
           <div className="home-about-media" style={{ backgroundImage: `url(${homeAbout.image})` }} />
         </div>
-        <div className="col-lg-7" data-aos="fade-left">
+        <div className="col-lg-7">
           <span className="home-section-eyebrow">About Us</span>
           <h2 className="home-about-title">{homeAbout.title}</h2>
           <p className="home-about-copy">{homeAbout.intro}</p>

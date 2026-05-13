@@ -4,13 +4,137 @@ import { useState } from "react";
 
 type InquiryTab = "student" | "agent";
 
-const inquiryTabs: Array<{ id: InquiryTab; label: string }> = [
-  { id: "student", label: "Student Support" },
-  { id: "agent", label: "Become a Local Agent" },
+type FormField = {
+  id: string;
+  label: string;
+  placeholder: string;
+  type?: "text" | "email";
+  helper?: string;
+  wide?: boolean;
+};
+
+type InquiryPanel = {
+  id: InquiryTab;
+  label: string;
+  tabDetail: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  responseTime: string;
+  checklist: string[];
+  fields: FormField[];
+  textareaLabel: string;
+  textareaPlaceholder: string;
+  textareaId: string;
+  submitLabel: string;
+  footerNote: string;
+};
+
+const inquiryPanels: InquiryPanel[] = [
+  {
+    id: "student",
+    label: "Student Support",
+    tabDetail: "Admissions guidance and intake planning",
+    eyebrow: "Free Consultation",
+    title: "Tell us where you want your study journey to go",
+    description:
+      "Share your preferred course, intake, and goals. We will come back with clear next steps rather than a generic sales reply.",
+    responseTime: "Replies within 1 working day",
+    checklist: ["Course shortlist advice", "Application readiness review", "Visa and intake guidance"],
+    fields: [
+      {
+        id: "contact-name",
+        label: "Your name",
+        placeholder: "Enter your full name",
+        helper: "Use the name on your academic documents.",
+      },
+      {
+        id: "contact-email",
+        label: "Email address",
+        type: "email",
+        placeholder: "Enter your email",
+        helper: "We will send your guidance and follow-up here.",
+      },
+      {
+        id: "contact-phone",
+        label: "Phone number",
+        placeholder: "Enter your phone number",
+        helper: "Include country code if you are outside the UK.",
+      },
+      {
+        id: "contact-programme",
+        label: "Programme or intake",
+        placeholder: "e.g. MSc Data Science, September intake",
+        helper: "Add your preferred subject, level, or intake month.",
+      },
+    ],
+    textareaLabel: "What do you need help with?",
+    textareaPlaceholder: "Tell us about your goals, universities, budget, or any questions you want answered.",
+    textareaId: "contact-message",
+    submitLabel: "Request Guidance",
+    footerNote: "Your details stay with MHS Education and are only used to respond to your enquiry.",
+  },
+  {
+    id: "agent",
+    label: "Become a Local Agent",
+    tabDetail: "Partnership enquiries and regional representation",
+    eyebrow: "Partnership Enquiry",
+    title: "Show us how you would represent MHS Education in your market",
+    description:
+      "We are looking for partners with strong local knowledge, a credible network, and a serious approach to student success.",
+    responseTime: "Initial review in 2 to 3 working days",
+    checklist: ["Market fit review", "Partnership screening", "Regional growth discussion"],
+    fields: [
+      {
+        id: "agent-name",
+        label: "Your name",
+        placeholder: "Enter your full name",
+        helper: "Add the main contact person for the partnership.",
+      },
+      {
+        id: "agent-email",
+        label: "Email address",
+        type: "email",
+        placeholder: "Enter your email",
+        helper: "We will use this for the partnership review.",
+      },
+      {
+        id: "agent-phone",
+        label: "Phone number",
+        placeholder: "Enter your phone number",
+        helper: "A direct number helps us schedule follow-up quickly.",
+      },
+      {
+        id: "agent-location",
+        label: "City and country",
+        placeholder: "Enter your city and country",
+        helper: "Tell us the primary market you cover.",
+      },
+      {
+        id: "agent-organisation",
+        label: "Organisation or business name",
+        placeholder: "Enter your organisation or business name",
+        helper: "Use the registered or trading name if applicable.",
+      },
+      {
+        id: "agent-experience",
+        label: "Student recruitment experience",
+        placeholder: "Briefly describe your experience",
+        helper: "Include years in market, regions, or student volumes.",
+      },
+    ],
+    textareaLabel: "Why are you a strong fit?",
+    textareaPlaceholder:
+      "Tell us about your market, recruitment network, student profile, and how you would like to work with MHS Education.",
+    textareaId: "agent-message",
+    submitLabel: "Submit Partnership Enquiry",
+    footerNote: "We review each request manually and only contact organisations that align with our partnership criteria.",
+  },
 ];
 
 export const ContactForm = () => {
   const [activeTab, setActiveTab] = useState<InquiryTab>("student");
+  const activePanel = inquiryPanels.find((panel) => panel.id === activeTab) ?? inquiryPanels[0];
 
   return (
     <section className="contact-modern">
@@ -25,113 +149,93 @@ export const ContactForm = () => {
         </div>
         <div className="contact-modern__grid contact-modern__grid--single">
           <div className="contact-card contact-form-card">
+            <div className="contact-form-stage">
+              <span className="contact-form-stage__label">Select enquiry type</span>
+              <p>Choose the route that fits your relationship with MHS Education.</p>
+            </div>
             <div className="contact-form-switch" role="tablist" aria-label="Contact form options">
-              {inquiryTabs.map((tab) => {
-                const isActive = activeTab === tab.id;
+              {inquiryPanels.map((panel) => {
+                const isActive = activeTab === panel.id;
 
                 return (
                   <button
-                    key={tab.id}
+                    key={panel.id}
                     type="button"
                     role="tab"
-                    id={`contact-tab-${tab.id}`}
+                    id={`contact-tab-${panel.id}`}
                     aria-selected={isActive}
-                    aria-controls={`contact-panel-${tab.id}`}
+                    aria-controls={`contact-panel-${panel.id}`}
                     className={`contact-form-tab ${isActive ? "is-active" : ""}`}
-                    onClick={() => setActiveTab(tab.id)}
+                    onClick={() => setActiveTab(panel.id)}
                   >
-                    {tab.label}
+                    <span className="contact-form-tab__label">{panel.label}</span>
+                    <span className="contact-form-tab__detail">{panel.tabDetail}</span>
                   </button>
                 );
               })}
             </div>
 
-            {activeTab === "student" ? (
-              <div role="tabpanel" id="contact-panel-student" aria-labelledby="contact-tab-student">
+            <div role="tabpanel" id={`contact-panel-${activePanel.id}`} aria-labelledby={`contact-tab-${activePanel.id}`}>
+              <div className="contact-form-shell">
                 <div className="contact-card__intro">
-                  <span className="contact-card__eyebrow">Free Consultation</span>
-                  <h3>Tell us about your study plans</h3>
-                  <p>Complete the form and our team will get back to you with clear next steps and tailored advice.</p>
+                  <div className="contact-form-rail">
+                    <span className="contact-card__eyebrow">{activePanel.eyebrow}</span>
+                    <h3>{activePanel.title}</h3>
+                    <p>{activePanel.description}</p>
+
+                    <div className="contact-form-rail__meta">
+                      <span className="contact-form-rail__meta-label">Response window</span>
+                      <strong>{activePanel.responseTime}</strong>
+                    </div>
+
+                    <ul className="contact-form-highlights" aria-label={`${activePanel.label} support areas`}>
+                      {activePanel.checklist.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                <form>
-                  <input type="hidden" name="inquiryType" value="student-support" />
+
+                <form className="contact-form-panel">
+                  <input type="hidden" name="inquiryType" value={activePanel.id === "student" ? "student-support" : "local-agent"} />
+                  <div className="contact-form-panel__header">
+                    <span className="contact-form-panel__eyebrow">Enquiry details</span>
+                    <p>Complete the fields below and send us the context we need to respond properly.</p>
+                  </div>
                   <div className="contact-form-grid">
-                    <div className="form-group">
-                      <label htmlFor="contact-name">Your Name</label>
-                      <input id="contact-name" type="text" className="form-control" placeholder="Enter your full name" />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="contact-email">Email Address</label>
-                      <input id="contact-email" type="email" className="form-control" placeholder="Enter your email" />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="contact-phone">Phone Number</label>
-                      <input id="contact-phone" type="text" className="form-control" placeholder="Enter your phone number" />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="contact-programme">Programme / Intake</label>
-                      <input id="contact-programme" type="text" className="form-control" placeholder="e.g. MSc / September Intake" />
-                    </div>
+                    {activePanel.fields.map((field) => (
+                      <div key={field.id} className={`form-group contact-field ${field.wide ? "contact-field--wide" : ""}`}>
+                        <label htmlFor={field.id}>{field.label}</label>
+                        <input
+                          id={field.id}
+                          type={field.type ?? "text"}
+                          className="form-control"
+                          placeholder={field.placeholder}
+                        />
+                        {field.helper ? <p className="contact-field__hint">{field.helper}</p> : null}
+                      </div>
+                    ))}
                   </div>
-                  <div className="form-group">
-                    <label htmlFor="contact-message">How can we help?</label>
-                    <textarea id="contact-message" rows={5} className="form-control" placeholder="Tell us about your goals or questions" />
-                  </div>
-                  <button type="submit" className="btn btn-apply-invert contact-form-card__cta">
-                    Send Message
-                  </button>
-                </form>
-              </div>
-            ) : (
-              <div role="tabpanel" id="contact-panel-agent" aria-labelledby="contact-tab-agent">
-                <div className="contact-card__intro">
-                  <span className="contact-card__eyebrow">Partnership Enquiry</span>
-                  <h3>Apply to become a local agent</h3>
-                  <p>Share a few details about your background and location, and our team will review your enquiry.</p>
-                </div>
-                <form>
-                  <input type="hidden" name="inquiryType" value="local-agent" />
-                  <div className="contact-form-grid">
-                    <div className="form-group">
-                      <label htmlFor="agent-name">Your Name</label>
-                      <input id="agent-name" type="text" className="form-control" placeholder="Enter your full name" />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="agent-email">Email Address</label>
-                      <input id="agent-email" type="email" className="form-control" placeholder="Enter your email" />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="agent-phone">Phone Number</label>
-                      <input id="agent-phone" type="text" className="form-control" placeholder="Enter your phone number" />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="agent-location">City / Country</label>
-                      <input id="agent-location" type="text" className="form-control" placeholder="Enter your city and country" />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="agent-organisation">Organisation / Business Name</label>
-                      <input id="agent-organisation" type="text" className="form-control" placeholder="Enter your organisation or business name" />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="agent-experience">Experience in Student Recruitment</label>
-                      <input id="agent-experience" type="text" className="form-control" placeholder="Briefly describe your experience" />
-                    </div>
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="agent-message">Why do you want to join as a local agent?</label>
+                  <div className="form-group contact-field contact-field--wide">
+                    <label htmlFor={activePanel.textareaId}>{activePanel.textareaLabel}</label>
                     <textarea
-                      id="agent-message"
+                      id={activePanel.textareaId}
                       rows={5}
                       className="form-control"
-                      placeholder="Tell us about your market, network, or how you would like to work with MHS Education"
+                      placeholder={activePanel.textareaPlaceholder}
                     />
+                    <p className="contact-field__hint">{activePanel.footerNote}</p>
                   </div>
-                  <button type="submit" className="btn btn-apply-invert contact-form-card__cta">
-                    Submit Agent Enquiry
-                  </button>
+
+                  <div className="contact-form-actions">
+                    <button type="submit" className="btn btn-apply-invert contact-form-card__cta">
+                      {activePanel.submitLabel}
+                    </button>
+                    <p className="contact-form-actions__note">A member of our team will review your message personally.</p>
+                  </div>
                 </form>
               </div>
-            )}
+            </div>
           </div>
         </div>
       </div>

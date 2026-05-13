@@ -1,7 +1,7 @@
 import { BlogSection } from '../components/BlogSection';
 import { CoursesSection } from '../components/CoursesSection';
 import { Gallery } from '../components/Gallery';
-import { HeroSlider } from '../components/HeroSlider';
+import { HeroSection } from '../components/HeroSection';
 import { HomeAboutSection } from '../components/HomeAboutSection';
 import { QuoteSection } from '../components/QuoteSection';
 import { Services } from '../components/Services';
@@ -9,11 +9,41 @@ import { StatsSection } from '../components/StatsSection';
 import { TeachersSection } from '../components/TeachersSection';
 import { Testimonials } from '../components/Testimonials';
 import { PartnersSection } from '../components/PartnersSection';
-import { blogs, featuredCourses, teachers } from '../data/content';
+import { blogs, featuredCourses, stats, teachers } from '../data/content';
+import heroSlide1 from '../assets/images/new-images/hero-slider-image-1.jpg';
+import heroSlide2 from '../assets/images/new-images/hero-slider-image-2.jpg';
+import heroSlide3 from '../assets/images/new-images/hero-slider-image-3.jpg';
+
+const heroActions = [
+  { text: 'Apply Now', href: '/contact', variant: 'primary' as const },
+  { text: 'View Programmes', href: '/courses', variant: 'secondary' as const },
+];
+
+const heroStats = stats.map((stat, index) => ({
+  label: stat.label,
+  value: `${stat.value}${stat.suffix ?? ''}`,
+  icon: (['students', 'routes', 'support'][index] ?? 'support') as 'students' | 'routes' | 'support',
+}));
+
+const heroImages = [
+  { src: heroSlide1, alt: 'Students discussing study plans with guidance materials.' },
+  { src: heroSlide2, alt: 'A student receiving one-to-one admissions support.' },
+  { src: heroSlide3, alt: 'Collaborative session focused on UK study pathways.' },
+];
 
 export const HomePage = () => (
   <>
-    <HeroSlider />
+    <HeroSection
+      title={
+        <span>
+          Strategic UK admissions guidance for students who want a clearer route forward.
+        </span>
+      }
+      subtitle="MHS Education helps students compare pathways, prepare stronger applications, and move through each intake with practical support from first shortlist to final offer."
+      actions={heroActions}
+      stats={heroStats}
+      images={heroImages}
+    />
     <Services />
     <HomeAboutSection />
     <StatsSection />

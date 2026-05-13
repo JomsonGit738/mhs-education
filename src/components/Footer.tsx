@@ -1,43 +1,68 @@
 import Link from 'next/link';
 import { brand, navLinks, socialLinks } from '../data/content';
 
+const primaryLinks = navLinks.slice(0, 3);
+const secondaryLinks = navLinks.slice(3);
+
 export const Footer = () => (
   <footer className="footer-modern">
     <div className="container">
+      <div className="footer-lead">
+        <div className="footer-lead__copy">
+          <span className="footer-kicker">Plan your next move</span>
+          <h2>Admissions guidance built around clarity, timing, and real student outcomes.</h2>
+          <p>
+            From first enquiry to final enrolment, MHS Education helps students and partners move with fewer
+            delays and better decisions.
+          </p>
+        </div>
+        <div className="footer-lead__actions">
+          <Link href="/contact" className="btn btn-apply-invert footer-lead__button">
+            Book a Consultation
+          </Link>
+          <a href={`mailto:${brand.email}`} className="footer-lead__link">
+            {brand.email}
+          </a>
+        </div>
+      </div>
+
       <div className="footer-grid">
         <div className="footer-card footer-card--brand">
-          <div className="footer-logo d-flex align-items-center mb-3">
+          <div className="footer-logo">
             <img src={brand.logo} alt={`${brand.name} logo`} className="footer-brand-logo" />
-            <div className="ml-3 footer-brand-copy">
-              <h4 className="mb-1">{brand.name}</h4>
-              <p className="mb-0 footer-tagline">{brand.tagline}</p>
+            <div className="footer-brand-copy">
+              <h4>{brand.name}</h4>
+              <p className="footer-tagline">{brand.tagline}</p>
             </div>
           </div>
-          <p className="footer-intro mb-3">Trusted admissions support with a student-first approach from enquiry to enrolment.</p>
+          <p className="footer-intro">
+            Trusted admissions support with a student-first approach across applications, documentation, and
+            next-step planning.
+          </p>
+
+          <div className="footer-contact-stack">
+            <a href={`tel:${brand.shortPhone.replace(/\D/g, '')}`} className="footer-contact-pill">
+              <span className="icon icon-phone" />
+              <span>{brand.shortPhone}</span>
+            </a>
+            <a href={`mailto:${brand.email}`} className="footer-contact-pill">
+              <span className="icon icon-envelope" />
+              <span>{brand.email}</span>
+            </a>
+          </div>
+
           <ul className="footer-list">
             <li>
-              <span className="icon icon-map-marker mr-2" />
+              <span className="icon icon-map-marker" />
               {brand.address}
-            </li>
-            <li>
-              <a href={`mailto:${brand.email}`}>
-                <span className="icon icon-envelope mr-2" />
-                {brand.email}
-              </a>
-            </li>
-            <li>
-              <a href={`tel:${brand.shortPhone.replace(/\D/g, '')}`}>
-                <span className="icon icon-phone mr-2" />
-                {brand.shortPhone}
-              </a>
             </li>
           </ul>
         </div>
 
-        <div className="footer-card">
-          <h5 className="mb-3">Quick Links</h5>
+        <div className="footer-card footer-card--nav">
+          <h5>Explore</h5>
           <ul className="footer-links">
-            {navLinks.map((link) => (
+            {primaryLinks.map((link) => (
               <li key={link.path}>
                 <Link href={link.path}>{link.label}</Link>
               </li>
@@ -45,9 +70,20 @@ export const Footer = () => (
           </ul>
         </div>
 
-        <div className="footer-card">
-          <h5 className="mb-3">Connect</h5>
-          <p className="footer-connect-copy mb-3">Follow us for intakes, scholarships, and student updates.</p>
+        <div className="footer-card footer-card--nav">
+          <h5>More</h5>
+          <ul className="footer-links">
+            {secondaryLinks.map((link) => (
+              <li key={link.path}>
+                <Link href={link.path}>{link.label}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="footer-card footer-card--connect">
+          <h5>Connect</h5>
+          <p className="footer-connect-copy">Follow us for intakes, scholarships, and student updates.</p>
           <div className="social-grid">
             {socialLinks.map((link) => (
               <a
@@ -66,7 +102,7 @@ export const Footer = () => (
       </div>
       <div className="footer-bottom">
         <span>&copy; {new Date().getFullYear()} MHS Education. All rights reserved.</span>
-        <span>Admissions guidance • Student support • Student success</span>
+        <span>Admissions guidance | Student support | Student success</span>
       </div>
     </div>
   </footer>
