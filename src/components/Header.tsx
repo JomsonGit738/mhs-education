@@ -115,7 +115,7 @@ const ScrollAwareNavbar = () => {
 
   return (
     <nav className={navState} id="ftco-navbar">
-      <div className="container d-flex align-items-center">
+      <div className="container navbar-shell d-flex align-items-center">
         <button
           className="navbar-toggler"
           type="button"

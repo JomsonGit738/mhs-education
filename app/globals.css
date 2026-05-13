@@ -3326,9 +3326,48 @@ main {
   z-index: 1;
 }
 
+.navbar-shell {
+  max-width: var(--app-shell-max-width);
+  padding-left: var(--app-shell-gutter);
+  padding-right: var(--app-shell-gutter);
+}
+
 @media (min-width: 992px) {
   .ftco-navbar-light .container {
     gap: 18px;
+  }
+
+  .ftco-navbar-light .navbar-shell {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: var(--app-shell-max-width);
+    padding-left: var(--app-shell-gutter);
+    padding-right: var(--app-shell-gutter);
+  }
+
+  .ftco-navbar-light .navbar-collapse {
+    display: flex !important;
+    flex: 1 1 auto;
+    justify-content: flex-start;
+    min-width: 0;
+  }
+
+  .ftco-navbar-light .course-search {
+    flex: 0 0 320px;
+    width: 320px;
+    margin-left: 24px;
+  }
+
+  .ftco-navbar-light .course-search .form-group {
+    margin-bottom: 0;
+  }
+
+  .ftco-navbar-light .segmented-nav {
+    flex: 0 1 auto;
+    margin-right: auto;
+    min-width: 0;
   }
 
   .segmented-nav {
