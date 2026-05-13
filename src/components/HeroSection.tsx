@@ -1,10 +1,12 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { useEffect, useState } from "react";
 import type { StaticImageData } from "next/image";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { BlurFade } from "./BlurFade";
 
 const revealEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 type HeroIconKey = "students" | "routes" | "support";
@@ -29,7 +31,8 @@ interface HeroImage {
 }
 
 interface HeroSectionProps {
-  title: ReactNode;
+  title?: ReactNode;
+  rotatingTitles?: string[];
   subtitle: string;
   actions: ActionProps[];
   stats: StatProps[];
@@ -148,6 +151,7 @@ const renderAction = (action: ActionProps, index: number) => {
 
 export const HeroSection = ({
   title,
+  rotatingTitles = [],
   subtitle,
   actions,
   stats,
@@ -155,9 +159,24 @@ export const HeroSection = ({
   className,
 }: HeroSectionProps) => {
   const shouldReduceMotion = useReducedMotion() ?? false;
+  const [activeTitleIndex, setActiveTitleIndex] = useState(0);
   const containerVariants = buildContainerVariants(shouldReduceMotion);
   const itemVariants = buildItemVariants(shouldReduceMotion);
   const imageVariants = buildImageVariants(shouldReduceMotion);
+
+  useEffect(() => {
+    if (rotatingTitles.length <= 1) {
+      return;
+    }
+
+    const intervalId = window.setInterval(() => {
+      setActiveTitleIndex((currentIndex) => (currentIndex + 1) % rotatingTitles.length);
+    }, 5000);
+
+    return () => window.clearInterval(intervalId);
+  }, [rotatingTitles]);
+
+  const currentTitle = rotatingTitles.length ? rotatingTitles[activeTitleIndex] : title;
 
   return (
     <section className={["hero-section", className ?? ""].filter(Boolean).join(" ")}>
@@ -173,7 +192,16 @@ export const HeroSection = ({
               Mapping Higher Success
             </motion.span>
             <motion.h1 className="hero-section__title" variants={itemVariants}>
-              {title}
+              <BlurFade
+                key={typeof currentTitle === "string" ? currentTitle : activeTitleIndex}
+                as="span"
+                className="hero-section__title-text"
+                duration={0.55}
+                blur={shouldReduceMotion ? "0px" : "6px"}
+                yOffset={shouldReduceMotion ? 0 : 10}
+              >
+                {currentTitle}
+              </BlurFade>
             </motion.h1>
             <motion.p className="hero-section__subtitle" variants={itemVariants}>
               {subtitle}

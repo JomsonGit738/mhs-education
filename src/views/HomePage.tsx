@@ -19,6 +19,12 @@ const heroActions = [
   { text: 'View Programmes', href: '/courses', variant: 'secondary' as const },
 ];
 
+const heroTitles = [
+  'Admission for May/June Intake',
+  'Comprehensive UK Student Support',
+  'Your Pathway to UK Campuses',
+];
+
 const heroStats = stats.map((stat, index) => ({
   label: stat.label,
   value: `${stat.value}${stat.suffix ?? ''}`,
@@ -34,11 +40,7 @@ const heroImages = [
 export const HomePage = () => (
   <>
     <HeroSection
-      title={
-        <span>
-          Strategic UK admissions guidance for students who want a clearer route forward.
-        </span>
-      }
+      rotatingTitles={heroTitles}
       subtitle="MHS Education helps students compare pathways, prepare stronger applications, and move through each intake with practical support from first shortlist to final offer."
       actions={heroActions}
       stats={heroStats}

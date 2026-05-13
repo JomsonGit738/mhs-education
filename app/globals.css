@@ -275,6 +275,10 @@ main {
   text-wrap: balance;
 }
 
+.hero-section__title-text {
+  display: block;
+}
+
 .hero-section__subtitle {
   max-width: 61ch;
   margin: 24px 0 0;
