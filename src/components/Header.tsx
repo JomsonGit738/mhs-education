@@ -1,57 +1,20 @@
 'use client';
 
-import { FormEvent, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
-import { brand, courses, navLinks, socialLinks } from '../data/content';
+import { usePathname } from 'next/navigation';
+import { brand, navLinks, socialLinks } from '../data/content';
 
 const ScrollAwareNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isAwake, setIsAwake] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [isSearchFocused, setIsSearchFocused] = useState(false);
-  const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0, opacity: 0 });
   const pathname = usePathname() || '/';
-  const router = useRouter();
-  const deferredSearchQuery = useDeferredValue(searchQuery);
-  const navListRef = useRef<HTMLUListElement>(null);
-  const navLinkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
 
   const isActive = useMemo(
     () => (path: string) => (path === '/' ? pathname === '/' : pathname.startsWith(path)),
     [pathname],
   );
-  const activePath = useMemo(
-    () => navLinks.find((link) => isActive(link.path))?.path ?? '/',
-    [isActive],
-  );
-
-  const matchingCourses = useMemo(() => {
-    const query = deferredSearchQuery.trim().toLowerCase();
-
-    if (!query) {
-      return [];
-    }
-
-    return courses
-      .filter((course) =>
-        [course.title, course.teacher, course.seats, course.duration, course.description]
-          .join(' ')
-          .toLowerCase()
-          .includes(query),
-      )
-      .slice(0, 5);
-  }, [deferredSearchQuery]);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') {
-      return;
-    }
-
-    const currentQuery = new URLSearchParams(window.location.search).get('query') ?? '';
-    setSearchQuery(pathname === '/courses' ? currentQuery : '');
-  }, [pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,38 +28,10 @@ const ScrollAwareNavbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    const positionIndicator = (path: string) => {
-      const navList = navListRef.current;
-      const navLink = navLinkRefs.current[path];
-
-      if (!navList || !navLink) {
-        setIndicatorStyle((current) => ({ ...current, opacity: 0 }));
-        return;
-      }
-
-      const listRect = navList.getBoundingClientRect();
-      const linkRect = navLink.getBoundingClientRect();
-
-      setIndicatorStyle({
-        left: linkRect.left - listRect.left,
-        width: linkRect.width,
-        opacity: 1,
-      });
-    };
-
-    positionIndicator(activePath);
-
-    const handleResize = () => positionIndicator(activePath);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [activePath, isOpen]);
-
   const navState = [
     'navbar',
     'navbar-expand-lg',
     'navbar-dark',
-    'bg-dark',
     'ftco-navbar-light',
     isScrolled ? 'scrolled' : '',
     isAwake ? 'awake' : 'sleep',
@@ -104,18 +39,13 @@ const ScrollAwareNavbar = () => {
     .filter(Boolean)
     .join(' ');
 
-  const handleSearch = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const query = searchQuery.trim();
-
-    router.push(query ? `/courses?query=${encodeURIComponent(query)}` : '/courses');
-    setIsOpen(false);
-    setIsSearchFocused(false);
-  };
-
   return (
     <nav className={navState} id="ftco-navbar">
       <div className="container navbar-shell d-flex align-items-center">
+        <div className="navbar-shell__meta">
+          <ContactList />
+          <SocialLinksList className="navbar-shell__socials d-flex align-items-center" />
+        </div>
         <button
           className="navbar-toggler"
           type="button"
@@ -126,108 +56,28 @@ const ScrollAwareNavbar = () => {
         >
           <span className="oi oi-menu" /> Menu
         </button>
-        {/* Quick course search entry point required by client */}
-        <form className="searchform order-lg-last course-search" onSubmit={handleSearch}>
-          <div className="form-group d-flex">
-            <input
-              type="text"
-              className="form-control pl-3"
-              placeholder="Search courses"
-              value={searchQuery}
-              onChange={(event) => setSearchQuery(event.target.value)}
-              onFocus={() => setIsSearchFocused(true)}
-              onBlur={() => window.setTimeout(() => setIsSearchFocused(false), 150)}
-              aria-label="Search courses"
-              autoComplete="off"
-            />
-            <button type="submit" className="form-control search">
-              <span className="ion-ios-search" />
-            </button>
-          </div>
-          {isSearchFocused && matchingCourses.length ? (
-            <div className="course-search-popover">
-              {matchingCourses.map((course) => (
-                <Link
-                  key={course.id}
-                  href={`/courses#${course.id}`}
-                  className="course-search-result"
-                  onClick={() => setIsSearchFocused(false)}
-                >
-                  <span className="course-search-result__title">{course.title}</span>
-                  <span className="course-search-result__meta">
-                    {course.duration} • {course.seats}
-                  </span>
-                </Link>
-              ))}
-            </div>
-          ) : null}
-        </form>
         <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`} id="ftco-nav">
-          <ul
-            ref={navListRef}
-            className="navbar-nav mr-auto segmented-nav"
-            onMouseLeave={() => {
-              const navList = navListRef.current;
-              const navLink = navLinkRefs.current[activePath];
-
-              if (!navList || !navLink) {
-                return;
-              }
-
-              const listRect = navList.getBoundingClientRect();
-              const linkRect = navLink.getBoundingClientRect();
-
-              setIndicatorStyle({
-                left: linkRect.left - listRect.left,
-                width: linkRect.width,
-                opacity: 1,
-              });
-            }}
-          >
-            <li
-              className="segmented-nav__indicator"
-              aria-hidden="true"
-              style={{
-                transform: `translateX(${indicatorStyle.left}px)`,
-                width: indicatorStyle.width,
-                opacity: indicatorStyle.opacity,
-              }}
-            />
+          <ul className="navbar-nav mr-auto segmented-nav segmented-nav--mobile">
             {navLinks.map((link) => {
               const active = isActive(link.path);
               return (
                 <li key={link.path} className={`nav-item ${active ? 'active' : ''}`}>
                   <Link
                     href={link.path}
-                    ref={(element) => {
-                      navLinkRefs.current[link.path] = element;
-                    }}
                     className={`nav-link ${link.path === '/' ? 'pl-0' : ''} ${active ? 'active' : ''}`}
                     aria-current={active ? 'page' : undefined}
                     onClick={() => setIsOpen(false)}
-                    onMouseEnter={() => {
-                      const navList = navListRef.current;
-                      const navLink = navLinkRefs.current[link.path];
-
-                      if (!navList || !navLink) {
-                        return;
-                      }
-
-                      const listRect = navList.getBoundingClientRect();
-                      const linkRect = navLink.getBoundingClientRect();
-
-                      setIndicatorStyle({
-                        left: linkRect.left - listRect.left,
-                        width: linkRect.width,
-                        opacity: 1,
-                      });
-                    }}
                   >
                     {link.label}
                   </Link>
                 </li>
               );
             })}
+            <li className="nav-item">
+              <Link href="/courses" className="nav-link" onClick={() => setIsOpen(false)}>
+                Search Courses
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
@@ -253,6 +103,52 @@ const SocialLinksList = ({ className = 'topbar-socials d-flex align-items-center
   </div>
 );
 
+const ContactList = ({ className = 'topbar-contact-list' }: { className?: string }) => (
+  <div className={className} aria-label="Contact information">
+    <a className="topbar-contact-item" href={`mailto:${brand.email}`}>
+      <span className="topbar-contact-icon icon-envelope" aria-hidden="true" />
+      <span className="topbar-contact-copy">
+        <span className="topbar-contact-value">{brand.email}</span>
+      </span>
+    </a>
+    <a className="topbar-contact-item" href={`tel:${brand.phone}`}>
+      <span className="topbar-contact-icon icon-phone2" aria-hidden="true" />
+      <span className="topbar-contact-copy">
+        <span className="topbar-contact-value">{brand.phone}</span>
+      </span>
+    </a>
+  </div>
+);
+
+const TopBarNav = () => {
+  const pathname = usePathname() || '/';
+
+  return (
+    <div className="topbar-nav-cluster">
+      <ul className="topbar-nav-list" aria-label="Primary navigation">
+        {navLinks.map((link) => {
+          const active = link.path === '/' ? pathname === '/' : pathname.startsWith(link.path);
+          return (
+            <li key={link.path} className="topbar-nav-item">
+              <Link
+                href={link.path}
+                className={`topbar-nav-link ${active ? 'active' : ''}`}
+                aria-current={active ? 'page' : undefined}
+              >
+                {link.label}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+      <Link href="/courses" className="topbar-search-button" aria-label="Search courses">
+        <span className="ion-ios-search" aria-hidden="true" />
+      </Link>
+      <SocialLinksList className="topbar-socials topbar-socials--topnav d-flex align-items-center" />
+    </div>
+  );
+};
+
 const TopBar = () => (
   <div className="bg-top navbar-light">
     <div className="container topbar-container">
@@ -263,29 +159,8 @@ const TopBar = () => (
           </Link>
         </div>
         <div className="col-lg-9 d-block topbar-content-col">
-          <div className="topbar-meta">
-            <div className="topbar-contact-list" aria-label="Contact information">
-              <a className="topbar-contact-item" href={`mailto:${brand.email}`}>
-                <span className="topbar-contact-icon icon-envelope" aria-hidden="true" />
-                <span className="topbar-contact-copy">
-                  <span className="topbar-contact-value">{brand.email}</span>
-                </span>
-              </a>
-              <a className="topbar-contact-item" href={`tel:${brand.phone}`}>
-                <span className="topbar-contact-icon icon-phone2" aria-hidden="true" />
-                <span className="topbar-contact-copy">
-                  <span className="topbar-contact-value">{brand.phone}</span>
-                </span>
-              </a>
-            </div>
-            <div className="topbar-actions topbar-actions--desktop">
-              <SocialLinksList />
-            </div>
-          </div>
+          <TopBarNav />
         </div>
-      </div>
-      <div className="topbar-actions-mobile">
-        <SocialLinksList className="topbar-socials topbar-socials--mobile d-flex align-items-center justify-content-center" />
       </div>
     </div>
   </div>

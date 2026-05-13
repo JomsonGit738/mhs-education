@@ -3,10 +3,10 @@
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import type { StaticImageData } from "next/image";
-import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { BlurFade } from "./BlurFade";
+import TiltedCard from "./TiltedCard";
 
 const revealEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 type HeroIconKey = "students" | "routes" | "support";
@@ -35,7 +35,6 @@ interface HeroSectionProps {
   rotatingTitles?: string[];
   subtitle: string;
   actions: ActionProps[];
-  stats: StatProps[];
   images: HeroImage[];
   className?: string;
 }
@@ -154,7 +153,6 @@ export const HeroSection = ({
   rotatingTitles = [],
   subtitle,
   actions,
-  stats,
   images,
   className,
 }: HeroSectionProps) => {
@@ -188,9 +186,6 @@ export const HeroSection = ({
           animate="visible"
         >
           <div className="hero-section__copy">
-            <motion.span className="hero-section__eyebrow" variants={itemVariants}>
-              Mapping Higher Success
-            </motion.span>
             <motion.h1 className="hero-section__title" variants={itemVariants}>
               <BlurFade
                 key={typeof currentTitle === "string" ? currentTitle : activeTitleIndex}
@@ -209,17 +204,6 @@ export const HeroSection = ({
             <motion.div className="hero-section__actions" variants={itemVariants}>
               {actions.map(renderAction)}
             </motion.div>
-            <motion.dl className="hero-section__stats" variants={itemVariants}>
-              {stats.map((stat, index) => (
-                <div key={`${stat.label}-${index}`} className="hero-section__stat">
-                  <div className="hero-section__stat-icon">{iconMap[stat.icon]}</div>
-                  <div>
-                    <dt className="hero-section__stat-label">{stat.label}</dt>
-                    <dd className="hero-section__stat-value">{stat.value}</dd>
-                  </div>
-                </div>
-              ))}
-            </motion.dl>
           </div>
 
           <motion.div className="hero-section__media" variants={containerVariants}>
@@ -243,13 +227,11 @@ export const HeroSection = ({
                 className={`hero-section__image hero-section__image--${index + 1}`}
                 variants={imageVariants}
               >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
+                <TiltedCard
+                  imageSrc={image.src}
+                  altText={image.alt}
                   sizes="(max-width: 991px) 80vw, 28vw"
-                  className="hero-section__image-media"
-                  priority={index === 0}
+                  className="hero-section__tilted-card"
                 />
               </motion.figure>
             ))}

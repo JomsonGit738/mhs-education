@@ -9,7 +9,7 @@ import { StatsSection } from '../components/StatsSection';
 import { TeachersSection } from '../components/TeachersSection';
 import { Testimonials } from '../components/Testimonials';
 import { PartnersSection } from '../components/PartnersSection';
-import { blogs, featuredCourses, stats, teachers } from '../data/content';
+import { blogs, featuredCourses, teachers } from '../data/content';
 import heroSlide1 from '../assets/images/new-images/hero-slider-image-1.jpg';
 import heroSlide2 from '../assets/images/new-images/hero-slider-image-2.jpg';
 import heroSlide3 from '../assets/images/new-images/hero-slider-image-3.jpg';
@@ -25,12 +25,6 @@ const heroTitles = [
   'Your Pathway to UK Campuses',
 ];
 
-const heroStats = stats.map((stat, index) => ({
-  label: stat.label,
-  value: `${stat.value}${stat.suffix ?? ''}`,
-  icon: (['students', 'routes', 'support'][index] ?? 'support') as 'students' | 'routes' | 'support',
-}));
-
 const heroImages = [
   { src: heroSlide1, alt: 'Students discussing study plans with guidance materials.' },
   { src: heroSlide2, alt: 'A student receiving one-to-one admissions support.' },
@@ -43,7 +37,6 @@ export const HomePage = () => (
       rotatingTitles={heroTitles}
       subtitle="MHS Education helps students compare pathways, prepare stronger applications, and move through each intake with practical support from first shortlist to final offer."
       actions={heroActions}
-      stats={heroStats}
       images={heroImages}
     />
     <Services />

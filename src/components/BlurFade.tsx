@@ -1,6 +1,6 @@
 "use client";
 
-import type { ElementType, ReactNode } from "react";
+import type { ReactNode } from "react";
 import { useRef } from "react";
 import { AnimatePresence, motion, useInView } from "framer-motion";
 import type { UseInViewOptions, Variants } from "framer-motion";
@@ -20,7 +20,7 @@ interface BlurFadeProps {
   inView?: boolean;
   inViewMargin?: MarginType;
   blur?: string;
-  as?: ElementType;
+  as?: "div" | "span";
 }
 
 export function BlurFade({
@@ -35,33 +35,87 @@ export function BlurFade({
   blur = "6px",
   as = "div",
 }: BlurFadeProps) {
-  const ref = useRef(null);
-  const inViewResult = useInView(ref, { once: true, margin: inViewMargin });
-  const isInView = !inView || inViewResult;
   const defaultVariants: Variants = {
     hidden: { y: yOffset, opacity: 0, filter: `blur(${blur})` },
     visible: { y: 0, opacity: 1, filter: "blur(0px)" },
   };
   const combinedVariants = variant || defaultVariants;
-  const MotionTag = motion.create(as);
 
   return (
     <AnimatePresence mode="wait">
-      <MotionTag
-        ref={ref}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        exit="hidden"
-        variants={combinedVariants}
-        transition={{
-          delay: 0.04 + delay,
-          duration,
-          ease: "easeOut",
-        }}
-        className={className}
-      >
-        {children}
-      </MotionTag>
+      {as === "span" ? <BlurFadeSpan refMargin={inViewMargin} inView={inView} delay={delay} duration={duration} className={className} variants={combinedVariants}>{children}</BlurFadeSpan> : <BlurFadeDiv refMargin={inViewMargin} inView={inView} delay={delay} duration={duration} className={className} variants={combinedVariants}>{children}</BlurFadeDiv>}
     </AnimatePresence>
+  );
+}
+
+function BlurFadeDiv({
+  children,
+  className,
+  variants,
+  delay,
+  duration,
+  inView,
+  refMargin,
+}: {
+  children: ReactNode;
+  className?: string;
+  variants: Variants;
+  delay: number;
+  duration: number;
+  inView: boolean;
+  refMargin: MarginType;
+}) {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const inViewResult = useInView(ref, { once: true, margin: refMargin });
+  const isVisible = !inView || inViewResult;
+
+  return (
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={isVisible ? "visible" : "hidden"}
+      exit="hidden"
+      variants={variants}
+      transition={{ delay: 0.04 + delay, duration, ease: "easeOut" }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function BlurFadeSpan({
+  children,
+  className,
+  variants,
+  delay,
+  duration,
+  inView,
+  refMargin,
+}: {
+  children: ReactNode;
+  className?: string;
+  variants: Variants;
+  delay: number;
+  duration: number;
+  inView: boolean;
+  refMargin: MarginType;
+}) {
+  const ref = useRef<HTMLSpanElement | null>(null);
+  const inViewResult = useInView(ref, { once: true, margin: refMargin });
+  const isVisible = !inView || inViewResult;
+
+  return (
+    <motion.span
+      ref={ref}
+      initial="hidden"
+      animate={isVisible ? "visible" : "hidden"}
+      exit="hidden"
+      variants={variants}
+      transition={{ delay: 0.04 + delay, duration, ease: "easeOut" }}
+      className={className}
+    >
+      {children}
+    </motion.span>
   );
 }
