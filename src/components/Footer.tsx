@@ -18,11 +18,8 @@ export const Footer = () => (
         </div>
         <div className="footer-lead__actions">
           <Link href="/contact" className="btn btn-apply-invert footer-lead__button">
-            Book a Consultation
+            <span>Book a Consultation</span>
           </Link>
-          <a href={`mailto:${brand.email}`} className="footer-lead__link">
-            {brand.email}
-          </a>
         </div>
       </div>
 
