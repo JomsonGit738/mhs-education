@@ -1,11 +1,13 @@
 import Link from 'next/link';
 import { brand, navLinks, socialLinks } from '../data/content';
+import { FooterWaveCanvas } from './FooterWaveCanvas';
 
 const primaryLinks = navLinks.slice(0, 3);
 const secondaryLinks = navLinks.slice(3);
 
 export const Footer = () => (
   <footer className="footer-modern">
+    <FooterWaveCanvas />
     <div className="container">
       <div className="footer-lead">
         <div className="footer-lead__copy">
