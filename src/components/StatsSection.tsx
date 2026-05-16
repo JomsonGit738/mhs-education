@@ -30,10 +30,7 @@ export const StatsSection = () => {
             <h2 className="mb-4">UK Student Support</h2>
             <p>
               MHS Education guides ambitious students with personalised admissions planning, careful documentation checks, and attentive follow-up so every
-              UK application stays on track.
-            </p>
-            <p>
-              Beyond receiving offers, we provide scholarship guidance and responsive student support to help you move from application to enrolment with
+              UK application stays on track. Beyond receiving offers, we provide scholarship guidance and responsive student support to help you move from application to enrolment with
               confidence.
             </p>
           </div>

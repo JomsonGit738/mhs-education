@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import { homeAbout } from '../data/content';
 
 const aboutHighlightIcons = {
@@ -73,11 +75,22 @@ export const HomeAboutSection = () => (
   <section className="ftco-section home-about-section">
     <div className="container">
       <div className="home-about-stack">
-        <div className="home-about-intro">
-          <span className="home-section-eyebrow">About Us</span>
-          <h2 className="home-about-title">{homeAbout.title}</h2>
-          <p className="home-about-copy">{homeAbout.intro}</p>
-          <p className="home-about-copy">{homeAbout.detail}</p>
+        <div className="home-about-intro-row">
+          <div className="home-about-media">
+            <Image
+              src={homeAbout.image}
+              alt="MHS Education student guidance"
+              fill
+              sizes="(max-width: 991px) 100vw, 38vw"
+              className="home-about-image"
+            />
+          </div>
+          <div className="home-about-intro">
+            <span className="home-section-eyebrow">About Us</span>
+            <h2 className="home-about-title">{homeAbout.title}</h2>
+            <p className="home-about-copy">{homeAbout.intro}</p>
+            <p className="home-about-copy">{homeAbout.detail}</p>
+          </div>
         </div>
         <div className="home-about-highlights" aria-label="About section highlights">
           {homeAbout.highlights.map((item) => (
