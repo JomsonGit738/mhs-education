@@ -1,4 +1,7 @@
-import type { ReactNode } from 'react';
+'use client';
+
+import type { CSSProperties, KeyboardEvent, ReactNode } from 'react';
+import { useState } from 'react';
 import type { Teacher } from '../data/content';
 
 type TeachersSectionProps = {
@@ -6,6 +9,13 @@ type TeachersSectionProps = {
   title?: ReactNode;
   description?: ReactNode;
 };
+
+const serviceThemes = [
+  '215 62% 24%',
+  '186 58% 22%',
+  '226 54% 26%',
+  '168 48% 23%',
+];
 
 const renderBadgeIcon = (teacher: Teacher) => {
   const role = teacher.role.toLowerCase();
@@ -53,43 +63,105 @@ const renderBadgeIcon = (teacher: Teacher) => {
   );
 };
 
-const TeacherCard = ({ teacher }: { teacher: Teacher }) => (
-  <article className="student-service-card" data-aos="fade-up">
-    <div className="student-service-card__media">
-      <div
-        className="student-service-card__photo"
-        style={{ backgroundImage: `url(${teacher.image})` }}
-        aria-hidden="true"
-      />
-      <div className="student-service-card__icon" aria-hidden="true">
-        {renderBadgeIcon(teacher)}
-      </div>
-    </div>
-    <div className="student-service-card__body">
-      <span className="student-service-card__role">{teacher.role}</span>
-      <h3>{teacher.name}</h3>
-      <p>{teacher.bio}</p>
-    </div>
-  </article>
-);
+const TeacherCard = ({
+  teacher,
+  index,
+  isActive,
+  onActivate,
+}: {
+  teacher: Teacher;
+  index: number;
+  isActive: boolean;
+  onActivate: () => void;
+}) => {
+  const style = {
+    '--service-theme': serviceThemes[index % serviceThemes.length],
+  } as CSSProperties & Record<'--service-theme', string>;
 
-export const TeachersSection = ({ items, title, description }: TeachersSectionProps) => (
-  <section className="student-services-section">
-    <div className="container">
-      {(title || description) && (
-        <div className="student-services-section__header">
-          <div className="student-services-section__eyebrow">Support That Stays With You</div>
-          <div className="heading-section text-center">
-            {title && <h2>{title}</h2>}
-            {description && <p>{description}</p>}
-          </div>
+  const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      onActivate();
+    }
+  };
+
+  return (
+    <article
+      className="student-service-card"
+      data-aos="fade-up"
+      data-active={isActive ? 'true' : 'false'}
+      aria-expanded={isActive}
+      role="button"
+      tabIndex={0}
+      style={style}
+      onMouseEnter={onActivate}
+      onFocus={onActivate}
+      onClick={onActivate}
+      onKeyDown={handleKeyDown}
+    >
+      <div className="student-service-card__meta">
+        <div className="student-service-card__icon" aria-hidden="true">
+          {renderBadgeIcon(teacher)}
         </div>
-      )}
-      <div className="student-services-grid">
-        {items.map((teacher) => (
-          <TeacherCard key={teacher.name} teacher={teacher} />
-        ))}
+        <div>
+          <span className="student-service-card__role">{teacher.role}</span>
+          <h3>{teacher.name}</h3>
+        </div>
       </div>
-    </div>
-  </section>
-);
+      <div className="student-service-card__panel">
+        <div
+          className="student-service-card__photo"
+          style={{ backgroundImage: `url(${teacher.image})` }}
+          aria-hidden="true"
+        />
+        <div className="student-service-card__body">
+          <p>{teacher.bio}</p>
+          <span className="student-service-card__cue" aria-hidden="true">
+            <span>Review support</span>
+            <svg viewBox="0 0 24 24" className="student-service-card__arrow">
+              <path
+                d="M7 17 17 7m0 0H9m8 0v8"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </article>
+  );
+};
+
+export const TeachersSection = ({ items, title, description }: TeachersSectionProps) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  return (
+    <section className="student-services-section">
+      <div className="container">
+        {(title || description) && (
+          <div className="student-services-section__header">
+            <div className="student-services-section__eyebrow">Support That Stays With You</div>
+            <div className="heading-section text-center">
+              {title && <h2>{title}</h2>}
+              {description && <p>{description}</p>}
+            </div>
+          </div>
+        )}
+        <div className="student-services-grid">
+          {items.map((teacher, index) => (
+            <TeacherCard
+              key={teacher.name}
+              teacher={teacher}
+              index={index}
+              isActive={index === activeIndex}
+              onActivate={() => setActiveIndex(index)}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};

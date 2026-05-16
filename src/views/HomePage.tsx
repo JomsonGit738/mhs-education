@@ -1,6 +1,4 @@
-import { BlogSection } from '../components/BlogSection';
 import { CoursesSection } from '../components/CoursesSection';
-import { Gallery } from '../components/Gallery';
 import { HeroSection } from '../components/HeroSection';
 import { HomeAboutSection } from '../components/HomeAboutSection';
 import { QuoteSection } from '../components/QuoteSection';
@@ -9,7 +7,7 @@ import { StatsSection } from '../components/StatsSection';
 import { TeachersSection } from '../components/TeachersSection';
 import { Testimonials } from '../components/Testimonials';
 import { PartnersSection } from '../components/PartnersSection';
-import { blogs, featuredCourses, teachers } from '../data/content';
+import { featuredCourses, teachers } from '../data/content';
 import heroSlide1 from '../assets/images/new-images/hero-slider-image-1.jpg';
 import heroSlide2 from '../assets/images/new-images/hero-slider-image-2.jpg';
 import heroSlide3 from '../assets/images/new-images/hero-slider-image-3.jpg';
@@ -65,16 +63,6 @@ export const HomePage = () => (
       items={teachers}
     />
     <QuoteSection />
-    <BlogSection
-      title={
-        <span>
-          Recent <span>Blog</span>
-        </span>
-      }
-      description="Get admissions tips, application checklists, and planning advice from the MHS Education team."
-      posts={blogs}
-    />
     <Testimonials />
-    <Gallery />
   </>
 );

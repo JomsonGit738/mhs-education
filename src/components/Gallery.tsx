@@ -1,5 +1,8 @@
-import { gallery } from '../data/content';
+// import { gallery } from '../data/content';
 
+export const Gallery = () => null;
+
+/*
 export const Gallery = () => (
   <section className="ftco-gallery">
     <div className="container-wrap">
@@ -17,3 +20,4 @@ export const Gallery = () => (
     </div>
   </section>
 );
+*/
