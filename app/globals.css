@@ -587,6 +587,38 @@ main {
   }
 }
 
+@media (min-width: 768px) and (max-width: 991px) {
+  .hero-section__media {
+    order: 2;
+    min-height: 640px;
+    margin-top: 0;
+  }
+
+  .hero-section__image--1 {
+    top: 0;
+    left: 14%;
+    width: min(100%, 252px);
+    height: 332px;
+    transform: rotate(-6deg);
+  }
+
+  .hero-section__image--2 {
+    top: 16%;
+    right: 10%;
+    width: min(100%, 220px);
+    height: 268px;
+    transform: rotate(6deg);
+  }
+
+  .hero-section__image--3 {
+    left: 24%;
+    bottom: 112px;
+    width: min(100%, 196px);
+    height: 228px;
+    transform: rotate(-3deg);
+  }
+}
+
 @media (max-width: 767px) {
   .hero-section {
     padding-top: 27px;
@@ -4341,6 +4373,42 @@ main {
 }
 
 @media (min-width: 992px) {
+  .hero-section__content {
+    order: 1;
+  }
+
+  .hero-section__media {
+    order: 2;
+    width: min(100%, 560px);
+    justify-self: end;
+    min-height: 640px;
+    margin-top: 0;
+  }
+
+  .hero-section__image--1 {
+    top: 0;
+    left: 10%;
+    width: min(100%, 252px);
+    height: 332px;
+    transform: rotate(-6deg);
+  }
+
+  .hero-section__image--2 {
+    top: 16%;
+    right: 6%;
+    width: min(100%, 220px);
+    height: 268px;
+    transform: rotate(6deg);
+  }
+
+  .hero-section__image--3 {
+    left: 19%;
+    bottom: 112px;
+    width: min(100%, 196px);
+    height: 228px;
+    transform: rotate(-3deg);
+  }
+
   .ftco-navbar-light.sleep {
     display: none;
   }

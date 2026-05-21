@@ -17,8 +17,22 @@ const heroActions = [
   { text: 'View Programmes', href: '/courses', variant: 'secondary' as const },
 ];
 
+const getCurrentIntakeTitle = (today = new Date()) => {
+  const month = today.getMonth() + 1;
+
+  if (month >= 10 || month === 1) {
+    return 'Admission for January/February Intake';
+  }
+
+  if (month >= 2 && month <= 6) {
+    return 'Admission for May/June Intake';
+  }
+
+  return 'Admission for September/October Intake';
+};
+
 const heroTitles = [
-  'Admission for May/June Intake',
+  getCurrentIntakeTitle(),
   'Comprehensive UK Student Support',
   'Your Pathway to UK Campuses',
 ];
