@@ -7,6 +7,7 @@ import AOS from 'aos';
 import { FloatingSocialDock } from './FloatingSocialDock';
 import { Header } from './Header';
 import { Footer } from './Footer';
+import { ToastProvider } from './ToastProvider';
 // import { HomeLoadingOverlay } from './HomeLoadingOverlay';
 
 export const ClientLayout = ({ children }: { children: ReactNode }) => {
@@ -22,12 +23,12 @@ export const ClientLayout = ({ children }: { children: ReactNode }) => {
   }, [pathname]);
 
   return (
-    <>
+    <ToastProvider>
       {/* <HomeLoadingOverlay /> */}
       <Header />
       <FloatingSocialDock />
       <main>{children}</main>
       <Footer />
-    </>
+    </ToastProvider>
   );
 };

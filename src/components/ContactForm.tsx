@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { submitToGoogleScript } from "../lib/formSubmission";
+import { useToast } from "./ToastProvider";
 
 type InquiryTab = "student" | "agent";
 
@@ -153,13 +154,12 @@ const inquiryPanels: InquiryPanel[] = [
 export const ContactForm = () => {
   const [activeTab, setActiveTab] = useState<InquiryTab>("student");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitState, setSubmitState] = useState<"idle" | "success" | "error">("idle");
+  const { showToast } = useToast();
   const activePanel = inquiryPanels.find((panel) => panel.id === activeTab) ?? inquiryPanels[0];
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsSubmitting(true);
-    setSubmitState("idle");
 
     const form = event.currentTarget;
     const formData = new FormData(form);
@@ -169,9 +169,9 @@ export const ContactForm = () => {
     try {
       await submitToGoogleScript(formData);
       form.reset();
-      setSubmitState("success");
+      showToast("Form sent successfully. Our team will get back to you shortly.", "success");
     } catch {
-      setSubmitState("error");
+      showToast("We could not send your form. Please try again later.", "error");
     } finally {
       setIsSubmitting(false);
     }
@@ -238,6 +238,7 @@ export const ContactForm = () => {
                 </div>
 
                 <form className="contact-form-panel" onSubmit={handleSubmit}>
+                  <input type="hidden" name="formTitle" value="MHS Education website: new form submission" />
                   <input type="hidden" name="inquiryType" value={activePanel.id === "student" ? "student-support" : "local-agent"} />
                   <input type="hidden" name="context" value={activePanel.context} />
                   <div className="contact-form-panel__header">
@@ -286,16 +287,6 @@ export const ContactForm = () => {
                     </button>
                     <p className="contact-form-actions__note">A member of our team will review your message personally.</p>
                   </div>
-                  {submitState === "success" ? (
-                    <p className="form-feedback form-feedback--success" role="status">
-                      Your form was sent successfully. Our team will get back to you soon.
-                    </p>
-                  ) : null}
-                  {submitState === "error" ? (
-                    <p className="form-feedback form-feedback--error" role="alert">
-                      We could not send your form right now. Please try again in a moment.
-                    </p>
-                  ) : null}
                 </form>
               </div>
             </div>

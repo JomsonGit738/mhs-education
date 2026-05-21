@@ -3,15 +3,15 @@
 import { FormEvent, useState } from "react";
 import { quoteCourseOptions } from "../data/content";
 import { submitToGoogleScript } from "../lib/formSubmission";
+import { useToast } from "./ToastProvider";
 
 export const QuoteSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitState, setSubmitState] = useState<"idle" | "success" | "error">("idle");
+  const { showToast } = useToast();
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsSubmitting(true);
-    setSubmitState("idle");
 
     const form = event.currentTarget;
     const formData = new FormData(form);
@@ -20,9 +20,9 @@ export const QuoteSection = () => {
     try {
       await submitToGoogleScript(formData);
       form.reset();
-      setSubmitState("success");
+      showToast("Form sent successfully. We will reply with next steps soon.", "success");
     } catch {
-      setSubmitState("error");
+      showToast("We could not send your form. Please try again later.", "error");
     } finally {
       setIsSubmitting(false);
     }
@@ -56,6 +56,7 @@ export const QuoteSection = () => {
               <p>Tell us the basics and we will map the next move.</p>
             </div>
             <form className="appointment-form consult-modern-form ftco-animate" onSubmit={handleSubmit}>
+              <input type="hidden" name="formTitle" value="MHS Education website: new form submission" />
               <input type="hidden" name="context" value="Home page personalised guidance form" />
               <div className="consult-modern-form__grid">
                 <div className="form-group">
@@ -129,16 +130,6 @@ export const QuoteSection = () => {
                   )}
                 </button>
               </div>
-              {submitState === "success" ? (
-                <p className="form-feedback form-feedback--success" role="status">
-                  Your form was sent successfully. We will reply with next steps soon.
-                </p>
-              ) : null}
-              {submitState === "error" ? (
-                <p className="form-feedback form-feedback--error" role="alert">
-                  We could not send your form right now. Please try again in a moment.
-                </p>
-              ) : null}
             </form>
           </div>
         </div>
