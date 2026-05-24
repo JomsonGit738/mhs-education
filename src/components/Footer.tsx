@@ -81,6 +81,15 @@ export const Footer = () => (
           </ul>
         </div>
 
+        <div className="footer-card footer-card--nav">
+          <h5>Legal</h5>
+          <ul className="footer-links">
+            <li>
+              <Link href="/privacy-policy">Privacy Policy</Link>
+            </li>
+          </ul>
+        </div>
+
         <div className="footer-card footer-card--connect">
           <h5>Connect</h5>
           <p className="footer-connect-copy">Follow us for intakes, scholarships, and student updates.</p>
