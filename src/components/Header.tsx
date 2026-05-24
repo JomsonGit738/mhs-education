@@ -122,6 +122,7 @@ const ScrollAwareNavbar = ({
           <span className="scroll-navbar-brand__secondary">Education</span>
         </span>
         <div className="navbar-shell__meta">
+          <span className="navbar-shell__lead">Just one click for the first step to admission</span>
           <ContactList />
           <SocialLinksList className="navbar-shell__socials d-flex align-items-center" />
         </div>

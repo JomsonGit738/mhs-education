@@ -684,6 +684,49 @@ main {
     padding: 16px 18px;
   }
 }
+
+@media (min-width: 568px) and (max-width: 768px) {
+  .hero-section__grid {
+    gap: 28px;
+  }
+
+  .hero-section__copy {
+    order: 2;
+  }
+
+  .hero-section__media {
+    order: 1;
+    min-height: 510px;
+    margin-top: 0;
+  }
+
+  .hero-section__image--1 {
+    left: 11%;
+    width: min(100%, 244px);
+    height: 300px;
+    transform: rotate(-4deg);
+  }
+
+  .hero-section__image--2 {
+    top: 18%;
+    right: 4%;
+    width: 188px;
+    height: 226px;
+    transform: rotate(4deg);
+  }
+
+  .hero-section__image--3 {
+    left: 24%;
+    bottom: 76px;
+    width: 154px;
+    height: 186px;
+    transform: rotate(-3deg);
+  }
+
+  .hero-section__note {
+    bottom: 96px;
+  }
+}
 .home-about-section {
   background-color: #10233d;
   background-image:
@@ -4329,6 +4372,10 @@ main {
   display: none;
 }
 
+.navbar-shell__lead {
+  display: none;
+}
+
 .navbar-toggler__icon {
   display: inline-flex;
   align-items: center;
@@ -4359,6 +4406,102 @@ main {
 .ftco-navbar-light.awake,
 .ftco-navbar-light.scrolled.sleep {
   background: rgba(255, 255, 255, 0.94) !important;
+}
+
+@media (min-width: 992px) {
+  #ftco-navbar.ftco-navbar-light.scrolled,
+  #ftco-navbar.ftco-navbar-light.awake,
+  #ftco-navbar.navbar.scrolled,
+  #ftco-navbar.navbar.awake,
+  .ftco-navbar-light.scrolled,
+  .ftco-navbar-light.awake,
+  .ftco-navbar-light.scrolled.sleep {
+    background:
+      radial-gradient(circle at top right, rgba(56, 189, 248, 0.18), transparent 30%),
+      linear-gradient(135deg, rgba(10, 65, 120, 0.98), rgba(9, 27, 54, 0.98)) !important;
+    border-bottom: 0 !important;
+    box-shadow: 0 18px 34px rgba(15, 23, 42, 0.24);
+  }
+
+  #ftco-navbar.ftco-navbar-light.scrolled .navbar-shell,
+  #ftco-navbar.ftco-navbar-light.awake .navbar-shell,
+  #ftco-navbar.navbar.scrolled .navbar-shell,
+  #ftco-navbar.navbar.awake .navbar-shell,
+  .ftco-navbar-light.scrolled .navbar-shell,
+  .ftco-navbar-light.awake .navbar-shell,
+  .ftco-navbar-light.scrolled.sleep .navbar-shell {
+    background: transparent !important;
+  }
+
+  #ftco-navbar.ftco-navbar-light.scrolled .topbar-contact-item,
+  #ftco-navbar.ftco-navbar-light.awake .topbar-contact-item,
+  #ftco-navbar.navbar.scrolled .topbar-contact-item,
+  #ftco-navbar.navbar.awake .topbar-contact-item,
+  .ftco-navbar-light.scrolled .topbar-contact-item,
+  .ftco-navbar-light.awake .topbar-contact-item,
+  #ftco-navbar.ftco-navbar-light.scrolled .topbar-contact-value,
+  #ftco-navbar.ftco-navbar-light.awake .topbar-contact-value,
+  #ftco-navbar.navbar.scrolled .topbar-contact-value,
+  #ftco-navbar.navbar.awake .topbar-contact-value,
+  .ftco-navbar-light.scrolled .topbar-contact-value,
+  .ftco-navbar-light.awake .topbar-contact-value {
+    color: rgba(255, 255, 255, 0.96);
+  }
+
+  #ftco-navbar.ftco-navbar-light.scrolled .navbar-shell__lead,
+  #ftco-navbar.ftco-navbar-light.awake .navbar-shell__lead,
+  #ftco-navbar.navbar.scrolled .navbar-shell__lead,
+  #ftco-navbar.navbar.awake .navbar-shell__lead,
+  .ftco-navbar-light.scrolled .navbar-shell__lead,
+  .ftco-navbar-light.awake .navbar-shell__lead {
+    display: inline-flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  #ftco-navbar.ftco-navbar-light.scrolled .topbar-contact-icon,
+  #ftco-navbar.ftco-navbar-light.awake .topbar-contact-icon,
+  #ftco-navbar.navbar.scrolled .topbar-contact-icon,
+  #ftco-navbar.navbar.awake .topbar-contact-icon,
+  .ftco-navbar-light.scrolled .topbar-contact-icon,
+  .ftco-navbar-light.awake .topbar-contact-icon {
+    background: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+  }
+
+  #ftco-navbar.ftco-navbar-light.scrolled .navbar-shell__socials .topbar-social-link,
+  #ftco-navbar.ftco-navbar-light.awake .navbar-shell__socials .topbar-social-link,
+  #ftco-navbar.navbar.scrolled .navbar-shell__socials .topbar-social-link,
+  #ftco-navbar.navbar.awake .navbar-shell__socials .topbar-social-link,
+  .ftco-navbar-light.scrolled .navbar-shell__socials .topbar-social-link,
+  .ftco-navbar-light.awake .navbar-shell__socials .topbar-social-link {
+    background: rgba(255, 255, 255, 0.14);
+    color: #ffffff;
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.12),
+      0 12px 24px rgba(2, 8, 23, 0.16);
+  }
+
+  #ftco-navbar.ftco-navbar-light.scrolled .navbar-shell__socials .topbar-social-link:hover,
+  #ftco-navbar.ftco-navbar-light.awake .navbar-shell__socials .topbar-social-link:hover,
+  #ftco-navbar.navbar.scrolled .navbar-shell__socials .topbar-social-link:hover,
+  #ftco-navbar.navbar.awake .navbar-shell__socials .topbar-social-link:hover,
+  .ftco-navbar-light.scrolled .navbar-shell__socials .topbar-social-link:hover,
+  .ftco-navbar-light.awake .navbar-shell__socials .topbar-social-link:hover,
+  #ftco-navbar.ftco-navbar-light.scrolled .navbar-shell__socials .topbar-social-link:focus,
+  #ftco-navbar.ftco-navbar-light.awake .navbar-shell__socials .topbar-social-link:focus,
+  #ftco-navbar.navbar.scrolled .navbar-shell__socials .topbar-social-link:focus,
+  #ftco-navbar.navbar.awake .navbar-shell__socials .topbar-social-link:focus,
+  .ftco-navbar-light.scrolled .navbar-shell__socials .topbar-social-link:focus,
+  .ftco-navbar-light.awake .navbar-shell__socials .topbar-social-link:focus {
+    background: rgba(255, 255, 255, 0.24);
+    color: #ffffff;
+  }
 }
 
 .segmented-nav__icon {
@@ -4440,6 +4583,10 @@ main {
     gap: 18px;
     width: auto;
     min-width: 0;
+  }
+
+  .ftco-navbar-light .navbar-shell__lead {
+    flex: 0 0 auto;
   }
 
   .ftco-navbar-light .navbar-collapse,
