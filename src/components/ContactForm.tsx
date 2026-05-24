@@ -1,6 +1,7 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useMemo, useState } from "react";
+import { FieldErrorMap, validateEmail, validatePhone, validateRequired } from "../lib/formValidation";
 import { submitToGoogleScript } from "../lib/formSubmission";
 import { useToast } from "./ToastProvider";
 
@@ -154,17 +155,77 @@ const inquiryPanels: InquiryPanel[] = [
 export const ContactForm = () => {
   const [activeTab, setActiveTab] = useState<InquiryTab>("student");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<FieldErrorMap>({});
   const { showToast } = useToast();
-  const activePanel = inquiryPanels.find((panel) => panel.id === activeTab) ?? inquiryPanels[0];
+  const activePanel = useMemo(
+    () => inquiryPanels.find((panel) => panel.id === activeTab) ?? inquiryPanels[0],
+    [activeTab],
+  );
+
+  const validateField = (name: string, value: FormDataEntryValue | null, label: string) => {
+    if (name === "email") {
+      return validateEmail(value, label);
+    }
+
+    if (name === "phone") {
+      return validatePhone(value, label);
+    }
+
+    return validateRequired(value, label);
+  };
+
+  const validateForm = (formData: FormData) => {
+    const nextErrors: FieldErrorMap = {};
+
+    for (const field of activePanel.fields) {
+      const error = validateField(field.name, formData.get(field.name), field.label);
+      if (error) {
+        nextErrors[field.name] = error;
+      }
+    }
+
+    const messageError = validateRequired(formData.get(activePanel.textareaName), activePanel.textareaLabel);
+    if (messageError) {
+      nextErrors[activePanel.textareaName] = messageError;
+    }
+
+    return nextErrors;
+  };
+
+  const clearFieldError = (fieldName: string) => {
+    setErrors((current) => {
+      if (!current[fieldName]) {
+        return current;
+      }
+
+      const next = { ...current };
+      delete next[fieldName];
+      return next;
+    });
+  };
+
+  const handleTabChange = (tab: InquiryTab) => {
+    setActiveTab(tab);
+    setErrors({});
+  };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setIsSubmitting(true);
 
     const form = event.currentTarget;
     const formData = new FormData(form);
     formData.set("inquiryType", activePanel.id === "student" ? "student-support" : "local-agent");
     formData.set("context", activePanel.context);
+
+    const nextErrors = validateForm(formData);
+    if (Object.keys(nextErrors).length > 0) {
+      setErrors(nextErrors);
+      showToast("Please complete the required fields before submitting.", "error");
+      return;
+    }
+
+    setErrors({});
+    setIsSubmitting(true);
 
     try {
       await submitToGoogleScript(formData);
@@ -175,6 +236,10 @@ export const ContactForm = () => {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleFieldChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    clearFieldError(event.target.name);
   };
 
   return (
@@ -207,7 +272,7 @@ export const ContactForm = () => {
                     aria-selected={isActive}
                     aria-controls={`contact-panel-${panel.id}`}
                     className={`contact-form-tab ${isActive ? "is-active" : ""}`}
-                    onClick={() => setActiveTab(panel.id)}
+                    onClick={() => handleTabChange(panel.id)}
                   >
                     <span className="contact-form-tab__label">{panel.label}</span>
                     <span className="contact-form-tab__detail">{panel.tabDetail}</span>
@@ -237,9 +302,13 @@ export const ContactForm = () => {
                   </div>
                 </div>
 
-                <form className="contact-form-panel" onSubmit={handleSubmit}>
+                <form className="contact-form-panel" onSubmit={handleSubmit} noValidate>
                   <input type="hidden" name="formTitle" value="MHS Education website: new form submission" />
-                  <input type="hidden" name="inquiryType" value={activePanel.id === "student" ? "student-support" : "local-agent"} />
+                  <input
+                    type="hidden"
+                    name="inquiryType"
+                    value={activePanel.id === "student" ? "student-support" : "local-agent"}
+                  />
                   <input type="hidden" name="context" value={activePanel.context} />
                   <div className="contact-form-panel__header">
                     <span className="contact-form-panel__eyebrow">Enquiry details</span>
@@ -253,10 +322,18 @@ export const ContactForm = () => {
                           id={field.id}
                           name={field.name}
                           type={field.type ?? "text"}
-                          className="form-control"
+                          className={`form-control ${errors[field.name] ? "is-invalid" : ""}`}
                           placeholder={field.placeholder}
                           disabled={isSubmitting}
+                          aria-invalid={Boolean(errors[field.name])}
+                          aria-describedby={errors[field.name] ? `${field.id}-error` : undefined}
+                          onChange={handleFieldChange}
                         />
+                        {errors[field.name] ? (
+                          <p id={`${field.id}-error`} className="form-error-text" role="alert">
+                            {errors[field.name]}
+                          </p>
+                        ) : null}
                         {field.helper ? <p className="contact-field__hint">{field.helper}</p> : null}
                       </div>
                     ))}
@@ -267,10 +344,18 @@ export const ContactForm = () => {
                       id={activePanel.textareaId}
                       name={activePanel.textareaName}
                       rows={5}
-                      className="form-control"
+                      className={`form-control ${errors[activePanel.textareaName] ? "is-invalid" : ""}`}
                       placeholder={activePanel.textareaPlaceholder}
                       disabled={isSubmitting}
+                      aria-invalid={Boolean(errors[activePanel.textareaName])}
+                      aria-describedby={errors[activePanel.textareaName] ? `${activePanel.textareaId}-error` : undefined}
+                      onChange={handleFieldChange}
                     />
+                    {errors[activePanel.textareaName] ? (
+                      <p id={`${activePanel.textareaId}-error`} className="form-error-text" role="alert">
+                        {errors[activePanel.textareaName]}
+                      </p>
+                    ) : null}
                     <p className="contact-field__hint">{activePanel.footerNote}</p>
                   </div>
 

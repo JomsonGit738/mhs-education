@@ -138,7 +138,7 @@ export const brand = {
   name: "MHS Education",
   tagline: "Admissions Guidance",
   logo: images.bgRemovedLogo,
-  email: "info@mhseducation.com",
+  email: "info@mhseducation.co.uk",
   phone: "07521772131",
   address: "MHS Education, Suite F5, New Road Business Centre, 109 New Road, Whitechapel, E1 1HJ",
   shortPhone: "07521772131",
@@ -516,8 +516,8 @@ export const contactCards: ContactCard[] = [
   },
   {
     title: "Email Address",
-    content: "info@mhseducation.com",
-    href: "mailto:info@mhseducation.com",
+    content: "info@mhseducation.co.uk",
+    href: "mailto:info@mhseducation.co.uk",
   },
   { title: "Website", content: "mhsglobalassociates.com", href: "https://www.mhsglobalassociates.com" },
 ];

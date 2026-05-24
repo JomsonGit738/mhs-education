@@ -9,7 +9,7 @@ const careerTracks = [
       'We welcome advisers, counsellors, and operations professionals who value clear communication, careful guidance, and responsible UK admissions support.',
     highlights: ['Student-focused roles', 'Practical admissions delivery', 'Collaborative team culture'],
     ctaLabel: 'Send Your CV',
-    ctaHref: 'mailto:info@mhseducation.com',
+    ctaHref: 'mailto:info@mhseducation.co.uk',
     ctaClassName: 'btn btn-primary btn-apply-invert',
   },
   {
