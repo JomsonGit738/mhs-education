@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { quoteCourseOptions } from "../data/content";
 import { FieldErrorMap, validatePhone, validateRequired } from "../lib/formValidation";
@@ -12,6 +13,7 @@ const [supportNeedPlaceholderLabel, ...supportNeedOptions] = quoteCourseOptions;
 export const QuoteSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<FieldErrorMap>({});
+  const [consentChecked, setConsentChecked] = useState(false);
   const { showToast } = useToast();
 
   const validateForm = (formData: FormData) => {
@@ -40,6 +42,10 @@ export const QuoteSection = () => {
     const messageError = validateRequired(formData.get("message"), "Message");
     if (messageError) {
       nextErrors.message = messageError;
+    }
+
+    if (!consentChecked) {
+      nextErrors.consent = "Please confirm you have read our Privacy Policy to continue.";
     }
 
     return nextErrors;
@@ -77,6 +83,7 @@ export const QuoteSection = () => {
     try {
       await submitToGoogleScript(formData);
       form.reset();
+      setConsentChecked(false);
       showToast("Form sent successfully. We will reply with next steps soon.", "success");
     } catch {
       showToast("We could not send your form. Please try again later.", "error");
@@ -237,6 +244,30 @@ export const QuoteSection = () => {
                 {errors.message ? (
                   <p id="quote-message-error" className="form-error-text" role="alert">
                     {errors.message}
+                  </p>
+                ) : null}
+              </div>
+              <div className="form-group">
+                <label htmlFor="quote-consent">
+                  <input
+                    id="quote-consent"
+                    name="consent"
+                    type="checkbox"
+                    checked={consentChecked}
+                    disabled={isSubmitting}
+                    aria-invalid={Boolean(errors.consent)}
+                    aria-describedby={errors.consent ? "quote-consent-error" : undefined}
+                    onChange={(event) => {
+                      setConsentChecked(event.target.checked);
+                      clearFieldError("consent");
+                    }}
+                  />{" "}
+                  I have read and agree to the <Link href="/privacy-policy">Privacy Policy</Link> and consent to being
+                  contacted by [Agency Name] regarding my enquiry.
+                </label>
+                {errors.consent ? (
+                  <p id="quote-consent-error" className="form-error-text" role="alert">
+                    {errors.consent}
                   </p>
                 ) : null}
               </div>

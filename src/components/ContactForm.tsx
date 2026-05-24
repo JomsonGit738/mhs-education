@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ChangeEvent, FormEvent, useMemo, useState } from "react";
 import { FieldErrorMap, validateEmail, validatePhone, validateRequired } from "../lib/formValidation";
 import { submitToGoogleScript } from "../lib/formSubmission";
@@ -156,11 +157,16 @@ export const ContactForm = () => {
   const [activeTab, setActiveTab] = useState<InquiryTab>("student");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<FieldErrorMap>({});
+  const [consentCheckedByTab, setConsentCheckedByTab] = useState<Record<InquiryTab, boolean>>({
+    student: false,
+    agent: false,
+  });
   const { showToast } = useToast();
   const activePanel = useMemo(
     () => inquiryPanels.find((panel) => panel.id === activeTab) ?? inquiryPanels[0],
     [activeTab],
   );
+  const consentChecked = consentCheckedByTab[activeTab];
 
   const validateField = (name: string, value: FormDataEntryValue | null, label: string) => {
     if (name === "email") {
@@ -187,6 +193,10 @@ export const ContactForm = () => {
     const messageError = validateRequired(formData.get(activePanel.textareaName), activePanel.textareaLabel);
     if (messageError) {
       nextErrors[activePanel.textareaName] = messageError;
+    }
+
+    if (!consentChecked) {
+      nextErrors.consent = "Please confirm you have read our Privacy Policy to continue.";
     }
 
     return nextErrors;
@@ -230,6 +240,10 @@ export const ContactForm = () => {
     try {
       await submitToGoogleScript(formData);
       form.reset();
+      setConsentCheckedByTab((current) => ({
+        ...current,
+        [activePanel.id]: false,
+      }));
       showToast("Form sent successfully. Our team will get back to you shortly.", "success");
     } catch {
       showToast("We could not send your form. Please try again later.", "error");
@@ -357,6 +371,33 @@ export const ContactForm = () => {
                       </p>
                     ) : null}
                     <p className="contact-field__hint">{activePanel.footerNote}</p>
+                  </div>
+                  <div className="form-group contact-field contact-field--wide">
+                    <label htmlFor={`contact-consent-${activePanel.id}`}>
+                      <input
+                        id={`contact-consent-${activePanel.id}`}
+                        name="consent"
+                        type="checkbox"
+                        checked={consentChecked}
+                        disabled={isSubmitting}
+                        aria-invalid={Boolean(errors.consent)}
+                        aria-describedby={errors.consent ? `contact-consent-${activePanel.id}-error` : undefined}
+                        onChange={(event) => {
+                          setConsentCheckedByTab((current) => ({
+                            ...current,
+                            [activePanel.id]: event.target.checked,
+                          }));
+                          clearFieldError("consent");
+                        }}
+                      />{" "}
+                      I have read and agree to the <Link href="/privacy-policy">Privacy Policy</Link> and consent to being
+                      contacted by [Agency Name] regarding my enquiry.
+                    </label>
+                    {errors.consent ? (
+                      <p id={`contact-consent-${activePanel.id}-error`} className="form-error-text" role="alert">
+                        {errors.consent}
+                      </p>
+                    ) : null}
                   </div>
 
                   <div className="contact-form-actions">
