@@ -8,6 +8,7 @@ import { FloatingSocialDock } from './FloatingSocialDock';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { ToastProvider } from './ToastProvider';
+import { CookieConsentBar } from './CookieConsentBar';
 // import { HomeLoadingOverlay } from './HomeLoadingOverlay';
 
 export const ClientLayout = ({ children }: { children: ReactNode }) => {
@@ -29,6 +30,7 @@ export const ClientLayout = ({ children }: { children: ReactNode }) => {
       <FloatingSocialDock />
       <main>{children}</main>
       <Footer />
+      <CookieConsentBar />
     </ToastProvider>
   );
 };
