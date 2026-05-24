@@ -29,7 +29,7 @@ const BlogCard = ({ post }: { post: BlogPost }) => {
           <div className="d-flex align-items-center mt-auto">
             <p className="mb-0">
               <Link href={`/blog/${post.id}`} className="btn btn-primary">
-                Read More <span className="ion-ios-arrow-round-forward" />
+                <span>Read More</span>
               </Link>
             </p>
             <p className="ml-auto mb-0">

@@ -36,7 +36,7 @@ export const HeroSlider = () => (
                       href={slide.ctaHref}
                       className="btn btn-apply-invert px-4 py-3 mt-3 mr-2"
                     >
-                      {slide.ctaLabel}
+                      <span>{slide.ctaLabel}</span>
                     </Link>
                   </p>
                 </div>

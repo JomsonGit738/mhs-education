@@ -54,7 +54,7 @@ export const CareerPage = () => (
                 ))}
               </ul>
               <a href={track.ctaHref} className={track.ctaClassName}>
-                {track.ctaLabel}
+                <span>{track.ctaLabel}</span>
               </a>
             </article>
           ))}

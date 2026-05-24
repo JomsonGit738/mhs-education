@@ -136,14 +136,14 @@ const renderAction = (action: ActionProps, index: number) => {
   if (action.href) {
     return (
       <Link key={`${action.text}-${index}`} href={action.href} className={actionClassName}>
-        {action.text}
+        <span>{action.text}</span>
       </Link>
     );
   }
 
   return (
     <button key={`${action.text}-${index}`} type="button" className={actionClassName} onClick={action.onClick}>
-      {action.text}
+      <span>{action.text}</span>
     </button>
   );
 };

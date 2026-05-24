@@ -125,7 +125,7 @@ const CourseCard = ({
         <h3 className="course-title">{course.title}</h3>
         <p className="course-copy">{course.description}</p>
         <Link href={cardHref} className="btn btn-apply-invert mt-2">
-          {cardLabel}
+          <span>{cardLabel}</span>
         </Link>
       </div>
     </article>
@@ -175,7 +175,7 @@ export const CoursesSection = ({
       {sectionActionHref && sectionActionLabel ? (
         <div className="text-center mt-4">
           <Link href={sectionActionHref} className="btn btn-outline-primary px-4 py-3">
-            {sectionActionLabel}
+            <span>{sectionActionLabel}</span>
           </Link>
         </div>
       ) : null}

@@ -4,7 +4,7 @@ export const NotFoundPage = () => (
       <h1 className="mb-3">Page not found</h1>
       <p>The page you are looking for does not exist.</p>
       <a className="btn btn-primary mt-3" href="/">
-        Go Home
+        <span>Go Home</span>
       </a>
     </div>
   </section>

@@ -279,10 +279,10 @@ export const ContactForm = () => {
                       {isSubmitting ? (
                         <span className="form-submit-state">
                           <span className="form-submit-spinner" aria-hidden="true" />
-                          Sending...
+                          <span>Sending...</span>
                         </span>
                       ) : (
-                        activePanel.submitLabel
+                        <span>{activePanel.submitLabel}</span>
                       )}
                     </button>
                     <p className="contact-form-actions__note">A member of our team will review your message personally.</p>

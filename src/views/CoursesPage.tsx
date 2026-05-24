@@ -47,7 +47,7 @@ export const CoursesPage = ({ query = '' }: CoursesPageProps) => {
           <div>
             <p className="mb-3 text-secondary">No programmes matched &quot;{query}&quot;.</p>
             <Link href="/courses" className="btn btn-outline-primary px-4 py-3">
-              View All Programmes
+              <span>View All Programmes</span>
             </Link>
           </div>
         }

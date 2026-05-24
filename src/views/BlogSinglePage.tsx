@@ -73,7 +73,9 @@ export const BlogSinglePage = ({ post }: BlogSinglePageProps) => {
                       <textarea id="message" cols={30} rows={10} className="form-control" />
                     </div>
                     <div className="form-group">
-                      <input type="submit" value="Post Comment" className="btn py-3 px-4 btn-primary" />
+                      <button type="submit" className="btn py-3 px-4 btn-primary">
+                        <span>Post Comment</span>
+                      </button>
                     </div>
                   </form>
                 </div>
