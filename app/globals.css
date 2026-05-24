@@ -1422,6 +1422,11 @@ main {
   font-size: 18px;
 }
 
+.topbar-social-link .social-icon-svg {
+  width: 18px;
+  height: 18px;
+}
+
 .topbar-social-link:hover,
 .topbar-social-link:focus {
   background: #0b3b82;
@@ -1630,6 +1635,11 @@ main {
 
 .floating-social-dock__item span[class^="icon-"] {
   font-size: 20px;
+}
+
+.floating-social-dock__item .social-icon-svg {
+  width: 20px;
+  height: 20px;
 }
 
 @keyframes topbar-social-in {
@@ -4166,6 +4176,11 @@ main {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+.social-tile .social-icon-svg {
+  width: 20px;
+  height: 20px;
 }
 
 .footer-modern .social-tile {

@@ -1,4 +1,5 @@
 import { brand, socialLinks } from "../data/content";
+import { SocialIcon } from "./SocialIcon";
 
 // Lightweight contact strip to guarantee address/phone/email presence on every page
 export const ContactFooterStrip = () => (
@@ -26,7 +27,7 @@ export const ContactFooterStrip = () => (
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <span className={link.icon} />
+                  <SocialIcon link={link} />
                 </a>
               </li>
             ))}

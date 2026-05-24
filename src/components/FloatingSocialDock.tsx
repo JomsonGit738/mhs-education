@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { socialLinks } from "../data/content";
+import { SocialIcon } from "./SocialIcon";
 
 export const FloatingSocialDock = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -31,7 +32,7 @@ export const FloatingSocialDock = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span className={link.icon} aria-hidden="true" />
+          <SocialIcon link={link} />
         </a>
       ))}
     </aside>

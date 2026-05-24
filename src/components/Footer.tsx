@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { brand, navLinks, socialLinks } from '../data/content';
 import { FooterWaveCanvas } from './FooterWaveCanvas';
+import { SocialIcon } from './SocialIcon';
 
 const primaryLinks = navLinks.slice(0, 3);
 const secondaryLinks = navLinks.slice(3);
@@ -93,7 +94,7 @@ export const Footer = () => (
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <span className={link.icon} />
+                <SocialIcon link={link} />
               </a>
             ))}
           </div>

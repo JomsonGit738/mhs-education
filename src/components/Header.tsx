@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { brand, navLinks, socialLinks } from '../data/content';
+import { SocialIcon } from './SocialIcon';
 
 const mobileNavIcons: Record<string, string> = {
   '/': 'icon-home',
@@ -147,7 +148,7 @@ const SocialLinksList = ({ className = 'topbar-socials d-flex align-items-center
         rel="noopener noreferrer"
         style={{ animationDelay: `${index * 90}ms` }}
       >
-        <span className={link.icon} />
+        <SocialIcon link={link} />
       </a>
     ))}
   </div>
