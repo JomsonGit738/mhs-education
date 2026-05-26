@@ -1,5 +1,7 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { brand, navLinks, socialLinks } from '../data/content';
+import { imageAssets } from '../data/images';
 import { FooterWaveCanvas } from './FooterWaveCanvas';
 import { SocialIcon } from './SocialIcon';
 
@@ -29,7 +31,11 @@ export const Footer = () => (
       <div className="footer-grid">
         <div className="footer-card footer-card--brand">
           <div className="footer-logo">
-            <img src={brand.logo} alt={`${brand.name} logo`} className="footer-brand-logo" />
+            <Image
+              src={imageAssets.bgRemovedLogo}
+              alt={`${brand.name} student admissions logo`}
+              className="footer-brand-logo"
+            />
             <div className="footer-brand-copy">
               <h4>{brand.name}</h4>
               <p className="footer-tagline">{brand.tagline}</p>
@@ -51,12 +57,14 @@ export const Footer = () => (
             </a>
           </div>
 
-          <ul className="footer-list">
-            <li>
-              <span className="icon icon-map-marker" />
-              {brand.address}
-            </li>
-          </ul>
+          <address>
+            <ul className="footer-list">
+              <li>
+                <span className="icon icon-map-marker" />
+                {brand.address}
+              </li>
+            </ul>
+          </address>
         </div>
 
         <div className="footer-card footer-card--nav">

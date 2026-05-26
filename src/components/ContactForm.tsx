@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ChangeEvent, FormEvent, useMemo, useState } from "react";
+import { brand } from "../data/content";
 import { FieldErrorMap, validateEmail, validatePhone, validateRequired } from "../lib/formValidation";
 import { submitToGoogleScript } from "../lib/formSubmission";
 import { useToast } from "./ToastProvider";
@@ -391,7 +392,7 @@ export const ContactForm = () => {
                         }}
                       />{" "}
                       I have read and agree to the <Link href="/privacy-policy">Privacy Policy</Link> and consent to being
-                      contacted by [Agency Name] regarding my enquiry.
+                      contacted by {brand.name} regarding my enquiry.
                     </label>
                     {errors.consent ? (
                       <p id={`contact-consent-${activePanel.id}-error`} className="form-error-text" role="alert">

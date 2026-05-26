@@ -1,5 +1,6 @@
+import Image from 'next/image';
 import type { Comment } from '../data/content';
-import { images } from '../data/images';
+import { imageAssets } from '../data/images';
 
 type CommentTreeProps = {
   comments: Comment[];
@@ -8,16 +9,14 @@ type CommentTreeProps = {
 const CommentItem = ({ comment }: { comment: Comment }) => (
   <li className="comment">
     <div className="vcard bio">
-      <img src={images.teacher1} alt="Comment author" />
+      <Image src={imageAssets.teacher1} alt={`${comment.author} profile`} />
     </div>
     <div className="comment-body">
       <h3>{comment.author}</h3>
       <div className="meta mb-2">{comment.date}</div>
       <p>{comment.text}</p>
       <p>
-        <a href="#" className="reply">
-          Reply
-        </a>
+        <span className="reply">Reply</span>
       </p>
     </div>
     {comment.replies && comment.replies.length > 0 && (

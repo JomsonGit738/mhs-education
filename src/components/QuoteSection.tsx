@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { FormEvent, useState } from "react";
-import { quoteCourseOptions } from "../data/content";
+import { brand, quoteCourseOptions } from "../data/content";
 import { FieldErrorMap, validatePhone, validateRequired } from "../lib/formValidation";
 import { submitToGoogleScript } from "../lib/formSubmission";
 import { useToast } from "./ToastProvider";
@@ -263,7 +263,7 @@ export const QuoteSection = () => {
                     }}
                   />{" "}
                   I have read and agree to the <Link href="/privacy-policy">Privacy Policy</Link> and consent to being
-                  contacted by [Agency Name] regarding my enquiry.
+                  contacted by {brand.name} regarding my enquiry.
                 </label>
                 {errors.consent ? (
                   <p id="quote-consent-error" className="form-error-text" role="alert">

@@ -84,9 +84,17 @@ const rawImages = {
   teacher4,
 } as const;
 
+export const imageAssets = rawImages;
+
 export const images: Record<keyof typeof rawImages, string> =
   Object.fromEntries(
     Object.entries(rawImages).map(([key, value]) => [key, toSrc(value)]),
   ) as Record<keyof typeof rawImages, string>;
+
+const imageAssetLookup = new Map<string, StaticImageData | string>(
+  Object.values(rawImages).map((value) => [toSrc(value), value]),
+);
+
+export const getImageAsset = (src: string) => imageAssetLookup.get(src) ?? src;
 
 export type ImageKey = keyof typeof images;

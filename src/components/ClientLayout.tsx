@@ -2,14 +2,20 @@
 
 import type { ReactNode } from 'react';
 import { useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
 import AOS from 'aos';
-import { FloatingSocialDock } from './FloatingSocialDock';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { ToastProvider } from './ToastProvider';
-import { CookieConsentBar } from './CookieConsentBar';
 // import { HomeLoadingOverlay } from './HomeLoadingOverlay';
+
+const FloatingSocialDock = dynamic(() => import('./FloatingSocialDock').then((mod) => mod.FloatingSocialDock), {
+  ssr: false,
+});
+const CookieConsentBar = dynamic(() => import('./CookieConsentBar').then((mod) => mod.CookieConsentBar), {
+  ssr: false,
+});
 
 export const ClientLayout = ({ children }: { children: ReactNode }) => {
   const pathname = usePathname();
@@ -28,7 +34,7 @@ export const ClientLayout = ({ children }: { children: ReactNode }) => {
       {/* <HomeLoadingOverlay /> */}
       <Header />
       <FloatingSocialDock />
-      <main>{children}</main>
+      <main id="main-content">{children}</main>
       <Footer />
       <CookieConsentBar />
     </ToastProvider>

@@ -1,9 +1,11 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { brand, navLinks, socialLinks } from '../data/content';
+import { imageAssets } from '../data/images';
 import { SocialIcon } from './SocialIcon';
 
 const mobileNavIcons: Record<string, string> = {
@@ -116,7 +118,7 @@ const ScrollAwareNavbar = ({
     .join(' ');
 
   return (
-    <nav className={navState} id="ftco-navbar">
+    <nav className={navState} id="ftco-navbar" aria-label="Secondary site navigation">
       <div className="container navbar-shell d-flex align-items-center">
         <span className="scroll-navbar-brand">
           <span className="scroll-navbar-brand__primary">MHS</span>
@@ -175,8 +177,8 @@ const TopBarNav = () => {
   const pathname = usePathname() || '/';
 
   return (
-    <div className="topbar-nav-cluster">
-      <ul className="topbar-nav-list" aria-label="Primary navigation">
+    <nav className="topbar-nav-cluster" aria-label="Primary navigation">
+      <ul className="topbar-nav-list">
         {navLinks.map((link) => {
           const active = link.path === '/' ? pathname === '/' : pathname.startsWith(link.path);
           return (
@@ -196,7 +198,7 @@ const TopBarNav = () => {
         <span className="ion-ios-search" aria-hidden="true" />
       </Link>
       <SocialLinksList className="topbar-socials topbar-socials--topnav d-flex align-items-center" />
-    </div>
+    </nav>
   );
 };
 
@@ -215,7 +217,12 @@ const TopBar = ({
         <div className="row no-gutters d-flex align-items-center align-items-stretch">
           <div className="col-md-3 d-flex align-items-center py-2 topbar-brand-col">
             <Link className="navbar-brand d-flex align-items-center p-0" href="/">
-              <img src={brand.logo} alt={`${brand.name} logo`} className="topbar-logo" />
+              <Image
+                src={imageAssets.bgRemovedLogo}
+                alt={`${brand.name} admissions guidance logo`}
+                className="topbar-logo"
+                priority
+              />
             </Link>
             <div className="topbar-mobile-toggle">
               <MobileMenuButton isOpen={isOpen} onClick={() => setIsOpen((open) => !open)} />

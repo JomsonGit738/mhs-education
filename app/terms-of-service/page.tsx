@@ -1,17 +1,44 @@
+import type { Metadata } from 'next';
+import { JsonLd } from '../../src/components/JsonLd';
 import { PageHero } from "../../src/components/PageHero";
+import { brand } from '../../src/data/content';
 import { images } from "../../src/data/images";
+import { buildBreadcrumbSchema, legalLastUpdated } from '../../src/lib/seo';
+
+export const metadata: Metadata = {
+  title: 'Terms of Service | Website Terms and Conditions',
+  description:
+    'Review the terms and conditions for using the MHS Education website, including enquiries, content use, and general site access.',
+  keywords: [
+    'terms of service',
+    'terms and conditions',
+    'website use',
+    'education consultancy terms',
+    'legal information',
+    'MHS Education terms',
+  ],
+  alternates: {
+    canonical: 'https://www.mhseducation.co.uk/terms-of-service',
+  },
+  openGraph: {
+    title: 'Terms of Service | Website Terms and Conditions',
+    description:
+      'Review the terms and conditions for using the MHS Education website, including enquiries, content use, and general site access.',
+    url: 'https://www.mhseducation.co.uk/terms-of-service',
+  },
+};
 
 const sections = [
   {
     title: "1. Acceptance of Terms",
     content: [
-      "By accessing or using the [Agency Name] website, you agree to be bound by these Terms of Service. If you do not agree, please do not use our website.",
+      `By accessing or using the ${brand.name} website, you agree to be bound by these Terms of Service. If you do not agree, please do not use our website.`,
     ],
   },
   {
     title: "2. About Our Services",
     content: [
-      "[Agency Name] provides education consultancy services to help students explore and apply to universities and educational institutions. Our guidance is informational and advisory in nature. We do not guarantee admission to any institution.",
+      `${brand.name} provides education consultancy services to help students explore and apply to universities and educational institutions. Our guidance is informational and advisory in nature. We do not guarantee admission to any institution.`,
     ],
   },
   {
@@ -35,7 +62,7 @@ const sections = [
   {
     title: "5. Intellectual Property",
     content: [
-      "All content on this website — including text, graphics, logos, and layout — is the property of [Agency Name] and is protected by UK copyright law. You may not reproduce, distribute, or republish any content without our prior written permission.",
+      `All content on this website — including text, graphics, logos, and layout — is the property of ${brand.name} and is protected by UK copyright law. You may not reproduce, distribute, or republish any content without our prior written permission.`,
     ],
   },
   {
@@ -53,7 +80,7 @@ const sections = [
   {
     title: "8. Limitation of Liability",
     content: [
-      "To the fullest extent permitted by UK law, [Agency Name] shall not be liable for any direct, indirect, or consequential loss arising from:",
+      `To the fullest extent permitted by UK law, ${brand.name} shall not be liable for any direct, indirect, or consequential loss arising from:`,
     ],
     bullets: [
       "Your use of, or inability to use, this website",
@@ -82,7 +109,7 @@ const sections = [
   {
     title: "12. Contact Us",
     content: [
-      "If you have any questions about these Terms of Service, please contact us at [Contact Email].",
+      `If you have any questions about these Terms of Service, please contact us at ${brand.email}.`,
     ],
   },
 ];
@@ -90,13 +117,19 @@ const sections = [
 export default function TermsOfServicePage() {
   return (
     <>
+      <JsonLd
+        data={buildBreadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'Terms of Service', path: '/terms-of-service' },
+        ])}
+      />
       <PageHero title="Terms of Service" breadcrumb="Terms of Service" background={images.uk} />
       <section className="ftco-section">
         <div className="container">
           <div className="row justify-content-start">
-            <div className="col-lg-8 ftco-animate">
+            <article className="col-lg-8 ftco-animate">
               <h2 className="mb-3">Terms of Service</h2>
-              <p className="text-muted mb-5">Last updated: [Date]</p>
+              <p className="text-muted mb-5">Last updated: {legalLastUpdated}</p>
 
               {sections.map((section) => (
                 <section key={section.title} className="mb-5">
@@ -115,7 +148,7 @@ export default function TermsOfServicePage() {
                   ) : null}
                 </section>
               ))}
-            </div>
+            </article>
           </div>
         </div>
       </section>

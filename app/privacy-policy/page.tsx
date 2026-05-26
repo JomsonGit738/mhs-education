@@ -1,13 +1,40 @@
+import type { Metadata } from 'next';
+import { JsonLd } from '../../src/components/JsonLd';
 import { PageHero } from "../../src/components/PageHero";
+import { brand } from '../../src/data/content';
 import { images } from "../../src/data/images";
+import { buildBreadcrumbSchema, legalLastUpdated } from '../../src/lib/seo';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy | How MHS Education Uses Your Data',
+  description:
+    'Read how MHS Education collects, uses, stores, and protects personal data when you contact us or use this website.',
+  keywords: [
+    'privacy policy',
+    'personal data',
+    'data protection',
+    'website privacy',
+    'student enquiry data',
+    'MHS Education privacy',
+  ],
+  alternates: {
+    canonical: 'https://www.mhseducation.co.uk/privacy-policy',
+  },
+  openGraph: {
+    title: 'Privacy Policy | How MHS Education Uses Your Data',
+    description:
+      'Read how MHS Education collects, uses, stores, and protects personal data when you contact us or use this website.',
+    url: 'https://www.mhseducation.co.uk/privacy-policy',
+  },
+};
 
 const sections = [
   {
     title: "1. Who We Are",
     content: [
-      `[Agency Name] ("we", "us", "our") is a UK-based education consultancy providing guidance and support to students applying to universities and educational institutions.`,
-      "Contact email: [Contact Email]",
-      "ICO Registration Number: [ICO Registration Number]",
+      `${brand.name} ("we", "us", "our") is a UK-based education consultancy providing guidance and support to students applying to universities and educational institutions.`,
+      `Contact email: ${brand.email}`,
+      "ICO Registration Number: Available on request",
       "We are registered as a data controller with the Information Commissioner's Office (ICO).",
     ],
   },
@@ -37,7 +64,7 @@ const sections = [
       "Contact you by email or phone regarding your enquiry or application",
     ],
     trailing: [
-      "Our lawful basis for processing is consent. You provide this by ticking the agreement checkbox on our enquiry forms. You may withdraw consent at any time by emailing us at [Contact Email].",
+      `Our lawful basis for processing is consent. You provide this by ticking the agreement checkbox on our enquiry forms. You may withdraw consent at any time by emailing us at ${brand.email}.`,
     ],
   },
   {
@@ -78,7 +105,7 @@ const sections = [
       "Right to data portability — request your data in a portable format",
     ],
     trailing: [
-      "To exercise any of these rights, email us at [Contact Email]. We will respond within 30 days.",
+      `To exercise any of these rights, email us at ${brand.email}. We will respond within 30 days.`,
     ],
   },
   {
@@ -105,7 +132,7 @@ const sections = [
       "If you are unhappy with how we have handled your data, you can contact the Information Commissioner's Office (ICO):",
       "Website: https://ico.org.uk",
       "Phone: 0303 123 1113",
-      "We would always appreciate the chance to resolve any concerns directly before you contact the ICO — please reach out to us first at [Contact Email].",
+      `We would always appreciate the chance to resolve any concerns directly before you contact the ICO — please reach out to us first at ${brand.email}.`,
     ],
   },
 ];
@@ -113,13 +140,19 @@ const sections = [
 export default function PrivacyPolicyPage() {
   return (
     <>
+      <JsonLd
+        data={buildBreadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'Privacy Policy', path: '/privacy-policy' },
+        ])}
+      />
       <PageHero title="Privacy Policy" breadcrumb="Privacy Policy" background={images.uk} />
       <section className="ftco-section">
         <div className="container">
           <div className="row justify-content-start">
-            <div className="col-lg-8 ftco-animate">
+            <article className="col-lg-8 ftco-animate">
               <h2 className="mb-3">Privacy Policy</h2>
-              <p className="text-muted mb-5">Last updated: [Date]</p>
+              <p className="text-muted mb-5">Last updated: {legalLastUpdated}</p>
 
               {sections.map((section) => (
                 <section key={section.title} className="mb-5">
@@ -153,7 +186,7 @@ export default function PrivacyPolicyPage() {
                   ))}
                 </section>
               ))}
-            </div>
+            </article>
           </div>
         </div>
       </section>

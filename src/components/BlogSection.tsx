@@ -28,7 +28,7 @@ const BlogCard = ({ post }: { post: BlogPost }) => {
           <p className="mb-3">{post.excerpt}</p>
           <div className="d-flex align-items-center mt-auto">
             <p className="mb-0">
-              <Link href={`/blog/${post.id}`} className="btn btn-primary">
+              <Link href={`/blog/${post.id}`} className="btn btn-primary" aria-label={`Read ${post.title}`}>
                 <span>Read More</span>
               </Link>
             </p>

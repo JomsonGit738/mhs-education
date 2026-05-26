@@ -519,7 +519,7 @@ export const contactCards: ContactCard[] = [
     content: "info@mhseducation.co.uk",
     href: "mailto:info@mhseducation.co.uk",
   },
-  { title: "Website", content: "mhsglobalassociates.com", href: "https://www.mhsglobalassociates.com" },
+  { title: "Website", content: "mhseducation.co.uk", href: "https://www.mhseducation.co.uk" },
 ];
 
 export const quoteCourseOptions = [
