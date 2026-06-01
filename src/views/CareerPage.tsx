@@ -1,4 +1,5 @@
 import { PageHero } from '../components/PageHero';
+import { ContactForm } from '../components/ContactForm';
 import { images } from '../data/images';
 
 const careerTracks = [
@@ -18,9 +19,9 @@ const careerTracks = [
     description:
       'Partner with MHS Education to support foundation, undergraduate, postgraduate, diploma, and top-up applicants with clearer processes, training support, and shared momentum.',
     highlights: ['Structured onboarding support', 'Process and marketing guidance', 'Long-term partnership potential'],
-    ctaLabel: 'Partner With Us',
-    ctaHref: '/contact',
-    ctaClassName: 'btn btn-outline-primary',
+    ctaLabel: 'Apply as a Local Agent',
+    ctaHref: '#local-agent-form',
+    ctaClassName: 'btn btn-outline-primary career-modern-card__action career-modern-card__action--secondary',
   },
 ] as const;
 
@@ -61,5 +62,8 @@ export const CareerPage = () => (
         </div>
       </div>
     </section>
+    <div id="local-agent-form">
+      <ContactForm availableTabs={["agent"]} defaultTab="agent" />
+    </div>
   </>
 );

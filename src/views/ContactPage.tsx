@@ -13,7 +13,7 @@ const contactCardMeta: Record<string, { icon: string; eyebrow: string }> = {
 export const ContactPage = () => (
   <>
     <PageHero title={pageHero.contact.title} breadcrumb={pageHero.contact.breadcrumb} background={images.uk} />
-    <ContactForm />
+    <ContactForm availableTabs={["student"]} defaultTab="student" />
     <section className="contact-cards">
       <div className="container">
         <div className="contact-cards__header text-center">

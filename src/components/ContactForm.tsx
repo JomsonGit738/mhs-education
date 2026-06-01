@@ -154,8 +154,22 @@ const inquiryPanels: InquiryPanel[] = [
   },
 ];
 
-export const ContactForm = () => {
-  const [activeTab, setActiveTab] = useState<InquiryTab>("student");
+type ContactFormProps = {
+  availableTabs?: InquiryTab[];
+  defaultTab?: InquiryTab;
+};
+
+export const ContactForm = ({
+  availableTabs = ["student", "agent"],
+  defaultTab = "student",
+}: ContactFormProps) => {
+  const panels = useMemo(
+    () => inquiryPanels.filter((panel) => availableTabs.includes(panel.id)),
+    [availableTabs],
+  );
+  const fallbackTab = panels[0]?.id ?? "student";
+  const resolvedDefaultTab = panels.some((panel) => panel.id === defaultTab) ? defaultTab : fallbackTab;
+  const [activeTab, setActiveTab] = useState<InquiryTab>(resolvedDefaultTab);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<FieldErrorMap>({});
   const [consentCheckedByTab, setConsentCheckedByTab] = useState<Record<InquiryTab, boolean>>({
@@ -164,9 +178,10 @@ export const ContactForm = () => {
   });
   const { showToast } = useToast();
   const activePanel = useMemo(
-    () => inquiryPanels.find((panel) => panel.id === activeTab) ?? inquiryPanels[0],
-    [activeTab],
+    () => panels.find((panel) => panel.id === activeTab) ?? panels[0] ?? inquiryPanels[0],
+    [activeTab, panels],
   );
+  const showTabs = panels.length > 1;
   const consentChecked = consentCheckedByTab[activeTab];
 
   const validateField = (name: string, value: FormDataEntryValue | null, label: string) => {
@@ -262,20 +277,38 @@ export const ContactForm = () => {
       <div className="container">
         <div className="contact-modern__header text-center">
           <span className="contact-modern__eyebrow">Send Us a Message</span>
-          <h2>Choose the enquiry form that matches how you want to work with us</h2>
+          <h2>
+            {showTabs
+              ? "Choose the enquiry form that matches how you want to work with us"
+              : activePanel.id === "student"
+                ? "Request direct student support from the MHS Education team"
+                : "Apply to become a local agent through our career opportunities page"}
+          </h2>
           <p>
-            Students can request admissions support, and prospective partners can apply to join MHS Education as
-            a local agent.
+            {showTabs
+              ? "Students can request admissions support, and prospective partners can apply to join MHS Education as a local agent."
+              : activePanel.id === "student"
+                ? "Contact us for admissions guidance, intake planning, and student-focused support."
+                : "Share your organisation, market, and partnership background so our team can review your fit."}
           </p>
         </div>
         <div className="contact-modern__grid contact-modern__grid--single">
           <div className="contact-card contact-form-card">
             <div className="contact-form-stage">
-              <span className="contact-form-stage__label">Select enquiry type</span>
-              <p>Choose the route that fits your relationship with MHS Education.</p>
+              <span className="contact-form-stage__label">
+                {showTabs ? "Select enquiry type" : activePanel.id === "student" ? "Student support enquiry" : "Local agent application"}
+              </span>
+              <p>
+                {showTabs
+                  ? "Choose the route that fits your relationship with MHS Education."
+                  : activePanel.id === "student"
+                    ? "Complete the form below and our student support team will respond with the right next steps."
+                    : "Complete the form below so we can assess your partnership application properly."}
+              </p>
             </div>
+            {showTabs ? (
             <div className="contact-form-switch" role="tablist" aria-label="Contact form options">
-              {inquiryPanels.map((panel) => {
+              {panels.map((panel) => {
                 const isActive = activeTab === panel.id;
 
                 return (
@@ -295,6 +328,7 @@ export const ContactForm = () => {
                 );
               })}
             </div>
+            ) : null}
 
             <div role="tabpanel" id={`contact-panel-${activePanel.id}`} aria-labelledby={`contact-tab-${activePanel.id}`}>
               <div className="contact-form-shell">

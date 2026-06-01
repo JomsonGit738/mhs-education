@@ -1,31 +1,62 @@
+import type { ReactNode } from 'react';
 import { services } from '../data/content';
+
+const serviceDescriptionContent: Record<string, ReactNode> = {
+  'Academic Guidance': (
+    <>
+      <strong>Course advice</strong>
+      {' '}and <strong>pathway mapping</strong> so your UK plan fits your goals.
+    </>
+  ),
+  'Application Support': (
+    <>
+      <strong>Hands-on help</strong> with <strong>documents</strong>, <strong>timelines</strong>, and submissions for every intake.
+    </>
+  ),
+  'Interview & Test Preparation': (
+    <>
+      <strong>Mock interviews</strong> and <strong>test readiness</strong> to present your best profile.
+    </>
+  ),
+  'Student Finance Information': (
+    <>
+      Guidance on <strong>fees</strong>, <strong>funding options</strong>, and budgeting for UK study.
+    </>
+  ),
+  'CV/PS Guidance': (
+    <>
+      <strong>Targeted feedback</strong> on <strong>CVs</strong> and <strong>personal statements</strong> to strengthen offers.
+    </>
+  ),
+};
 
 export const Services = () => (
   <section className="ftco-section services-modern">
     <div className="container">
       <div className="services-modern__layout">
         <div className="services-modern__content" data-aos="fade-up">
+          <span className="services-modern__eyebrow">Student Support</span>
           <h2 className="services-modern__title">Our Services</h2>
           <p className="services-modern__intro text-muted">
-            From course selection and application support to interview preparation, student finance guidance, and CV
-            or personal statement feedback, we help students stay clear, confident, and organised at every stage of
-            the UK university process.
+            Clear support for the key parts of the UK university process, from choosing the right course to preparing
+            stronger applications.
           </p>
         </div>
-        <div className="services-grid">
-          {services.map((service, index) => (
-            <article
-              key={service.title}
-              className={`service-card service-card-gradient service-card--${service.tone} ftco-animate`}
-              data-aos="fade-up"
-              data-aos-delay={index * 70}
-            >
-              <div className="service-body">
-                <h3 className="service-title">{service.title}</h3>
-                <p className="service-copy">{service.description}</p>
+        <div className="services-agenda" data-aos="fade-up" data-aos-delay="80">
+          <ul className="services-agenda__items" aria-label="MHS Education services">
+          {services.map((service) => (
+            <li className="services-agenda__item" key={service.title}>
+              <div className="services-agenda__title-wrap">
+                <h3 className="services-agenda__title">{service.title}</h3>
               </div>
-            </article>
+              <div className="services-agenda__body">
+                <p className="services-agenda__copy">
+                  {serviceDescriptionContent[service.title] ?? service.description}
+                </p>
+              </div>
+            </li>
           ))}
+          </ul>
         </div>
       </div>
     </div>
