@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { services } from '../data/content';
+import { getServiceSectionId } from '../lib/sectionIds';
 
 const serviceDescriptionContent: Record<string, ReactNode> = {
   'Academic Guidance': (
@@ -45,7 +46,7 @@ export const Services = () => (
         <div className="services-agenda" data-aos="fade-up" data-aos-delay="80">
           <ul className="services-agenda__items" aria-label="MHS Education services">
           {services.map((service) => (
-            <li className="services-agenda__item" key={service.title}>
+            <li id={getServiceSectionId(service.title)} className="services-agenda__item" key={service.title}>
               <div className="services-agenda__title-wrap">
                 <h3 className="services-agenda__title">{service.title}</h3>
               </div>

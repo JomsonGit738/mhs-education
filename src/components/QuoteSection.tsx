@@ -4,7 +4,7 @@ import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { brand, quoteCourseOptions } from "../data/content";
 import { FieldErrorMap, validatePhone, validateRequired } from "../lib/formValidation";
-import { submitToGoogleScript } from "../lib/formSubmission";
+import { submitToWeb3Forms, WEB3FORMS_ACCESS_KEYS } from "../lib/formSubmission";
 import { useToast } from "./ToastProvider";
 
 const supportNeedPlaceholder = "";
@@ -81,7 +81,7 @@ export const QuoteSection = () => {
     setIsSubmitting(true);
 
     try {
-      await submitToGoogleScript(formData);
+      await submitToWeb3Forms(formData, WEB3FORMS_ACCESS_KEYS.homeGuidance);
       form.reset();
       setConsentChecked(false);
       showToast("Form sent successfully. We will reply with next steps soon.", "success");

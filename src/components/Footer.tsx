@@ -2,15 +2,18 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { brand, navLinks, socialLinks } from '../data/content';
 import { imageAssets } from '../data/images';
-import { FooterWaveCanvas } from './FooterWaveCanvas';
+import { siteConfig } from '../lib/seo';
 import { SocialIcon } from './SocialIcon';
 
 const primaryLinks = navLinks.slice(0, 3);
-const secondaryLinks = navLinks.slice(3);
+const secondaryLinks = [
+  ...navLinks.slice(3),
+  { label: 'Privacy Policy', path: '/privacy-policy' },
+  { label: 'Terms of Service', path: '/terms-of-service' },
+];
 
 export const Footer = () => (
   <footer className="footer-modern">
-    <FooterWaveCanvas />
     <div className="container">
       <div className="footer-lead">
         <div className="footer-lead__copy">
@@ -89,30 +92,19 @@ export const Footer = () => (
           </ul>
         </div>
 
-        <div className="footer-card footer-card--nav">
-          <h5>Legal</h5>
-          <ul className="footer-links">
-            <li>
-              <Link href="/privacy-policy">Privacy Policy</Link>
-            </li>
-            <li>
-              <Link href="/terms-of-service">Terms of Service</Link>
-            </li>
-          </ul>
-        </div>
-
         <div className="footer-card footer-card--connect">
           <h5>Connect</h5>
           <p className="footer-connect-copy">Follow us for intakes, scholarships, and student updates.</p>
           <div className="social-grid">
-            {socialLinks.map((link) => (
+            {socialLinks.map((link, index) => (
               <a
                 key={link.icon}
                 href={link.href}
-                className="social-tile"
+                className="topbar-social-link"
                 aria-label={link.label ?? link.icon}
                 target="_blank"
                 rel="noopener noreferrer"
+                style={{ animationDelay: `${index * 90}ms` }}
               >
                 <SocialIcon link={link} />
               </a>
@@ -122,7 +114,7 @@ export const Footer = () => (
       </div>
       <div className="footer-bottom">
         <span>&copy; {new Date().getFullYear()} MHS Education. All rights reserved.</span>
-        <span>Admissions guidance | Student support | Student success</span>
+        <span>ICO registration reference: {siteConfig.icoRegistrationReference}</span>
       </div>
     </div>
   </footer>

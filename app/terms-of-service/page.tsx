@@ -3,7 +3,7 @@ import { JsonLd } from '../../src/components/JsonLd';
 import { PageHero } from "../../src/components/PageHero";
 import { brand } from '../../src/data/content';
 import { images } from "../../src/data/images";
-import { buildBreadcrumbSchema, legalLastUpdated } from '../../src/lib/seo';
+import { buildBreadcrumbSchema, legalLastUpdated, siteConfig } from '../../src/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Terms of Service | Website Terms and Conditions',
@@ -110,6 +110,7 @@ const sections = [
     title: "12. Contact Us",
     content: [
       `If you have any questions about these Terms of Service, please contact us at ${brand.email}.`,
+      `ICO data protection registration reference: ${siteConfig.icoRegistrationReference}.`,
     ],
   },
 ];

@@ -3,7 +3,7 @@ import { JsonLd } from '../../src/components/JsonLd';
 import { PageHero } from "../../src/components/PageHero";
 import { brand } from '../../src/data/content';
 import { images } from "../../src/data/images";
-import { buildBreadcrumbSchema, legalLastUpdated } from '../../src/lib/seo';
+import { buildBreadcrumbSchema, legalLastUpdated, siteConfig } from '../../src/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | How MHS Education Uses Your Data',
@@ -34,8 +34,8 @@ const sections = [
     content: [
       `${brand.name} ("we", "us", "our") is a UK-based education consultancy providing guidance and support to students applying to universities and educational institutions.`,
       `Contact email: ${brand.email}`,
-      "ICO Registration Number: Available on request",
-      "We are registered as a data controller with the Information Commissioner's Office (ICO).",
+      `ICO data protection registration reference: ${siteConfig.icoRegistrationReference}`,
+      "We are registered as a data controller with the Information Commissioner's Office (ICO). The registration reference is public and can be checked on the ICO's register of fee payers.",
     ],
   },
   {

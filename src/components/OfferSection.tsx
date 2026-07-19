@@ -1,4 +1,5 @@
 import { offerings } from '../data/content';
+import { getOfferingSectionId } from '../lib/sectionIds';
 
 export const OfferSection = () => (
   <section className="ftco-section offer-modern-section">
@@ -17,7 +18,13 @@ export const OfferSection = () => (
       </div>
       <div className="offer-modern-grid">
         {offerings.map((item, index) => (
-          <article className="offer-modern-card" data-aos="fade-up" data-aos-delay={index * 40} key={item.title}>
+          <article
+            id={getOfferingSectionId(item.title)}
+            className="offer-modern-card"
+            data-aos="fade-up"
+            data-aos-delay={index * 40}
+            key={item.title}
+          >
             <div className="offer-modern-card__icon" aria-hidden="true">
               <span className={item.icon} />
             </div>

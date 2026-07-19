@@ -14,6 +14,7 @@ export const siteConfig = {
   }>,
   contactEmail: 'info@mhseducation.co.uk',
   contactPhone: '07521772131',
+  icoRegistrationReference: 'ZC049250',
   address: {
     streetAddress: 'Suite F5, New Road Business Centre, 109 New Road',
     addressLocality: 'Whitechapel',
@@ -24,7 +25,7 @@ export const siteConfig = {
   defaultOgImage: '/mhseducation.jpeg',
 } as const;
 
-export const legalLastUpdated = 'May 27, 2026';
+export const legalLastUpdated = 'July 19, 2026';
 
 export const absoluteUrl = (path = '/') => new URL(path, siteConfig.domain).toString();
 
@@ -118,6 +119,11 @@ export const buildEducationalOrganizationSchema = (): WithContext<Thing> =>
   description: siteConfig.description,
   email: siteConfig.contactEmail,
   telephone: siteConfig.contactPhone,
+  identifier: {
+    '@type': 'PropertyValue',
+    propertyID: 'ICO registration reference',
+    value: siteConfig.icoRegistrationReference,
+  },
   address: {
     '@type': 'PostalAddress',
     ...siteConfig.address,

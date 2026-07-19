@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ChangeEvent, FormEvent, useMemo, useState } from "react";
 import { brand } from "../data/content";
 import { FieldErrorMap, validateEmail, validatePhone, validateRequired } from "../lib/formValidation";
-import { submitToGoogleScript } from "../lib/formSubmission";
+import { submitToWeb3Forms, WEB3FORMS_ACCESS_KEYS } from "../lib/formSubmission";
 import { useToast } from "./ToastProvider";
 
 type InquiryTab = "student" | "agent";
@@ -150,7 +150,7 @@ const inquiryPanels: InquiryPanel[] = [
     textareaName: "message",
     submitLabel: "Submit Partnership Enquiry",
     footerNote: "We review each request manually and only contact organisations that align with our partnership criteria.",
-    context: "Contact page local agent partnership enquiry",
+    context: "Career page local agent application",
   },
 ];
 
@@ -254,7 +254,7 @@ export const ContactForm = ({
     setIsSubmitting(true);
 
     try {
-      await submitToGoogleScript(formData);
+      await submitToWeb3Forms(formData, WEB3FORMS_ACCESS_KEYS.enquiries);
       form.reset();
       setConsentCheckedByTab((current) => ({
         ...current,

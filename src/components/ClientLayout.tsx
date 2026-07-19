@@ -25,8 +25,33 @@ export const ClientLayout = ({ children }: { children: ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    AOS.refresh();
+    const scrollToLocation = () => {
+      const hash = window.location.hash.slice(1);
+
+      if (hash) {
+        let targetId = hash;
+
+        try {
+          targetId = decodeURIComponent(hash);
+        } catch {
+          // Use the original hash when it is not valid URI-encoded text.
+        }
+
+        window.requestAnimationFrame(() => {
+          document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          AOS.refresh();
+        });
+        return;
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      AOS.refresh();
+    };
+
+    scrollToLocation();
+    window.addEventListener('hashchange', scrollToLocation);
+
+    return () => window.removeEventListener('hashchange', scrollToLocation);
   }, [pathname]);
 
   return (

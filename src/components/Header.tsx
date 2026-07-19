@@ -1,11 +1,12 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { brand, navLinks, socialLinks } from '../data/content';
 import { imageAssets } from '../data/images';
+import { SiteSearchModal } from './SiteSearchModal';
 import { SocialIcon } from './SocialIcon';
 
 const mobileNavIcons: Record<string, string> = {
@@ -50,10 +51,12 @@ const MobileMenuButton = ({
 const MobileNavList = ({
   pathname,
   onNavigate,
+  onSearch,
   variant = 'scroll',
 }: {
   pathname: string;
   onNavigate: () => void;
+  onSearch: () => void;
   variant?: 'scroll' | 'topbar';
 }) => (
   <ul className={`navbar-nav mr-auto segmented-nav segmented-nav--mobile segmented-nav--mobile-${variant}`}>
@@ -75,15 +78,33 @@ const MobileNavList = ({
         </li>
       );
     })}
+    <li className="nav-item">
+      <button
+        type="button"
+        className="nav-link"
+        aria-haspopup="dialog"
+        onClick={() => {
+          onNavigate();
+          onSearch();
+        }}
+      >
+        <span className="segmented-nav__icon" aria-hidden="true">
+          <span className={mobileNavIcons.search} />
+        </span>
+        <span className="segmented-nav__text">Search</span>
+      </button>
+    </li>
   </ul>
 );
 
 const ScrollAwareNavbar = ({
   isOpen,
   setIsOpen,
+  onSearch,
 }: {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  onSearch: () => void;
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isAwake, setIsAwake] = useState(false);
@@ -131,7 +152,7 @@ const ScrollAwareNavbar = ({
         </div>
         <MobileMenuButton isOpen={isOpen} onClick={() => setIsOpen((open) => !open)} />
         <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`} id="ftco-nav">
-          <MobileNavList pathname={pathname} onNavigate={() => setIsOpen(false)} variant="scroll" />
+          <MobileNavList pathname={pathname} onNavigate={() => setIsOpen(false)} onSearch={onSearch} variant="scroll" />
         </div>
       </div>
     </nav>
@@ -173,7 +194,13 @@ const ContactList = ({ className = 'topbar-contact-list' }: { className?: string
   </div>
 );
 
-const TopBarNav = () => {
+const TopBarNav = ({
+  isSearchOpen,
+  onSearch,
+}: {
+  isSearchOpen: boolean;
+  onSearch: () => void;
+}) => {
   const pathname = usePathname() || '/';
 
   return (
@@ -194,9 +221,16 @@ const TopBarNav = () => {
           );
         })}
       </ul>
-      <Link href="/courses" className="topbar-search-button" aria-label="Search courses">
+      <button
+        type="button"
+        className="topbar-search-button"
+        aria-label="Search the website"
+        aria-haspopup="dialog"
+        aria-expanded={isSearchOpen}
+        onClick={onSearch}
+      >
         <span className="ion-ios-search" aria-hidden="true" />
-      </Link>
+      </button>
       <SocialLinksList className="topbar-socials topbar-socials--topnav d-flex align-items-center" />
     </nav>
   );
@@ -205,9 +239,13 @@ const TopBarNav = () => {
 const TopBar = ({
   isOpen,
   setIsOpen,
+  isSearchOpen,
+  onSearch,
 }: {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isSearchOpen: boolean;
+  onSearch: () => void;
 }) => {
   const pathname = usePathname() || '/';
 
@@ -229,11 +267,11 @@ const TopBar = ({
             </div>
           </div>
           <div className="col-lg-9 d-block topbar-content-col">
-            <TopBarNav />
+            <TopBarNav isSearchOpen={isSearchOpen} onSearch={onSearch} />
           </div>
         </div>
         <div className={`topbar-mobile-nav ${isOpen ? 'show' : ''}`}>
-          <MobileNavList pathname={pathname} onNavigate={() => setIsOpen(false)} variant="topbar" />
+          <MobileNavList pathname={pathname} onNavigate={() => setIsOpen(false)} onSearch={onSearch} variant="topbar" />
         </div>
       </div>
     </div>
@@ -242,11 +280,35 @@ const TopBar = ({
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const searchTriggerRef = useRef<HTMLElement | null>(null);
+
+  const openSearch = useCallback(() => {
+    searchTriggerRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    setIsSearchOpen(true);
+  }, []);
+  const closeSearch = useCallback(() => {
+    setIsSearchOpen(false);
+    window.setTimeout(() => searchTriggerRef.current?.focus({ preventScroll: true }), 0);
+  }, []);
+  const dismissSearchForNavigation = useCallback(() => setIsSearchOpen(false), []);
 
   return (
-    <header>
-      <TopBar isOpen={isOpen} setIsOpen={setIsOpen} />
-      <ScrollAwareNavbar isOpen={isOpen} setIsOpen={setIsOpen} />
-    </header>
+    <>
+      <header>
+        <TopBar
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          isSearchOpen={isSearchOpen}
+          onSearch={openSearch}
+        />
+        <ScrollAwareNavbar isOpen={isOpen} setIsOpen={setIsOpen} onSearch={openSearch} />
+      </header>
+      <SiteSearchModal
+        isOpen={isSearchOpen}
+        onClose={closeSearch}
+        onNavigate={dismissSearchForNavigation}
+      />
+    </>
   );
 };
