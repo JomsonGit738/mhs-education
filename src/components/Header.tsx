@@ -1,23 +1,14 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { brand, navLinks, socialLinks } from '../data/content';
 import { imageAssets } from '../data/images';
+import { MobileNavigationDrawer } from './MobileNavigationDrawer';
 import { SiteSearchModal } from './SiteSearchModal';
 import { SocialIcon } from './SocialIcon';
-
-const mobileNavIcons: Record<string, string> = {
-  '/': 'icon-home',
-  '/courses': 'icon-book',
-  '/services': 'icon-briefcase',
-  '/career': 'icon-suitcase',
-  '/about': 'icon-info',
-  '/contact': 'icon-paper-plane',
-  search: 'ion-ios-search',
-};
 
 const MobileMenuButton = ({
   isOpen,
@@ -29,7 +20,7 @@ const MobileMenuButton = ({
   <button
     className="navbar-toggler"
     type="button"
-    aria-controls="ftco-nav"
+    aria-controls="mobile-navigation-drawer"
     aria-expanded={isOpen}
     aria-label="Toggle navigation"
     onClick={onClick}
@@ -48,72 +39,15 @@ const MobileMenuButton = ({
   </button>
 );
 
-const MobileNavList = ({
-  pathname,
-  onNavigate,
-  onSearch,
-  variant = 'scroll',
-}: {
-  pathname: string;
-  onNavigate: () => void;
-  onSearch: () => void;
-  variant?: 'scroll' | 'topbar';
-}) => (
-  <ul className={`navbar-nav mr-auto segmented-nav segmented-nav--mobile segmented-nav--mobile-${variant}`}>
-    {navLinks.map((link) => {
-      const active = link.path === '/' ? pathname === '/' : pathname.startsWith(link.path);
-      return (
-        <li key={link.path} className={`nav-item ${active ? 'active' : ''}`}>
-          <Link
-            href={link.path}
-            className={`nav-link ${link.path === '/' ? 'pl-0' : ''} ${active ? 'active' : ''}`}
-            aria-current={active ? 'page' : undefined}
-            onClick={onNavigate}
-          >
-            <span className="segmented-nav__icon" aria-hidden="true">
-              <span className={mobileNavIcons[link.path]} />
-            </span>
-            <span className="segmented-nav__text">{link.label}</span>
-          </Link>
-        </li>
-      );
-    })}
-    <li className="nav-item">
-      <button
-        type="button"
-        className="nav-link"
-        aria-haspopup="dialog"
-        onClick={() => {
-          onNavigate();
-          onSearch();
-        }}
-      >
-        <span className="segmented-nav__icon" aria-hidden="true">
-          <span className={mobileNavIcons.search} />
-        </span>
-        <span className="segmented-nav__text">Search</span>
-      </button>
-    </li>
-  </ul>
-);
-
 const ScrollAwareNavbar = ({
   isOpen,
-  setIsOpen,
-  onSearch,
+  onMenuToggle,
 }: {
   isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  onSearch: () => void;
+  onMenuToggle: () => void;
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isAwake, setIsAwake] = useState(false);
-  const pathname = usePathname() || '/';
-
-  const isActive = useMemo(
-    () => (path: string) => (path === '/' ? pathname === '/' : pathname.startsWith(path)),
-    [pathname],
-  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -150,10 +84,7 @@ const ScrollAwareNavbar = ({
           <ContactList />
           <SocialLinksList className="navbar-shell__socials d-flex align-items-center" />
         </div>
-        <MobileMenuButton isOpen={isOpen} onClick={() => setIsOpen((open) => !open)} />
-        <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`} id="ftco-nav">
-          <MobileNavList pathname={pathname} onNavigate={() => setIsOpen(false)} onSearch={onSearch} variant="scroll" />
-        </div>
+        <MobileMenuButton isOpen={isOpen} onClick={onMenuToggle} />
       </div>
     </nav>
   );
@@ -238,17 +169,15 @@ const TopBarNav = ({
 
 const TopBar = ({
   isOpen,
-  setIsOpen,
+  onMenuToggle,
   isSearchOpen,
   onSearch,
 }: {
   isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  onMenuToggle: () => void;
   isSearchOpen: boolean;
   onSearch: () => void;
 }) => {
-  const pathname = usePathname() || '/';
-
   return (
     <div className="bg-top navbar-light">
       <div className="container topbar-container">
@@ -263,15 +192,12 @@ const TopBar = ({
               />
             </Link>
             <div className="topbar-mobile-toggle">
-              <MobileMenuButton isOpen={isOpen} onClick={() => setIsOpen((open) => !open)} />
+              <MobileMenuButton isOpen={isOpen} onClick={onMenuToggle} />
             </div>
           </div>
           <div className="col-lg-9 d-block topbar-content-col">
             <TopBarNav isSearchOpen={isSearchOpen} onSearch={onSearch} />
           </div>
-        </div>
-        <div className={`topbar-mobile-nav ${isOpen ? 'show' : ''}`}>
-          <MobileNavList pathname={pathname} onNavigate={() => setIsOpen(false)} onSearch={onSearch} variant="topbar" />
         </div>
       </div>
     </div>
@@ -282,6 +208,7 @@ export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const searchTriggerRef = useRef<HTMLElement | null>(null);
+  const mobileMenuTriggerRef = useRef<HTMLElement | null>(null);
 
   const openSearch = useCallback(() => {
     searchTriggerRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
@@ -292,18 +219,37 @@ export const Header = () => {
     window.setTimeout(() => searchTriggerRef.current?.focus({ preventScroll: true }), 0);
   }, []);
   const dismissSearchForNavigation = useCallback(() => setIsSearchOpen(false), []);
+  const closeMobileMenu = useCallback(() => {
+    setIsOpen(false);
+    window.setTimeout(() => mobileMenuTriggerRef.current?.focus({ preventScroll: true }), 350);
+  }, []);
+  const dismissMobileMenuForNavigation = useCallback(() => setIsOpen(false), []);
+  const toggleMobileMenu = useCallback(() => {
+    if (isOpen) {
+      closeMobileMenu();
+      return;
+    }
+
+    mobileMenuTriggerRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    setIsOpen(true);
+  }, [closeMobileMenu, isOpen]);
 
   return (
     <>
       <header>
         <TopBar
           isOpen={isOpen}
-          setIsOpen={setIsOpen}
+          onMenuToggle={toggleMobileMenu}
           isSearchOpen={isSearchOpen}
           onSearch={openSearch}
         />
-        <ScrollAwareNavbar isOpen={isOpen} setIsOpen={setIsOpen} onSearch={openSearch} />
+        <ScrollAwareNavbar isOpen={isOpen} onMenuToggle={toggleMobileMenu} />
       </header>
+      <MobileNavigationDrawer
+        isOpen={isOpen}
+        onClose={closeMobileMenu}
+        onNavigate={dismissMobileMenuForNavigation}
+      />
       <SiteSearchModal
         isOpen={isSearchOpen}
         onClose={closeSearch}

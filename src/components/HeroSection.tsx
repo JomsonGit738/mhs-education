@@ -111,19 +111,6 @@ const buildImageVariants = (shouldReduceMotion: boolean) => ({
   },
 });
 
-const buildFloatAnimation = (shouldReduceMotion: boolean, delay = 0) =>
-  shouldReduceMotion
-    ? undefined
-    : {
-        y: [0, -10, 0],
-        transition: {
-          duration: 3.4,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: "easeInOut" as const,
-          delay,
-        },
-      };
-
 const renderAction = (action: ActionProps, index: number) => {
   const actionClassName = [
     "hero-section__action",
@@ -207,20 +194,6 @@ export const HeroSection = ({
           </div>
 
           <motion.div className="hero-section__media" variants={containerVariants}>
-            {/* These accents add depth to the collage without changing layout metrics. */}
-            <motion.span
-              className="hero-section__shape hero-section__shape--amber"
-              animate={buildFloatAnimation(shouldReduceMotion, 0)}
-            />
-            <motion.span
-              className="hero-section__shape hero-section__shape--blue"
-              animate={buildFloatAnimation(shouldReduceMotion, 0.35)}
-            />
-            <motion.span
-              className="hero-section__shape hero-section__shape--ink"
-              animate={buildFloatAnimation(shouldReduceMotion, 0.7)}
-            />
-
             {images.slice(0, 3).map((image, index) => (
               <motion.figure
                 key={image.alt}
