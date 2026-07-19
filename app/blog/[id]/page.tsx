@@ -7,7 +7,7 @@ import { buildBreadcrumbSchema } from '../../../src/lib/seo';
 import { BlogSinglePage } from '../../../src/views/BlogSinglePage';
 
 type PageProps = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 export const revalidate = 86400;
@@ -17,24 +17,26 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { id } = await params;
   // TODO: replace with actual data fetch from your CMS or data source
-  const title = params.id.replace(/-/g, ' ');
+  const title = id.replace(/-/g, ' ');
   return {
     title,
     description: `Read this article on MHS Education — ${title}.`,
     alternates: {
-      canonical: `https://www.mhseducation.co.uk/blog/${params.id}`,
+      canonical: `https://www.mhseducation.co.uk/blog/${id}`,
     },
     openGraph: {
       title,
       description: `Read this article on MHS Education — ${title}.`,
-      url: `https://www.mhseducation.co.uk/blog/${params.id}`,
+      url: `https://www.mhseducation.co.uk/blog/${id}`,
     },
   };
 }
 
-export default function Page({ params }: PageProps) {
-  const post: BlogPost | undefined = blogs.find((item) => item.id === params.id);
+export default async function Page({ params }: PageProps) {
+  const { id } = await params;
+  const post: BlogPost | undefined = blogs.find((item) => item.id === id);
   if (!post) {
     notFound();
   }
@@ -46,8 +48,8 @@ export default function Page({ params }: PageProps) {
           '@context': 'https://schema.org',
           '@type': 'BlogPosting',
           // TODO: replace headline with actual post title from data source
-          headline: params.id.replace(/-/g, ' '),
-          url: `https://www.mhseducation.co.uk/blog/${params.id}`,
+          headline: id.replace(/-/g, ' '),
+          url: `https://www.mhseducation.co.uk/blog/${id}`,
           publisher: {
             '@type': 'EducationalOrganization',
             name: 'MHS Education',
@@ -59,7 +61,7 @@ export default function Page({ params }: PageProps) {
         data={buildBreadcrumbSchema([
           { name: 'Home', path: '/' },
           { name: 'Blog', path: '/blog' },
-          { name: params.id, path: `/blog/${params.id}` },
+          { name: id, path: `/blog/${id}` },
         ])}
       />
       <BlogSinglePage post={post} />

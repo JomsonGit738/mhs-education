@@ -5,9 +5,9 @@ import { courses } from '../../src/data/content';
 import { buildBreadcrumbSchema, buildCourseSchema } from '../../src/lib/seo';
 
 type CoursesPageRouteProps = {
-  searchParams?: {
+  searchParams?: Promise<{
     query?: string | string[];
-  };
+  }>;
 };
 
 export const revalidate = 86400;
@@ -35,8 +35,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Page({ searchParams }: CoursesPageRouteProps) {
-  const query = Array.isArray(searchParams?.query) ? searchParams?.query[0] : searchParams?.query;
+export default async function Page({ searchParams }: CoursesPageRouteProps) {
+  const resolvedSearchParams = await searchParams;
+  const query = Array.isArray(resolvedSearchParams?.query)
+    ? resolvedSearchParams.query[0]
+    : resolvedSearchParams?.query;
 
   return (
     <>
